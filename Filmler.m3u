@@ -7,10 +7,6 @@ https://vidmody.com/vs/tt0114746
 https://vidmody.com/vs/tt0139809
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/bzp/01/111138.jpg"group-title="",1408 Numaralı oda 2007
 https://vidmody.com/vs/tt0450385
-#EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/bzp/01/27782.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehennemine Dönüş 2 (1970)
-https://vidmody.com/vs/tt0031381
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTZiODVlNjQtYjVmNS00MjIyLThhMTctMzQzMWE2YTY0YjNjXkEyXkFqcGc@._V1_.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehenneminden Kaçış 3 (1971)
-https://vidmody.com/vs/tt0069768
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTY0MjEyODQzMF5BMl5BanBnXkFtZTcwMTczMjQ4Mg@@._V1_FMjpg_UX1000_.jpg"group-title="",2012 2009
 https://vidmody.com/vs/tt1190080
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGVhMWQ5ZTYtODE0NC00MTU0LWIxMGEtMjhiNmY1MmQ5NjhjXkEyXkFqcGc@._V1_.jpg"group-title="",5 Kat Yukarı 2014
@@ -651,8 +647,12 @@ https://vidmody.com/vs/tt11389872
 https://vidmody.com/vs/tt0068408
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/bzp/01/37420.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehenneminden Kaçış 1971
 https://vidmody.com/vs/tt0067065
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTZiODVlNjQtYjVmNS00MjIyLThhMTctMzQzMWE2YTY0YjNjXkEyXkFqcGc@._V1_.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehenneminden Kaçış 3 (1971)
+https://vidmody.com/vs/tt0069768
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/bzp/03/37416.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehennemine Dönüş 1970
 https://vidmody.com/vs/tt0065462
+#EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/bzp/01/27782.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehennemine Dönüş 2 (1970)
+https://vidmody.com/vs/tt0031381
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/c_310_420/medias/nmedia/00/02/23/55/69198182_af.jpg"group-title="",Meksikalı 2001
 https://vidmody.com/vs/tt0236493
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/16/11/11/12/31/562844.jpg"group-title="",Mezuniyet 2016
@@ -793,6 +793,16 @@ https://vidmody.com/vs/tt5797184
 https://vidmody.com/vs/tt11866324
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/S/pv-target-images/c5e3ce40c936e9061c0b28783dfb0cd5389d96c7034936052e8562148ef5b33e.jpg"group-title="",Profesyonel 2015
 https://vidmody.com/vs/tt3181776
+#EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/c_310_420/pictures/14/07/09/09/52/507783.jpg"group-title="Rambo",Rambo 1 İlk kan 1982
+https://vidmody.com/vs/tt0083944
+#EXTINF:-1 tvg-logo="https://images.justwatch.com/poster/297563017/s718/rambo-ilk-kan-2.jpg"group-title="Rambo",Rambo 2 İlk kan 2 1985
+https://vidmody.com/vs/tt0089880
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzBjYjk0MDMtNmUyYi00MjJlLWEwZmMtMGZlYWI1OTEwMjdkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Rambo",Rambo 3 1988
+https://vidmody.com/vs/tt0095956
+#EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/bzp/03/61139.jpg"group-title="Rambo",Rambo 4 John Rambo 2008
+https://vidmody.com/vs/tt0462499
+#EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/19/08/29/10/04/2591841.jpg"group-title="Rambo",Rambo 5 Son Kan 2019
+https://vidmody.com/vs/tt1206885
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/c_310_420/pictures/bzp/01/134678.jpg"group-title="Recep İvedik",Recep İvedik 1 (2008)
 https://vidmody.com/vs/tt1193516
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzY0MzkzNjgtNDliYi00NWIzLWJhZDItNjdiMzc2OGY2MTFhXkEyXkFqcGc@._V1_.jpg"group-title="Recep İvedik",Recep İvedik 2 (2009)
