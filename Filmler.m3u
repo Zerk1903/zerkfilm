@@ -1,18 +1,34 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZTkzOTY2NmEtMjA2ZC00NDdjLWIzMDQtMjU0ODNlMGEyN2JiXkEyXkFqcGc@._V1_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 7: Çığırtkanlar Adası (2020)
-https://vidmody.com/vs/tt8322060
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjczN2IxNmMtYzc3ZC00Y2EzLWIzYjYtM2RiZDVhY2YyNjg3XkEyXkFqcGc@._V1_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 6: Cehennemde Soğuk Bir Gün (2018)
-https://vidmody.com/vs/tt6086082
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjczMDQxMDUxOV5BMl5BanBnXkFtZTgwOTAxMjE1NjE@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 5: Kan Hattı (2015)
-https://vidmody.com/vs/tt4180514
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjIwMzlhMDYtNWE4My00M2I5LThlZGQtZTg4NDMwZjM4ZjRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 4: Efsane Başlıyor (2004)
-https://vidmody.com/vs/tt0334541
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzQyYzhkZDktZDE3NS00YTA1LWI4OTItNWMwMmU1MWE5Y2E1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 3: Canavarın Dönüşü (2001)
-https://vidmody.com/vs/tt0259685
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2QxZTI3OWEtZjY2Yy00MzUzLTlmN2EtOWUxNjcyZjQ5NWFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 2: Artçı Şok (1996)
-https://vidmody.com/vs/tt0114720
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTEzNjkwMzIyMjZeQTJeQWpwZ15BbWU4MDI2NTU5ODYx._V1_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 1 (1990)
-https://vidmody.com/vs/tt0100814
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzRmYWFlZmItNGZkMy00ZWU3LTlhNGEtNWM3ZTNmYzJmYWE3XkEyXkFqcGc@._V1_.jpg"group-title="",Control Freak 2025
+https://vidmody.com/vs/tt30789086
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTMwOTc5NzIzN15BMl5BanBnXkFtZTcwMDU2MDkzMQ@@._V1_FMjpg_UX1000_.jpg"group-title="",Büyük Tuz Gölü Korsanları 2006
+https://vidmody.com/vs/tt0477065
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYTdhMWViYWMtMjJiZS00M2ZjLWE4Y2YtZjgxMmM5ODA1OGZhXkEyXkFqcGc@._V1_.jpg"group-title="",Muhteşem Ivan 2020
+https://vidmody.com/vs/tt3661394
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNTY1ZDVhZTgtODg1MC00YWNkLWI4ODctMzZjZmE4NWVkN2Q5XkEyXkFqcGc@._V1_.jpg"group-title="",Knox Goes Away 2024
+https://vidmody.com/vs/tt20115766
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZTViYzEwYjMtMDJlNy00ZTdiLWE3YWMtN2Q3MWFiYTFjZGZmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Sky Force 2025 
+https://vidmody.com/vs/tt27056066
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjMwMjE0NTItODRmYS00YTI3LWIyZmYtOGM4OTIzZGRmOWZlXkEyXkFqcGc@._V1_.jpg"group-title="",The Reluctant Royal 2025 
+https://vidmody.com/vs/tt35558993
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZjI1ZjM3NjUtYTc1Ni00ODJmLWI5YjQtMWZiZTAyNTFiZGY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Geber! 2024
+https://vidmody.com/vs/tt28259207
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZWJjNTExN2EtOGY4Yy00OWZjLWIzNWUtNmM1NmE3MTMxNDgwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Dünyanın Sonuna Üç Kilometre 2025
+https://vidmody.com/vs/tt32186523
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTRkNzFiNDYtM2RkYS00MzQ1LWI3ODYtODk3YjA0Y2FkMGEyXkEyXkFqcGc@._V1_.jpg"group-title="",Exhibiting Forgiveness 2024
+https://vidmody.com/vs/tt28523838
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BODI4ODhhMjAtYTVkNC00NDY3LWIzZDktYmMyMjMzYzU0ZTJjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Sessiz Kabus 2021
+https://vidmody.com/vs/tt0118744
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNDJmNmRhNjUtN2I4Yi00MjgzLWFlN2EtZTYzOTFiYzE1MGVjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Zümrüt Şehrin Büyücüsü Bölüm 1 2025
+https://vidmody.com/vs/tt24218194
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYmNjMDg1Y2EtNmZiOS00NGUzLThjZGYtNzU2OGI5M2VkMDFhXkEyXkFqcGc@._V1_.jpg"group-title="",Son Bir Nefes 2025
+https://vidmody.com/vs/tt14403504
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BOTFmYTFhMTUtODI5NS00NTVkLTk1NjItY2ZkZGU2MmViMGY1XkEyXkFqcGc@._V1_.jpg"group-title="",One Life 2023
+https://vidmody.com/vs/tt13097932
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2I0OWI5MGQtNzc4My00YTAxLWFlNDctOTBmMWEzYTY4NjM5XkEyXkFqcGc@._V1_.jpg"group-title="",Denizde İsyan Davası 2023
+https://vidmody.com/vs/tt24249946
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYTQ0NDI2NzItZjNiOC00ZDc0LWJiNGMtMzZmMGM2NmVjMmJkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",A Different Man 2024
+https://vidmody.com/vs/tt21097228
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/c_310_420/pictures/bzp/03/4063.jpg"group-title="",12 Kızgın Adam (1957)
 https://vidmody.com/vs/tt0050083
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/13/12/09/20/49/177859.jpg"group-title="",12 Maymun 1995
@@ -169,18 +185,24 @@ https://vidmody.com/vs/tt0138304
 https://vidmody.com/vs/tt1798709
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/14/04/12/19/52/138626.jpg"group-title="",Aşk Bilmecesi 2013
 https://vidmody.com/vs/tt1937118
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzBmOWI1MWUtODI4MS00ZmEzLTkxYmMtOGQ0YzMwZTI3YTJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Aşk Böyledir 2025
+https://vidmody.com/vs/tt30422937
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZjY3YWI5OTMtYTdlNy00ZTZiLWEwYjItN2M1MGVkMDM4ZDExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Aşk Engel Tanımaz 1999)
 https://vidmody.com/vs/tt0125439
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/bzp/01/147203.jpg"group-title="",Aşk Sarhoşu 2010
 https://vidmody.com/vs/tt0758752
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/15/04/09/10/23/454388.jpg"group-title="",Aşk Uğruna 2014
 https://vidmody.com/vs/tt0900387
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BY2MyZWJhNjktMWQ2My00OTgwLWI1NjEtYjUzM2M2N2M4Mzc4XkEyXkFqcGc@._V1_.jpg"group-title="",Aşk ve yaşam 1996
+https://vidmody.com/vs/tt0114388
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/bzp/03/26389.jpg"group-title="",Aşk Zamanı 2001
 https://vidmody.com/vs/tt0118694
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/18/12/05/11/09/0315539.jpg"group-title="",Aşkın Algoritması 2018
 https://vidmody.com/vs/tt6010628
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzJmZmE4MjItOGY5ZC00N2NhLTkyOWItY2JmNTNlZjhmNTE5XkEyXkFqcGc@._V1_.jpg"group-title="",Aşkın Çekimi (2016)
 https://vidmody.com/vs/tt1661275
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BM2YxZDIyMWEtNzgzNS00Nzk1LTg2ZjUtNGRjYTJlMThmYjY0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Aşkın Fotoğrafı 2025
+https://vidmody.com/vs/tt29471733
 #EXTINF:-1 tvg-logo="https://static.boxofficeturkiye.com/movie/poster/300x429/43/1999043-542061248.jpg"group-title="",Aşkın Gücü 1998
 https://vidmody.com/vs/tt0120889
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjQxMWM5Y2EtYjhiZS00NjM1LWExNTQtYTc1ZDY2ODZhMzZmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Aşkın Renkleri (2011)
@@ -235,6 +257,8 @@ https://vidmody.com/vs/tt8045906
 https://vidmody.com/vs/tt15250656
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjI3NDU0ZGYtYjA2YS00Y2RlLTgwZDAtYTE2YTM5ZjE1M2JlXkEyXkFqcGc@._V1_.jpg"group-title="",Barbie (2023)
 https://vidmody.com/vs/tt1517268
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzA0MDBiODItYjliMy00MjRiLTlmNjgtMzk0NzVmNmM5NjhjXkEyXkFqcGc@._V1_.jpg"group-title="",Barbie and Teresa Recipe for Friendship 2025
+https://vidmody.com/vs/tt33550838
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTM5MjM2OTcyN15BMl5BanBnXkFtZTcwMTg3Mjc0NQ@@._V1_UY1200_CR105,0,630,1200_AL_.jpg"group-title="",Baseline 2012
 https://vidmody.com/vs/tt1390397
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTk4OTM3ODU4NF5BMl5BanBnXkFtZTcwNTM0NjcyMQ@@._V1_FMjpg_UX1000_.jpg"group-title="",Baskın 13 (2005)
@@ -425,8 +449,6 @@ https://vidmody.com/vs/tt6273998
 https://vidmody.com/vs/tt8722252
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNGRlODUxOTItMDdmNi00YWUxLWIyYWEtYTk1YzhlMTIyNDA1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Çakallarla Dans",Çakallarla Dans 6 2022
 https://vidmody.com/vs/tt21200850
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYmMyZjQ3MTEtOTA2MS00YjZjLTkwMGEtNmMxM2VkYjg2MjU0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Çapkın Hırsız 1975
-https://vidmody.com/vs/tt0281406
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjE4MTYyOWYtYjBjNy00NjBiLThhYWEtNzQ2MmE4MzY4ZGI2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Çelik Manolyalar (1989)
 https://vidmody.com/vs/tt0098384
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNTk4OTZlOGQtMWQ4ZS00ZWViLWJhY2QtMjkxZjUyMGEwNWE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Çeteler Savaşı (2000)
@@ -521,6 +543,10 @@ https://vidmody.com/vs/tt1441395
 https://vidmody.com/vs/tt10731256
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/thumb/6/67/Cruising.jpg/220px-Cruising.jpg"group-title="",Devriye 1980
 https://vidmody.com/vs/tt0080569
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BOTRkMTBlMzEtNDRlNy00ODEyLWFkN2YtODEyNDllOWNjN2E4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Diagnosis Dissent 2024
+https://vidmody.com/vs/tt21260826
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZTJjOGIyNmUtYTdkZS00ZTU4LTlkNmEtNDc0YmIwMmQwYjRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Didi 2024
+https://vidmody.com/vs/tt30319503
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/medias/nmedia/18/90/23/97/20104837.jpg"group-title="",Dikkat Bebek Var 2012
 https://vidmody.com/vs/tt1586265
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BODYzNjI0ODUzNF5BMl5BanBnXkFtZTcwNTI1MjQ2Nw@@._V1_FMjpg_UX1000_.jpg"group-title="",Dikkat Bebek Var! (2012)
@@ -539,8 +565,6 @@ https://vidmody.com/vs/tt9419884
 https://vidmody.com/vs/tt5606664
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/21/11/16/17/48/5468162.jpg"group-title="",Don't Look Up 2021
 https://vidmody.com/vs/tt11286314
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNTE1ZDUwNmItYmMwZi00NDQwLTk5NzEtMmZiZDFjMTFmZDUyXkEyXkFqcGc@._V1_UY1200_CR135,0,630,1200_AL_.jpg"group-title="Yerli",Döngü 2024
-https://vidmody.com/vs/tt33203724
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzNiMGViZGQtNTliNS00MjE5LWE5N2EtZDQwMmQwOTVkYjA3XkEyXkFqcGc@._V1_.jpg"group-title="",Dönüşüm 2024
 https://vidmody.com/vs/tt20113412
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzNiMGViZGQtNTliNS00MjE5LWE5N2EtZDQwMmQwOTVkYjA3XkEyXkFqcGc@._V1_.jpg"group-title="",Dönüşüm 2024
@@ -637,8 +661,6 @@ https://vidmody.com/vs/tt11012066
 https://vidmody.com/vs/tt7545524
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/15/08/21/13/14/543377.jpg"group-title="",Everest 2015
 https://vidmody.com/vs/tt2719848
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzAyNDRhOWItNGQ1My00YzVmLWJhMGEtMmIyZjE5NDkwMTYyXkEyXkFqcGc@._V1_.jpg"group-title="Yerli",Evlat 1972
-https://vidmody.com/vs/tt5441302
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/14/09/24/15/59/192102.jpg"group-title="",Evrim - Transcendence 2014
 https://vidmody.com/vs/tt2209764
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTc0MTk4MTI1M15BMl5BanBnXkFtZTgwOTIxMDQ0MDI@._V1_.jpg"group-title="",Ezber Bozan (2016)
@@ -659,6 +681,8 @@ https://vidmody.com/vs/tt1119646
 https://vidmody.com/vs/tt1951261
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/18/10/18/14/10/1902884.jpg"group-title="",Fındıkkıran ve Dört Diyar 2018
 https://vidmody.com/vs/tt5523010
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTkxODA0NDI4N15BMl5BanBnXkFtZTgwMzUwMjA2MDE@._V1_FMjpg_UX1000_.jpg"group-title="",Fısıltı Adası 2007
+https://vidmody.com/vs/tt1079987
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTUwODg2OTA4OF5BMl5BanBnXkFtZTgwOTE5MTE4MzE@._V1_FMjpg_UX1000_.jpg"group-title="",Fokus 2015
 https://vidmody.com/vs/tt2381941
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZTU2ZDY0MGEtMDY2OS00OGMyLTg0YmEtYTU4ODI3YTA4MDkyXkEyXkFqcGc@._V1_.jpg"group-title="",Fool's Paradise 2023
@@ -709,6 +733,8 @@ https://vidmody.com/vs/tt1399683
 https://vidmody.com/vs/tt1568338
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/medias/nmedia/18/86/02/27/19818147.jpg"group-title="",Gerçeğin Peşinde 2012
 https://vidmody.com/vs/tt1568338
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTQwOTg4MzU3Nl5BMl5BanBnXkFtZTcwMzkzNzg1OA@@._V1_FMjpg_UX1000_.jpg"group-title="",Gergedan Mevsimi 2012
+https://vidmody.com/vs/tt1850419
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/23/07/26/14/48/1735339.png"group-title="",Gezegenler Savaşı 2023
 https://vidmody.com/vs/tt13539646
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/c_310_420/pictures/bzp/06/129007.jpeg"group-title="",Gia 1998
@@ -819,6 +845,8 @@ https://vidmody.com/vs/tt3707106
 https://vidmody.com/vs/tt16606592
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/19/04/04/11/24/4371898.jpg"group-title="",Hayvan Mezarlığı 2019
 https://vidmody.com/vs/tt0837563
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZDA4ZjVmM2MtYWJlNC00OTE5LThlOWQtYjQ4Yjg1ODg5MTE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Heart Eyes (2025)
+https://vidmody.com/vs/tt32558992
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZDA4ZjVmM2MtYWJlNC00OTE5LThlOWQtYjQ4Yjg1ODg5MTE4XkEyXkFqcGc@._V1_.jpg"group-title="",Heart Eyes 2025
 https://vidmody.com/vs/tt32558992
 #EXTINF:-1 tvg-logo="https://images.justwatch.com/poster/323374659/s718/dont-die-the-man-who-wants-to-live-forever.jpg"group-title="",Hep Yaşa: Bir Adamın Ölümsüzlük Arayışı 2025
@@ -861,6 +889,8 @@ https://vidmody.com/vs/tt31050620
 https://vidmody.com/vs/tt0454848
 #EXTINF:-1 tvg-logo="https://im.haberturk.com/movies/movie/7/icerideki-adam-muhbir-619278.jpg?ver=1701241199"group-title="",İçerideki Adam: Muhbir 2019
 https://vidmody.com/vs/tt7832848
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BM2ZkMGU0ZDUtMTU0MS00ODBiLTkwYjAtYTcxZTkyYjJjMjcxXkEyXkFqcGc@._V1_.jpg"group-title="",İçimdeki Canavar (2024)
+https://vidmody.com/vs/tt14539318
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/medias/nmedia/18/86/62/89/19861679.jpg"group-title="",İçinde Yaşadığım Deri 2011
 https://vidmody.com/vs/tt1189073
 #EXTINF:-1 tvg-logo="https://static.boxofficeturkiye.com/movie/poster/300x429/84/1999784-46971133.jpg"group-title="",İhtiras Rüzgarları 1994
@@ -893,8 +923,6 @@ https://vidmody.com/vs/tt0850253
 https://vidmody.com/vs/tt0286106
 #EXTINF:-1 tvg-logo="https://images.justwatch.com/poster/322146909/s718/italyan-isi.jpg"group-title="",İtalyan işi 2003
 https://vidmody.com/vs/tt0317740
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTcwNzc4OTk1Ml5BMl5BanBnXkFtZTgwNDAyNzgwMzE@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",İtiraf 2002
-https://vidmody.com/vs/tt0317743
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTczMzQ0ODk5NV5BMl5BanBnXkFtZTcwMzU0NTY5NA@@._V1_.jpg"group-title="",İyi Günde Kötü Günde (2011)
 https://vidmody.com/vs/tt1436559
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/c_310_420/medias/nmedia/18/86/24/81/19852902.jpg"group-title="",İyi Olan Kazansın 2012
@@ -987,6 +1015,8 @@ https://vidmody.com/vs/tt0800308
 https://vidmody.com/vs/tt0800308
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/thumb/8/83/Kanun_Yolunda.jpg/640px-Kanun_Yolunda.jpg"group-title="",Kanun Yolunda 1977
 https://vidmody.com/vs/tt0076070
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjgwYjk3MzItZmM3Mi00OGQxLTkzYTctZWI5ZGY1ZGFkY2I0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Kaos: Manson Vakası 2025
+https://vidmody.com/vs/tt35628886
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGIxNjljMWMtZjk0ZS00NzUxLTg1NzAtNTJmMTI3MGY3NmM5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Kapan (2002)
 https://vidmody.com/vs/tt0280380
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/5/57/Kap%C4%B1daki_D%C3%BC%C5%9Fman_%28film%29_posteri.jpg"group-title="",Kapıdaki Düşman 2001
@@ -1147,8 +1177,6 @@ https://vidmody.com/vs/tt0227445
 https://vidmody.com/vs/tt0118883
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZDlkOGNiYzAtZTc1YS00MjQwLWE4ZmEtODhiMDk1MTNiMjE1XkEyXkFqcGc@._V1_.jpg"group-title="",Komşunun İyisi 2022
 https://vidmody.com/vs/tt14349032
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNWMyZWEwZDctZWEwYy00OTgyLTlhMzUtOGVhYzczYTU1NmFhXkEyXkFqcGc@._V1_UY1200_CR105,0,630,1200_AL_.jpg"group-title="Yerli",Koparan Kardeşler 2024
-https://vidmody.com/vs/tt33131804
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNDcxNDExZmMtYjU0Yy00OTZjLWJjZmQtYzM3OTc2NzFhZjdhXkEyXkFqcGc@._V1_.jpg"group-title="",Kopenhag'da Bir Aşk Hikâyesi 2025
 https://vidmody.com/vs/tt33501878
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/medias/nmedia/18/84/57/23/19806693.jpg"group-title="",Korku Gecesi 2011
@@ -1223,8 +1251,8 @@ https://vidmody.com/vs/tt1583420
 https://vidmody.com/vs/tt13293604
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/210/456/21045648_20131001143658475.jpg"group-title="",Last Vegas 2013
 https://vidmody.com/vs/tt1204975
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzNmYTJlYjQtNjIxZC00MjkzLThmM2MtOTYzOWI0ZGQ1MTJkXkEyXkFqcGc@._V1_UY1200_CR110,0,630,1200_AL_.jpg"group-title="Yerli",Leyla ile Mecnun 1972
-https://vidmody.com/vs/tt5175260
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNTFlZGNjMDAtOTJjYS00ODg3LTgzNjItMThlYWY2NWUwYTU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Leziz 2025
+https://vidmody.com/vs/tt32047217
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTAzNzgzODMzOTReQTJeQWpwZ15BbWU4MDU3Mjg5ODUx._V1_FMjpg_UX1000_.jpg"group-title="",Lila & Eve (2015)
 https://vidmody.com/vs/tt3442990
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/14/06/02/09/48/576526.jpg"group-title="",Locke 2013
@@ -1293,8 +1321,6 @@ https://vidmody.com/vs/tt0069768
 https://vidmody.com/vs/tt0065462
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/bzp/01/27782.jpg"group-title="Maymunlar Cehennemi",Maymunlar Cehennemine Dönüş 2 (1970)
 https://vidmody.com/vs/tt0031381
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNWRiMWQ4ZmUtOTM3Yi00NDdkLWE0NjMtNjE3ZDY5NTBkZWEzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Meksika Açmazı 2023
-https://vidmody.com/vs/tt28608546
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/c_310_420/medias/nmedia/00/02/23/55/69198182_af.jpg"group-title="",Meksikalı 2001
 https://vidmody.com/vs/tt0236493
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYTRhYzUwNzItYTlkZS00NDAwLTkwY2ItYTlhZTRhZTBiNTM2XkEyXkFqcGc@._V1_.jpg"group-title="",Merkez 36 2025
@@ -1307,8 +1333,12 @@ https://vidmody.com/vs/tt7798604
 https://vidmody.com/vs/tt4936450
 #EXTINF:-1 tvg-logo="https://ortakoltuk.com/wp-content/uploads/2020/11/miamide-bir-gece-3.jpg"group-title="",Miami'de Bir Gece... (2020)
 https://vidmody.com/vs/tt10612922
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGQwYmEzMzktYzBmMy00NmVmLTkyYTUtOTYyZjliZDNhZGVkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Mickey 17 (2025)
+https://vidmody.com/vs/tt12299608
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/d/d3/Million_Dollar_Baby_poster.jpg"group-title="",Milyonluk Bebek 2004
 https://vidmody.com/vs/tt0405159
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGMzZjM0NjMtYWY5Zi00N2Y5LWJjNWItOWI4ZTI0MTljNGE1XkEyXkFqcGc@._V1_.jpg"group-title="",Minik Örümcek Şarlot 2007
+https://vidmody.com/vs/tt0413895
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/15/09/15/12/53/226194.jpg"group-title="",Minyonlar 2015
 https://vidmody.com/vs/tt2293640
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZmIyM2M5MTQtMDQ4ZS00N2E3LWFiMmQtY2RmNTdmOGNjODIxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Mona Lisa gülüşü (2003)
@@ -1409,8 +1439,6 @@ https://vidmody.com/vs/tt0203019
 https://vidmody.com/vs/tt15398776
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/21/07/29/21/41/4810979.jpg"group-title="",Orman Gezisi 2021
 https://vidmody.com/vs/tt0870154
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BOTY1OGJlMzMtYjUxYy00NWRhLWJlMGItN2I1OTlmNTRlNDNjXkEyXkFqcGc@._V1_UY1200_CR105,0,630,1200_AL_.jpg"group-title="Yerli",Osman Sekiz 2022
-https://vidmody.com/vs/tt15114166
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzJlMzU1MWYtZDFlYS00N2Y5LTg3MmMtM2Q0ZjI2MjNkYTY0XkEyXkFqcGc@._V1_.jpg"group-title="",Owl Kasabası (2023)
 https://vidmody.com/vs/tt2542852
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/img/f9/bc/f9bc4b8227eed30daf847f4797a1187d.jpg"group-title="",Owl Kasabası 2023
@@ -1429,6 +1457,8 @@ https://vidmody.com/vs/tt0097165
 https://vidmody.com/vs/tt0363547
 #EXTINF:-1 tvg-logo="https://static.boxofficeturkiye.com/movie/poster/300x429/95/2000695-49145157.jpg"group-title="",Ölüm Kitabı (1990)
 https://vidmody.com/vs/tt0100157
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWFiNThiZjUtMzMxZS00MmY5LWE3NzYtYjU5NjAwOTEwZGMyXkEyXkFqcGc@._V1_.jpg"group-title="",Ölüm Tarlaları (1984)
+https://vidmody.com/vs/tt0087553
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjA2MTE2NzEzNV5BMl5BanBnXkFtZTgwMjg3NTkyNzE@._V1_FMjpg_UX1000_.jpg"group-title="",Ölüm Treni (2015)
 https://vidmody.com/vs/tt2784936
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/pictures/16/03/15/12/47/472623.jpg"group-title="",Ölüm Treni 2015
@@ -1527,6 +1557,8 @@ https://vidmody.com/vs/tt0138704
 https://vidmody.com/vs/tt0464154
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/bzp/03/28359.jpg"group-title="",Piyanist 2002
 https://vidmody.com/vs/tt0253474
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYmYyZjUzYjgtY2U1My00MTA4LTllNWEtNWU3ZThkOWRmMTY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Plankton Film 2025
+https://vidmody.com/vs/tt32560777
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTNiMDRjZWYtNjA5NS00YjcwLTliMWQtMDVhNzQzZGNkYTczXkEyXkFqcGc@._V1_.jpg"group-title="",Poison (2023)
 https://vidmody.com/vs/tt28912885
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZmY2Zjk3ZmYtZGQwYS00NGM4LTk1MWMtZjI4MmRkNmM2ZDYwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Polis Akademisi",Polis Akademisi 1 (1984)
@@ -1611,8 +1643,6 @@ https://vidmody.com/vs/tt1053424
 https://vidmody.com/vs/tt0105236
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/bzp/01/41134.jpg"group-title="Riddick",Riddick Günlükleri 2004
 https://vidmody.com/vs/tt0296572
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYmFiN2NhMDItY2FjNS00NzM0LTk4MGEtYmY1OWUzMGM2MzJlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Rina 2010
-https://vidmody.com/vs/tt1537891
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYTgwNDkyYzEtMWQ2Ni00OWNiLTk0ZGMtZmYyNTJlMWVjOTM1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Rita Moreno: Kararlı Bir Kız 2021
 https://vidmody.com/vs/tt10741846
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMmQ4MWM4MDctMDcxMC00NmFlLTlhYTQtODQyYzdhMWNiMWMyXkEyXkFqcGc@._V1_.jpg"group-title="",Robin Hood 2010
@@ -1629,8 +1659,6 @@ https://vidmody.com/vs/tt13429870
 https://vidmody.com/vs/tt9731386
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/16/11/09/15/01/505813.jpg"group-title="Star Wars",Rogue One Bir Star Wars Hikayesi 2016
 https://vidmody.com/vs/tt3748528
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjBmYzBmMzEtNDM0YS00NjRiLTg5YmUtY2YzZThmMGM5MTU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Rüzgara Bırak 2025
-https://vidmody.com/vs/tt32730754
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BODA0ZWVkZTktZDk3Ny00MTcwLWJhZTYtMTA3N2U2OTBiYzQ3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Saatler (2002)
 https://vidmody.com/vs/tt0274558
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjE2MTg2MzU2NF5BMl5BanBnXkFtZTcwMTMyNjkxMg@@._V1_.jpg"group-title="",Sahtekârlar (2009)
@@ -1805,6 +1833,8 @@ https://vidmody.com/vs/tt23853982
 https://vidmody.com/vs/tt1322385
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDY2YTBjZTItOWU0ZC00NDMyLTgzMWYtNzg0YjViOWVmYjI3XkEyXkFqcGc@._V1_.jpg"group-title="",Suç Bende (2023)
 https://vidmody.com/vs/tt20330434
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGIyYTI5N2QtZmQ5ZC00NDE4LThhYWMtNGE5NjI1OGU2M2NjXkEyXkFqcGc@._V1_.jpg"group-title="",Suç Takımı 2 Pantera 2025
+https://vidmody.com/vs/tt8008948
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzkyZDk3ODItNjU0ZC00NmM5LWE2MzMtNmYxYmNkZDkzNjczXkEyXkFqcGc@._V1_.jpg"group-title="",Suçlu 2018
 https://vidmody.com/vs/tt6742252
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/a/ac/Suicide_Squad_%28film%29_Poster.jpg"group-title="Harley Quinn",Suicide Squad: Gerçek Kötüler (2016)
@@ -1831,8 +1861,6 @@ https://vidmody.com/vs/tt0458352
 https://vidmody.com/vs/tt0118971
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWZlYzMyNzMtNjhlMy00ZTAzLWEwMTMtY2YwNzAxMDk1ZTViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",şeytanın parçası (1999)
 https://vidmody.com/vs/tt0124315
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjlkMzVhMjctMTI3Zi00ZTBlLTkwN2UtMjIzM2I0OTFhMzBhXkEyXkFqcGc@._V1_UY1200_CR166,0,630,1200_AL_.jpg"group-title="Yerli",Şımarık 2024
-https://vidmody.com/vs/tt31989784
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTczMzIzMTQ1OV5BMl5BanBnXkFtZTYwMDQwNjk2._V1_.jpg"group-title="",Şiddetin Tarihçesi (2005)
 https://vidmody.com/vs/tt0399146
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/14/06/27/12/13/082778.jpg"group-title="",Şifre Merkür 1998
@@ -1869,8 +1897,6 @@ https://vidmody.com/vs/tt0457939
 https://vidmody.com/vs/tt0457939
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZTNkNzkzYTEtYTJkMC00MTNkLWE0YjMtOGYxNGI0ODNiMzIwXkEyXkFqcGc@._V1_.jpg"group-title="",Tatlı bela (2000)
 https://vidmody.com/vs/tt0195685
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzlkNDNjODEtMDY0NC00NjFiLWExYzMtYzY4YmY0NTM4NDFmXkEyXkFqcGc@._V1_.jpg"group-title="Yerli",Tebessüm 2023
-https://vidmody.com/vs/tt22982202
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZjI1NDZhNDgtNjgyNS00YzJjLWJjNzctZjk3ZmZlMWNlYWI2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Tehlikeli Aklın İtirafları (2002)
 https://vidmody.com/vs/tt0270288
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/c_310_420/pictures/22/10/25/11/26/1230311.jpg"group-title="",Tehlikeli Oyun 2022
@@ -1979,8 +2005,8 @@ https://vidmody.com/vs/tt1316622
 https://vidmody.com/vs/tt1907668
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGQyZmQ1OGItYWNkNi00YzU4LWJmZjktNTQyZjNlOGNmNWJlXkEyXkFqcGc@._V1_.jpg"group-title="",Uçuş Planı 2005
 https://vidmody.com/vs/tt0408790
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNGYxMGU4YjktNmQwZS00M2M5LTkxZTctM2ZkZjA1OTYxYTRkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Umami 2025
-https://vidmody.com/vs/tt33305511
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNGExZjhjMWYtYmRmNC00ZmRkLWJmYTYtMjY0YzUzNDcyNzhkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Ugly (2013)
+https://vidmody.com/vs/tt2882328
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BY2E3OGE4OTAtYzNlNS00ODA5LTgyMzctNWY5NTI5ZmIxZDUyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Undercover 2024
 https://vidmody.com/vs/tt29270150
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/d/d1/Remember_the_titansposter.jpg"group-title="",Unutulmaz Titanlar 2000
@@ -2043,6 +2069,8 @@ https://vidmody.com/vs/tt0096409
 https://vidmody.com/vs/tt0312004
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNWQ5OGQ3MjgtZTFmYi00OTYzLWFiMGUtN2YxMDk5YmE4YjQxXkEyXkFqcGc@._V1_.jpg"group-title="",We Kill Them All 2025
 https://vidmody.com/vs/tt21158338
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjBhMDQwZTItYTk3Mi00MDc3LWEwMTEtMGE4YmZkMjJlODY4XkEyXkFqcGc@._V1_.jpg"group-title="",William Tell 2025
+https://vidmody.com/vs/tt22478818
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGY1NTZhMDUtMzJhNi00ZWZiLWJkZDMtNmVlMmM2ZTdjYzg1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Winner 2024
 https://vidmody.com/vs/tt11433906
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGY1NTZhMDUtMzJhNi00ZWZiLWJkZDMtNmVlMmM2ZTdjYzg1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Winner 2024
@@ -2089,6 +2117,8 @@ https://vidmody.com/vs/tt0102945
 https://vidmody.com/vs/tt0879870
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/bzp/01/13892.jpg"group-title="",Yedi Ölümcül Günah 1995
 https://vidmody.com/vs/tt0114369
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzYyNzU0MTM1OF5BMl5BanBnXkFtZTcwMzE1ODE1NA@@._V1_.jpg"group-title="",Yedi silahşörler (1960)
+https://vidmody.com/vs/tt0054047
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTQ0NDcyNjg0MV5BMl5BanBnXkFtZTgwMzk4NTA4MTE@._V1_FMjpg_UX1000_.jpg"group-title="",Yeni Başlayanlar İçin Vahşi Batı (2014)
 https://vidmody.com/vs/tt2557490
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGRhNmVmZDMtYzAyNy00M2YyLThkYTItNjNkYzMzYjUyZDY4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Yeni Dünya: Amerika'nin Keşfi (2005)
@@ -2101,6 +2131,20 @@ https://vidmody.com/vs/tt2395427
 https://vidmody.com/vs/tt4154756
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/19/03/28/11/29/4805705.jpg"group-title="Yenilmezler ",Yenilmezler 4 Son Oyun 2019
 https://vidmody.com/vs/tt4154796
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTEzNjkwMzIyMjZeQTJeQWpwZ15BbWU4MDI2NTU5ODYx._V1_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 1 (1990)
+https://vidmody.com/vs/tt0100814
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2QxZTI3OWEtZjY2Yy00MzUzLTlmN2EtOWUxNjcyZjQ5NWFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 2: Artçı Şok (1996)
+https://vidmody.com/vs/tt0114720
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzQyYzhkZDktZDE3NS00YTA1LWI4OTItNWMwMmU1MWE5Y2E1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 3: Canavarın Dönüşü (2001)
+https://vidmody.com/vs/tt0259685
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjIwMzlhMDYtNWE4My00M2I5LThlZGQtZTg4NDMwZjM4ZjRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 4: Efsane Başlıyor (2004)
+https://vidmody.com/vs/tt0334541
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjczMDQxMDUxOV5BMl5BanBnXkFtZTgwOTAxMjE1NjE@._V1_FMjpg_UX1000_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 5: Kan Hattı (2015)
+https://vidmody.com/vs/tt4180514
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjczN2IxNmMtYzc3ZC00Y2EzLWIzYjYtM2RiZDVhY2YyNjg3XkEyXkFqcGc@._V1_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 6: Cehennemde Soğuk Bir Gün (2018)
+https://vidmody.com/vs/tt6086082
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZTkzOTY2NmEtMjA2ZC00NDdjLWIzMDQtMjU0ODNlMGEyN2JiXkEyXkFqcGc@._V1_.jpg"group-title="Yeraltı Canavarı",Yeraltı Canavarı 7: Çığırtkanlar Adası (2020)
+https://vidmody.com/vs/tt8322060
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjE5MzYwMzYxMF5BMl5BanBnXkFtZTcwOTk4MTk0OQ@@._V1_FMjpg_UX1000_.jpg"group-title="",Yerçekimi (2013)
 https://vidmody.com/vs/tt1454468
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTA2Njc3NTUzMDFeQTJeQWpwZ15BbWU4MDgyNTM0MjAy._V1_FMjpg_UX1000_.jpg"group-title="",Yerinde olsam 2005)
