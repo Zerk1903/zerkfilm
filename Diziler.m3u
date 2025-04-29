@@ -1,24 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e11
-https://storage.diziyou6.com/episodes/10933_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e10
-https://storage.diziyou6.com/episodes/10932_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e09
-https://storage.diziyou6.com/episodes/10931_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e08
-https://storage.diziyou6.com/episodes/10930_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e07
-https://storage.diziyou6.com/episodes/10929_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e06
-https://storage.diziyou6.com/episodes/10928_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e05
-https://storage.diziyou6.com/episodes/10927_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e04
-https://storage.diziyou6.com/episodes/10926_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e03
-https://storage.diziyou6.com/episodes/10925_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e02
-https://storage.diziyou6.com/episodes/10924_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/img/4a/61/4a61380eb7b48829cb8ae035bbf81c93.jpg"group-title="American Primeval",American Primeval 1. Sezon 1. Bölüm
 https://storage.diziyou.live/episodes/116801_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/img/4a/61/4a61380eb7b48829cb8ae035bbf81c93.jpg"group-title="American Primeval",American Primeval 1. Sezon 2. Bölüm
@@ -355,6 +335,26 @@ https://storage.diziyou.live/episodes/88922_tr/720p.m3u8
 https://storage.diziyou.live/episodes/88923_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Friends",Friends s01e24
 https://storage.diziyou.live/episodes/88924_tr/720p.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e01
+https://vidmody.com/vs/tt9813792/1s/1
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e02
+https://vidmody.com/vs/tt9813792/1s/2
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e03
+https://vidmody.com/vs/tt9813792/1s/3
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e04
+https://vidmody.com/vs/tt9813792/1s/4
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e05
+https://vidmody.com/vs/tt9813792/1s/5
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e06
+https://vidmody.com/vs/tt9813792/1s/6
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e07
+https://vidmody.com/vs/tt9813792/1s/7
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e08
+https://vidmody.com/vs/tt9813792/1s/8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e09
+https://vidmody.com/vs/tt9813792/1s/9
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzM5ZWMxOGEtZjEyMC00YjQ0LThiYjEtZjVkZGEzN2NlOGEwXkEyXkFqcGc@._V1_.jpg"group-title="From",From s01e10
+https://vidmody.com/vs/tt9813792/1s/10
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s01e01
 https://storage.diziyou6.com/episodes/10901_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s01e02
@@ -401,6 +401,26 @@ https://storage.diziyou6.com/episodes/10921_tr/720p.m3u8
 https://storage.diziyou6.com/episodes/10922_tr/720p.m3u8
 #EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e01
 https://storage.diziyou6.com/episodes/10923_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e02
+https://storage.diziyou6.com/episodes/10924_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e03
+https://storage.diziyou6.com/episodes/10925_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e04
+https://storage.diziyou6.com/episodes/10926_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e05
+https://storage.diziyou6.com/episodes/10927_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e06
+https://storage.diziyou6.com/episodes/10928_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e07
+https://storage.diziyou6.com/episodes/10929_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e08
+https://storage.diziyou6.com/episodes/10930_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e09
+https://storage.diziyou6.com/episodes/10931_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e10
+https://storage.diziyou6.com/episodes/10932_tr/720p.m3u8
+#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e11
+https://storage.diziyou6.com/episodes/10933_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZjkxZWJiNTUtYjQwYS00MTBlLTgwODQtM2FkNWMyMjMwOGZiXkEyXkFqcGc@._V1_.jpg"group-title="La casa de papel",La casa de papel 1. Sezon 01. Bölüm
 https://storage.diziyou.live/episodes/10501_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZjkxZWJiNTUtYjQwYS00MTBlLTgwODQtM2FkNWMyMjMwOGZiXkEyXkFqcGc@._V1_.jpg"group-title="La casa de papel",La casa de papel 1. Sezon 02. Bölüm
