@@ -1,24 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e10
-https://vidmody.com/vs/tt15286302/1s/10
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e09
-https://vidmody.com/vs/tt15286302/1s/9
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e08
-https://vidmody.com/vs/tt15286302/1s/8
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e07
-https://vidmody.com/vs/tt15286302/1s/7
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e06
-https://vidmody.com/vs/tt15286302/1s/6
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e05
-https://vidmody.com/vs/tt15286302/1s/5
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e04
-https://vidmody.com/vs/tt15286302/1s/4
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e03
-https://vidmody.com/vs/tt15286302/1s/3
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e02
-https://vidmody.com/vs/tt15286302/1s/2
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e01
-https://vidmody.com/vs/tt15286302/1s/1
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/img/4a/61/4a61380eb7b48829cb8ae035bbf81c93.jpg"group-title="American Primeval",American Primeval 1. Sezon 1. Bölüm
 https://storage.diziyou.live/episodes/116801_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/img/4a/61/4a61380eb7b48829cb8ae035bbf81c93.jpg"group-title="American Primeval",American Primeval 1. Sezon 2. Bölüm
@@ -419,27 +399,27 @@ https://storage.diziyou6.com/episodes/10920_tr/720p.m3u8
 https://storage.diziyou6.com/episodes/10921_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s01e22
 https://storage.diziyou6.com/episodes/10922_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e01
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e01
 https://storage.diziyou6.com/episodes/10923_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e02
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e02
 https://storage.diziyou6.com/episodes/10924_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e03
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e03
 https://storage.diziyou6.com/episodes/10925_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e04
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e04
 https://storage.diziyou6.com/episodes/10926_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e05
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e05
 https://storage.diziyou6.com/episodes/10927_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e06
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e06
 https://storage.diziyou6.com/episodes/10928_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e07
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e07
 https://storage.diziyou6.com/episodes/10929_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e08
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e08
 https://storage.diziyou6.com/episodes/10930_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e09
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e09
 https://storage.diziyou6.com/episodes/10931_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e10
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e10
 https://storage.diziyou6.com/episodes/10932_tr/720p.m3u8
-#EXTINF:-1 tvg-logo=""group-title="How I Met Your Mother",How I Met Your Mother s02e11
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjg1MDQ5MjQ2N15BMl5BanBnXkFtZTYwNjI5NjA3._V1_.jpg"group-title="How I Met Your Mother",How I Met Your Mother s02e11
 https://storage.diziyou6.com/episodes/10933_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZjkxZWJiNTUtYjQwYS00MTBlLTgwODQtM2FkNWMyMjMwOGZiXkEyXkFqcGc@._V1_.jpg"group-title="La casa de papel",La casa de papel 1. Sezon 01. Bölüm
 https://storage.diziyou.live/episodes/10501_tr/720p.m3u8
@@ -705,6 +685,26 @@ https://storage.diziyou.live/episodes/10278_tr/720p.m3u8
 https://storage.diziyou.live/episodes/10279_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzQwOTcwMzIwN15BMl5BanBnXkFtZTgwMjYxMTA0NjE@._V1_.jpg"group-title="Narcos",Narcos 3. Sezon 10. Bölüm
 https://storage.diziyou.live/episodes/10280_tr/720p.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e01
+https://vidmody.com/vs/tt15286302/1s/1
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e02
+https://vidmody.com/vs/tt15286302/1s/2
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e03
+https://vidmody.com/vs/tt15286302/1s/3
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e04
+https://vidmody.com/vs/tt15286302/1s/4
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e05
+https://vidmody.com/vs/tt15286302/1s/5
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e06
+https://vidmody.com/vs/tt15286302/1s/6
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e07
+https://vidmody.com/vs/tt15286302/1s/7
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e08
+https://vidmody.com/vs/tt15286302/1s/8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e09
+https://vidmody.com/vs/tt15286302/1s/9
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDAxM2VhZmEtNzExZi00ZjM5LTg1MWEtODk4YzBmMzkzZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Nautilus",Nautilus s01e10
+https://vidmody.com/vs/tt15286302/1s/10
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTk3MjE5NDctOWJkMS00YzA0LTg0NTEtM2IzY2Q2MGZlODYwXkEyXkFqcGc@._V1_.jpg"group-title=" On Call",On Call 1. Sezon 1. Bölüm
 https://storage.diziyou.live/episodes/116201_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTk3MjE5NDctOWJkMS00YzA0LTg0NTEtM2IzY2Q2MGZlODYwXkEyXkFqcGc@._V1_.jpg"group-title=" On Call",On Call 1. Sezon 2. Bölüm
