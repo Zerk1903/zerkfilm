@@ -1,10 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo=""group-title="Medusa'nın Salı",Medusa'nın Salı - 3. Bölüm
-https://pixeldrain.com/api/file/KL863bmK
-#EXTINF:-1 tvg-logo=""group-title="Medusa'nın Salı",Medusa'nın Salı - 2. Bölüm
-https://pixeldrain.com/api/file/nzbFDVdf
-#EXTINF:-1 tvg-logo=""group-title="Medusa'nın Salı",Medusa'nın Salı - 1. Bölüm
-https://pixeldrain.com/api/file/wXVHu82t
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDdkYWZiZWYtMzA0Yi00NzNlLThkODktY2Q3N2NjN2ExZmMwXkEyXkFqcGc@._V1_.jpg"group-title="3 Cisim Problemi",3 Cisim Problemi s01e01
 https://storage.diziyou6.com/episodes/91301_tr/play.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDdkYWZiZWYtMzA0Yi00NzNlLThkODktY2Q3N2NjN2ExZmMwXkEyXkFqcGc@._V1_.jpg"group-title="3 Cisim Problemi",3 Cisim Problemi s01e02
@@ -881,6 +875,20 @@ https://storage.diziyou.live/episodes/60747_tr/720p.m3u8
 https://storage.diziyou.live/episodes/60748_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/8/84/Lost2SezonPosteri.jpg"group-title="Lost",Lost 2. Sezon 24. Bölüm
 https://storage.diziyou.live/episodes/60749_tr/720p.m3u8
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 1. Bölüm
+https://pixeldrain.com/api/file/wXVHu82t
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 2. Bölüm
+https://pixeldrain.com/api/file/nzbFDVdf
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 3. Bölüm
+https://pixeldrain.com/api/file/KL863bmK
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 4. Bölüm
+https://pixeldrain.com/api/file/SJJMf6US
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 5. Bölüm
+https://pixeldrain.com/api/file/tUhMmpqk
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 6. Bölüm
+https://pixeldrain.com/api/file/rggVawQU
+#EXTINF:-1 tvg-logo="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKUu6hh8kCZ7lypUrIQrHKrj6BxfbygisF8yFW8_s8Y21U4KXttNg6cbu2ILxRZX3najbzbmgdkZo8BVdy8p0yjHqfMkGtHhIwli1mQlGu0NVAd4VSA2E7lxiLmOVALJPb3tWWK69Yb2vEs1N4YhV96Mr4IjuIPpUSYmXYWKOHAaia2tFtk2Jp_JmfTOg/s726/mmm.jpg"group-title="Medusa'nın Salı",Medusa'nın Salı - 7. Bölüm
+https://pixeldrain.com/api/file/vLf6P1ZT
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTg2MjY3OWYtYjY2Ni00MzM1LTgzNTctOWU1ZDgyYzliZTE2XkEyXkFqcGc@._V1_.jpg"group-title="Missing You",Missing You 1. Sezon 1. Bölüm
 https://storage.diziyou.live/episodes/115801_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTg2MjY3OWYtYjY2Ni00MzM1LTgzNTctOWU1ZDgyYzliZTE2XkEyXkFqcGc@._V1_.jpg"group-title="Missing You",Missing You 1. Sezon 2. Bölüm
@@ -987,6 +995,20 @@ https://storage.diziyou.live/episodes/116206_tr/720p.m3u8
 https://storage.diziyou.live/episodes/116207_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTk3MjE5NDctOWJkMS00YzA0LTg0NTEtM2IzY2Q2MGZlODYwXkEyXkFqcGc@._V1_.jpg"group-title=" On Call",On Call 1. Sezon 8. Bölüm
 https://storage.diziyou.live/episodes/116208_tr/720p.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e01
+https://pixeldrain.com/api/file/H77ibLs2
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e02
+https://pixeldrain.com/api/file/jDBbaEWA
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e03
+https://pixeldrain.com/api/file/A6cBmrhV
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e04
+https://pixeldrain.com/api/file/RcM6CRot
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e05
+https://pixeldrain.com/api/file/JyXumRo6
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e06
+https://pixeldrain.com/api/file/k5VaBK9Z
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e07
+https://pixeldrain.com/api/file/VZvp6UZp
 #EXTINF:-1 tvg-logo="https://turkcealtyazi.org/images/poster/13317508.jpg"group-title="Pera Palas’ta Gece Yarısı ",Pera Palas’ta Gece Yarısı 1. Sezon 1. Bölüm
 https://storage.diziyou.live/episodes/16401/720p.m3u8
 #EXTINF:-1 tvg-logo="https://turkcealtyazi.org/images/poster/13317508.jpg"group-title="Pera Palas’ta Gece Yarısı ",Pera Palas’ta Gece Yarısı 1. Sezon 2. Bölüm
@@ -1215,20 +1237,6 @@ https://storage.diziyou.live/episodes/113113_tr/720p.m3u8
 https://storage.diziyou.live/episodes/113114_tr/720p.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNTgyYjdkZWQtYTBlZi00NzZkLTkyZWUtMzM5M2JmZDA0MDkyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Secret Level",Secret Level 1. Sezon 15. Bölüm
 https://storage.diziyou.live/episodes/113115_tr/720p.m3u8
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e01
-https://pixeldrain.com/api/file/H77ibLs2
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e02
-https://pixeldrain.com/api/file/jDBbaEWA
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e03
-https://pixeldrain.com/api/file/A6cBmrhV
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e04
-https://pixeldrain.com/api/file/RcM6CRot
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e05
-https://pixeldrain.com/api/file/JyXumRo6
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e06
-https://pixeldrain.com/api/file/k5VaBK9Z
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ0NTcxMjQtYzlmZS00ZDZkLTk2ZTMtY2QxODM3ZDNlODBiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Seven Worlds, One Planet",One Planet s01e07
-https://pixeldrain.com/api/file/VZvp6UZp
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYmIxZDczYjMtODQ0OS00YzQ2LWJhYjMtNjUwNTdjZTU4MDBjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="El Eternauta (2025)",Sonsuzluk Yolcusu (2025) s01e01
 https://vidmody.com/vs/tt27740241/1s/1
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYmIxZDczYjMtODQ0OS00YzQ2LWJhYjMtNjUwNTdjZTU4MDBjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="El Eternauta (2025)",Sonsuzluk Yolcusu (2025) s01e02
