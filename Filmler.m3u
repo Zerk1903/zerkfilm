@@ -1,4 +1,8 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDMyODRjMWMtNzkzMi00NmJmLTljODEtMWI3NWViZjYxZmZjXkEyXkFqcGc@._V1_.jpg"group-title="Yerli",AROG (2008) 4K
+https://pixeldrain.com/api/file/mLKHqXth
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTMyMWY0NzQtZmNkNS00ZGQ3LWIzNTEtNzY1ODEyYmIwNWMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Yahşi Batı (2009) 4K
+https://pixeldrain.com/api/file/kLWw4gTm
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjE0MTY2MDI3NV5BMl5BanBnXkFtZTcwNTc1MzEzMQ@@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",GORA (2004)
 https://pixeldrain.com/api/file/tUvxcoia
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzQ0MzY4Y2YtNTg5YS00OWFmLTgzYzctZGM0ZDM0OWRmNTU5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Oyunun Sonu (2011)
