@@ -1,4 +1,20 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo=""group-title="TV",TRT Belgesel
+https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fox_News_Channel_logo.svg/1200px-Fox_News_Channel_logo.svg.png"group-title="TV",FOX News
+https://247.foxnews.com/hls/live/2003586/FNCHLSv3/primary_2692.m3u8
+#EXTINF:-1 tvg-logo="https://www.clearplay.com/MovieBattle/images/tt0241303-1.jpg"group-title="",Çikolata 2001
+https://vidmody.com/vs/tt0241303
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDJiMDM4YzYtOWY3Zi00ODEwLTgxNjAtOTdiMDc2ZDI1MjczXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Eenie Meanie 2025
+https://vidmody.com/vs/tt15514498
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGNjOTVkZmYtYzYyZS00MjA1LTllM2UtZThhNjJkZDdiMWJkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Paris Hatıraları 2023
+https://vidmody.com/vs/tt15329224
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2ZmOGY2N2UtZDczZC00NWU5LTk3MGItOWQ2NWQxM2E5Nzk2XkEyXkFqcGc@._V1_.jpg"group-title="",Ninni 2022
+https://vidmody.com/vs/tt11891246
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWZkMjU3MTktYWJjYi00NDJkLTllODgtMTYzMzBlODhjNjMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Ayakçı 2025
+https://vidmody.com/vs/tt35979130
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGM4YzA0MDYtNzhhNC00N2JjLWJiYzUtZmVkYmRjMGJmZDQwXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg"group-title="Belgesel",Antik Dünya: Memelilerin Şafağı
+https://pixeldrain.com/u/t5iRwXYT
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTZkODJhNzAtNTYxMS00ZTNlLThhNWQtY2U5NTlkZDc4NzE5XkEyXkFqcGc@._V1_.jpg"group-title="",100% Kurt 2024
 https://vidmody.com/vs/tt8774798
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/c_310_420/pictures/bzp/03/4063.jpg"group-title="",12 Kızgın Adam (1957)
