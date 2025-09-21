@@ -1,20 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo=""group-title="TV",TRT Belgesel
-https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fox_News_Channel_logo.svg/1200px-Fox_News_Channel_logo.svg.png"group-title="TV",FOX News
-https://247.foxnews.com/hls/live/2003586/FNCHLSv3/primary_2692.m3u8
-#EXTINF:-1 tvg-logo="https://www.clearplay.com/MovieBattle/images/tt0241303-1.jpg"group-title="",Çikolata 2001
-https://vidmody.com/vs/tt0241303
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDJiMDM4YzYtOWY3Zi00ODEwLTgxNjAtOTdiMDc2ZDI1MjczXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Eenie Meanie 2025
-https://vidmody.com/vs/tt15514498
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGNjOTVkZmYtYzYyZS00MjA1LTllM2UtZThhNjJkZDdiMWJkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Paris Hatıraları 2023
-https://vidmody.com/vs/tt15329224
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2ZmOGY2N2UtZDczZC00NWU5LTk3MGItOWQ2NWQxM2E5Nzk2XkEyXkFqcGc@._V1_.jpg"group-title="",Ninni 2022
-https://vidmody.com/vs/tt11891246
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWZkMjU3MTktYWJjYi00NDJkLTllODgtMTYzMzBlODhjNjMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Ayakçı 2025
-https://vidmody.com/vs/tt35979130
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGM4YzA0MDYtNzhhNC00N2JjLWJiYzUtZmVkYmRjMGJmZDQwXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg"group-title="Belgesel",Antik Dünya: Memelilerin Şafağı
-https://pixeldrain.com/u/t5iRwXYT
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTZkODJhNzAtNTYxMS00ZTNlLThhNWQtY2U5NTlkZDc4NzE5XkEyXkFqcGc@._V1_.jpg"group-title="",100% Kurt 2024
 https://vidmody.com/vs/tt8774798
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/c_310_420/pictures/bzp/03/4063.jpg"group-title="",12 Kızgın Adam (1957)
@@ -165,6 +149,8 @@ https://vidmody.com/vs/tt21080876
 https://vidmody.com/vs/tt1823664
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYThiN2M0NTItODRmNC00NDhlLWFiYTgtMWM2YTEyYzI3ZTY1XkEyXkFqcGc@._V1_.jpg"group-title="",Anora 2024
 https://vidmody.com/vs/tt28607951
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGM4YzA0MDYtNzhhNC00N2JjLWJiYzUtZmVkYmRjMGJmZDQwXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg"group-title="Belgesel",Antik Dünya: Memelilerin Şafağı
+https://pixeldrain.com/u/t5iRwXYT
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNTFiZGQzZjUtN2ZjZi00ZGQ0LWI4YWMtNDM5MGFjZTRmZjM4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Apartment 7A (2024)
 https://pixeldrain.com/api/file/CjbY15Go
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGZmNGY1OTAtNjFkYS00MjcyLWFlZjUtYzEyMDllZGZhMzM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Apollo 13 (1995)
@@ -271,6 +257,8 @@ https://vidmody.com/vs/tt8790086
 https://vidmody.com/vs/tt8790086
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTgzODgyNTQwOV5BMl5BanBnXkFtZTcwNzc0NTc0Mg@@._V1_FMjpg_UX1000_.jpg"group-title="",Ay 2009
 https://vidmody.com/vs/tt1182345
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWZkMjU3MTktYWJjYi00NDJkLTllODgtMTYzMzBlODhjNjMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Ayakçı 2025
+https://vidmody.com/vs/tt35979130
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzg5OWVkODQtNDViMS00YmFkLTg4YjctMGFmZjM4OTdlYWRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Aydınlık Hayallerimiz 2025
 https://vidmody.com/vs/tt32086077
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTY5MTA1MTgyMV5BMl5BanBnXkFtZTYwNzE5NDg3._V1_FMjpg_UX1000_.jpg"group-title="",Ayışığında (2002)
@@ -377,8 +365,6 @@ https://vidmody.com/vs/tt3824648
 https://vidmody.com/vs/tt0165832
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjlmYzFkZmEtZDQ4Mi00MDRhLWJlYzktNmI0ODY3ZTI3MzlmXkEyXkFqcGc@._V1_.jpg"group-title="",Bir Aşk Dört Nikah 1991
 https://pixeldrain.com/api/file/BQsJ4DJS
-#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjAyNzU1NzYyMV5BMl5BanBnXkFtZTgwNTY0OTEyMTE@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Hükümet Kadın 2 (2013)
-https://pixeldrain.com/api/file/t7nYDgFF
 #EXTINF:-1 tvg-logo="https://static.boxofficeturkiye.com/movie/poster/300x429/27/2005127-78179335.jpg"group-title="",Bir Dilim Suç 2004
 https://vidmody.com/vs/tt0375912
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTU0NzE0Mzg3M15BMl5BanBnXkFtZTcwNzY2MDY3OQ@@._V1_FMjpg_UX1000_.jpg"group-title="",Bir Dünya Ki... (2013)
@@ -599,6 +585,8 @@ https://vidmody.com/vs/tt1711525
 https://vidmody.com/vs/tt0065938
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGU0MWUyZGItMzhmMy00MDkzLTkyNWItOWFkMWE0ZDA4NjA2XkEyXkFqcGc@._V1_.jpg"group-title="",Çılgınların Günahı (1963)
 https://vidmody.com/vs/tt0057163
+#EXTINF:-1 tvg-logo="https://www.clearplay.com/MovieBattle/images/tt0241303-1.jpg"group-title="",Çikolata 2001
+https://vidmody.com/vs/tt0241303
 #EXTINF:-1 tvg-logo="https://tr.web.img2.acsta.net/c_310_420/pictures/16/12/13/14/40/320125.jpg"group-title="",Çin Seddi 2016
 https://vidmody.com/vs/tt2034800
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BY2NkNmEwOGMtNmEwMy00YjY5LTljNTEtMDU5MDVlZGFiNTJlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Çirkin Şansı 2022
@@ -771,6 +759,8 @@ https://vidmody.com/vs/tt31176520
 https://vidmody.com/vs/tt0389957
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDJiMDM4YzYtOWY3Zi00ODEwLTgxNjAtOTdiMDc2ZDI1MjczXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Eenie Meanie 2025
 https://vidmody.com/vs/tt15514498
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMDJiMDM4YzYtOWY3Zi00ODEwLTgxNjAtOTdiMDc2ZDI1MjczXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Eenie Meanie 2025
+https://vidmody.com/vs/tt15514498
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/15/08/06/19/49/575487.jpg"group-title="",Efsane 2015
 https://vidmody.com/vs/tt3569230
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/15/10/02/14/28/045778.jpg"group-title="",Ejder Kılıcı 2015
@@ -871,6 +861,8 @@ https://vidmody.com/vs/tt9013340
 https://vidmody.com/vs/tt0109830
 #EXTINF:-1 tvg-logo="https://tr.web.img3.acsta.net/pictures/20/01/16/13/05/1313840.jpg"group-title="",Fotoğraf 2020
 https://vidmody.com/vs/tt7798646
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fox_News_Channel_logo.svg/1200px-Fox_News_Channel_logo.svg.png"group-title="TV",FOX News
+https://247.foxnews.com/hls/live/2003586/FNCHLSv3/primary_2692.m3u8
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/pictures/14/01/13/15/25/546033.jpg"group-title="",Frankenstein Ölümsüzlerin Savaşı (2014)
 https://vidmody.com/vs/tt1418377
 #EXTINF:-1 tvg-logo="https://tr.web.img4.acsta.net/c_310_420/pictures/21/11/30/07/35/2507086.png"group-title="",Fransız Postası 2021
@@ -1137,8 +1129,10 @@ https://vidmody.com/vs/tt2510028
 https://vidmody.com/vs/tt25011204
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNThlZDRiZDctNDhmYS00OGI4LWExMDktMmQ5MjkxNDgzYjU2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Hükümet Kadın 1 (2012)
 https://pixeldrain.com/api/file/xmyJGZxJ
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjAyNzU1NzYyMV5BMl5BanBnXkFtZTgwNTY0OTEyMTE@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Hükümet Kadın 2 (2013)
+https://pixeldrain.com/api/file/t7nYDgFF
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjAyNzU1NzYyMV5BMl5BanBnXkFtZTgwNTY0OTEyMTE@._V1_QL75_UX820_.jpg"group-title="Yerli",Hükümet Kadın 2 (2013)
-https://pixeldrain.com/api/file/tjnnQnUh
+https://vidmody.com/vs/tt3283718
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMWZlY2NkNDktNTUxNi00ZTg1LWJjOTMtMTc1MzcyNzg0NTdmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",I vitelloni (1953)
 https://pixeldrain.com/api/file/vKzKiubd
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNDYwNjM1ODkxOV5BMl5BanBnXkFtZTcwMTQyMzI5MQ@@._V1_FMjpg_UX1000_.jpg"group-title="",Igor 2008
@@ -1825,6 +1819,8 @@ https://vidmody.com/vs/tt14813816
 https://vidmody.com/vs/tt7657566
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjE1MzcwNTE5OV5BMl5BanBnXkFtZTcwMTIxNzQ0MQ@@._V1_FMjpg_UX1000_.jpg"group-title="",Ninja Kaplumbağalar 4: Ölümsüz (2007)
 https://vidmody.com/vs/tt0453556
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2ZmOGY2N2UtZDczZC00NWU5LTk3MGItOWQ2NWQxM2E5Nzk2XkEyXkFqcGc@._V1_.jpg"group-title="",Ninni 2022
+https://vidmody.com/vs/tt11891246
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWJkZjVlZDYtM2NmNi00ZjBjLTliOTUtZTIzNTA3N2M2N2M5XkEyXkFqcGc@._V1_.jpg"group-title="",Nişancı 2024
 https://vidmody.com/vs/tt12598606
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzQ3ODA1ODc4N15BMl5BanBnXkFtZTgwMDI4MzgxMTE@._V1_FMjpg_UX1000_.jpg"group-title="1994",No Escape (1994)
@@ -2015,6 +2011,8 @@ https://vidmody.com/vs/tt2866360
 https://vidmody.com/vs/tt1235448
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjAxNDcwOTI1M15BMl5BanBnXkFtZTcwNjI4NTUzMQ@@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Pardon 2005
 https://vidmody.com/vs/tt0425333
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGNjOTVkZmYtYzYyZS00MjA1LTllM2UtZThhNjJkZDdiMWJkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Paris Hatıraları 2023
+https://vidmody.com/vs/tt15329224
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWE3N2E1NDYtMzEzMC00OWFiLWJhNTUtYTJjZDdhMGY4YzI4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Paris'te Bir Amerikalı 1951
 https://pixeldrain.com/api/file/B6vQ4dyj
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTk3NzAxNTExMF5BMl5BanBnXkFtZTgwMDM0NjYwMTE@._V1_FMjpg_UX1000_.jpg"group-title="",Paris'te Bir Hafta Sonu (2013)
@@ -2637,6 +2635,8 @@ https://vidmody.com/vs/tt3631112
 https://vidmody.com/vs/tt0068154
 #EXTINF:-1 tvg-logo="https://static.boxofficeturkiye.com/movie/poster/300x429/26/2010526-704226332.jpg"group-title="",Tron efsanesi 2010
 https://vidmody.com/vs/tt1104001
+#EXTINF:-1 tvg-logo=""group-title="TV",TRT Belgesel
+https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNzA3ZjZlNzYtMTdjMy00NjMzLTk5ZGYtMTkyYzNiOGM1YmM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="",Truman Show (1998)
 https://vidmody.com/vs/tt0120382
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/0/07/Troy-poster.jpg"group-title="",Truva 2004
