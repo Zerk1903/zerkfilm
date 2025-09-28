@@ -1,4 +1,6 @@
 #EXTM3U8
+#EXTINF:-1 tvg-logo=""group-title="Yerli",Vavien
+https://www.dailymotion.com/cdn/manifest/video/x8rup30.m3u8?sec=xpF543A8bUwYmmGZy0nV1ESwxOIGCUXabFb8p_lk_cfj2iNp-XyeFZHnJ9MGZqRp1POn5kkoXCtR_Di_Z7LP85qXZdF9EehCI4Fe9q2_T3dj0qBeX-saRgWBN_VrptvB&dmTs=432894&dmV1st=a03b1a70-7649-8666-308d-3a341bec365b
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjIyMDUxODg3NF5BMl5BanBnXkFtZTgwNzA5OTkwMzE@._V1_.jpg"group-title="Yerli",Takva 2006
 https://vidmody.com/vs/tt0499262
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMGFmNmYzNzAtNjlmMS00NzAzLWE1NWYtZWE1MWY3YTU4YzdhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Anayurt Oteli 1987
