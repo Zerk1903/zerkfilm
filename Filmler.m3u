@@ -1,4 +1,20 @@
 #EXTM3U8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BODRiMjFkMmItY2IxZC00YWJmLWJlZTAtMDNhNzY0YmRiMmY4XkEyXkFqcGc@._V1_.jpg"group-title="Savaş",Stalingrad 1993
+https://vidmody.com/vs/tt0108211
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTY1MTIxMjg2Ml5BMl5BanBnXkFtZTgwMjUyNzgwMjE@._V1_.jpg"group-title="Bilim Kurgu",Seçilmiş 2014
+https://vidmody.com/vs/tt0435651
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYTNmOTdlYzUtMGEyOC00YzBmLWFmYzAtMTBiM2UwOWQwZGJkXkEyXkFqcGc@._V1_.jpg"group-title="Macera",80 Günde Devr-i Alem 1956
+https://vidmody.com/vs/tt0048960
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjU0NWUzM2UtNzUxNS00NTQ2LWFjNzctMzliNmEwYmExNjIwXkEyXkFqcGc@._V1_.jpg"group-title="Komedi",Kara kedi, ak kedi 1998
+https://vidmody.com/vs/tt0118843
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTk5MjQyNTcxNV5BMl5BanBnXkFtZTcwMjcwNDAwMQ@@._V1_FMjpg_UX1000_.jpg"group-title="Gerilim",Leke 2003
+https://vidmody.com/vs/tt0308383
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BOTQ2ODM2NjktMzJjMC00MWJiLWI2MjMtMzhiOTFmMzc1ZDUyXkEyXkFqcGc@._V1_.jpg"group-title="Gizem",Dokuzuncu Kapı 1999
+https://vidmody.com/vs/tt0142688
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjY2ODQ3MTQyOV5BMl5BanBnXkFtZTgwNTc2MzkyMTE@._V1_.jpg"group-title="Suç",Çılgın 1988
+https://vidmody.com/vs/tt0095174
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjVmZTNkZjItMWUxNS00NTE2LThkYTItNzViN2JjYTA4ZWFlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Devlet Kuşu 1980
+https://vidmody.com/vs/tt0252375
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYWQ5Njk0MzUtZTliZC00ODgzLTlmZTEtZGY0NDgyMTM0NGJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Gizem",Fakülte 1998
 https://vidmody.com/vs/tt0133751
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzNlMTUyMTAtZjNjMC00NTFmLWExYjAtZDU0ZjRkYjQwYWIzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Animasyon",Kim Possible: Çok Dramatik
