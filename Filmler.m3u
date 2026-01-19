@@ -1,4 +1,18 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo=""group-title="",
+
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTg5NDk4MTUwNl5BMl5BanBnXkFtZTcwMDU5MTc4OQ@@._V1_.jpg"group-title="Romantik",Bu Aşk Fazla Sürmez (2013)
+https://vidmody.com/vs/tt2244901
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMTQyOTA3MjQzNF5BMl5BanBnXkFtZTcwMzc3NzY0OQ@@._V1_FMjpg_UX1000_.jpg"group-title="Korku",Artçı Şok (2012)
+https://vidmody.com/vs/tt1780762
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZGVkMmM2YjQtNjc1YS00ODUwLWE5ZjgtODY1NDhkYTg2ZmU0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Romantik",Ammonite (2020)
+https://vidmody.com/vs/tt7983894
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BN2Y3YjI3OWQtYjljNy00OTYxLWIyNGQtNTVmNmJhY2ZkYWQ3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Aksiyon",Kızıl Ateş (1988)
+https://vidmody.com/vs/tt0095963
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMmRkNGJmNWUtNjVkMC00NTJhLTk5N2UtYmZlODdmM2UzNTRlXkEyXkFqcGc@._V1_.jpg"group-title="Komedi",Yapma! (2025)
+https://vidmody.com/vs/tt30645201
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BZDBjM2IyZjgtNTA0NC00OGZhLWI3ODctMGJmODE2N2Y0NGRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Her Sey Çok Güzel Olacak (1998)
+https://vidmody.com/vs/tt0263438
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BNjQxZGUxOTktYWE2Ni00MTQwLThlMTgtNDM4NzRhNWJhNDQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",CMXXIV (2025)
 https://vidmody.com/vs/tt39214430
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMjMyNzgxNzA3M15BMl5BanBnXkFtZTgwNjc3NjI1MzE@._V1_FMjpg_UX1000_.jpg"group-title="Yerli",Unutursam Fisilda (2014)
@@ -26799,6 +26813,18 @@ http://asdfk.xtreamtvplus.net:8080/movie/MND5s3awK8/Dk22jMoTTKkGX18kl/12289.mkv
 http://fullhdfilm.karamehmet.workers.dev/?ID=zombillenium-fh1/
 #EXTINF:-1 tvg-logo=""group-title="",Zor Adam 1957
 http://movie.okru.workers.dev/?ID=7922385430920
+#EXTINF:-1 tvg-logo=""group-title="TV",VIASAT HISTORY
+http://line.godofiptv.com:80/play/live.php?mac=00:1A:79:22:02:5E&stream=913162&extension=ts&play_token=tzejHONotg
+#EXTINF:-1 tvg-logo=""group-title="TV",VIASAT EXPLORE
+http://line.godofiptv.com:80/play/live.php?mac=00:1A:79:22:02:5E&stream=913161&extension=ts&play_token=auqEkAUcUp
+#EXTINF:-1 tvg-logo=""group-title="TV",TRT Belgesel 
+https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8?checkedby:MyWay
+#EXTINF:-1 tvg-logo=""group-title="TV",TRT 1
+https://goldvod.org/live/hpgdiscoo/123456/9513.m3u8
+#EXTINF:-1 tvg-logo=""group-title="TV",SÖZCÜ TV
+https://goldvod.org/live/hpgdiscoo/123456/108.m3u8
+#EXTINF:-1 tvg-logo=""group-title="TV",beIN IZ
+http://line.godofiptv.com:80/play/live.php?mac=00:1A:79:22:02:5E&stream=1925951&extension=ts&play_token=b7G7h04n0E
 #EXTINF:-1 tvg-logo="https://img.fullhdfilmizlesene.tv/poster/film/zor-ask-71279.jpg"group-title="",Zor Aşk
 http://fullhdfilm.karamehmet.workers.dev/?ID=zor-ask-fh1/
 #EXTINF:-1 tvg-logo="https://img.fullhdfilmizlesene.tv/poster/film/fullhd-zor-hedef-good-kill.jpg"group-title="",Zor Hedef - Good Kill
