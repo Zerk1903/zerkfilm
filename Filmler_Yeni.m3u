@@ -1,0 +1,10 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="" tvg-name="Inception" tvg-logo="https://example.com/inception.jpg" tvg-type="movie" group-title="Movie", Inception
+http://link_to_inception.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="The Matrix" tvg-logo="https://example.com/matrix.jpg" tvg-type="movie" group-title="Movie", The Matrix
+http://link_to_matrix.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Interstellar" tvg-logo="https://example.com/interstellar.jpg" tvg-type="movie" group-title="Movie", Interstellar
+http://link_to_interstellar.m3u8
