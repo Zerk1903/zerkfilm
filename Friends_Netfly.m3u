@@ -1,20 +1,19 @@
 #EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-PLAYLIST-TYPE:VOD
+#EXT-X-TARGETDURATION:1320
+#EXT-X-MEDIA-SEQUENCE:0
 
-#PLAYLIST:Friends Season 1
-
-#EXTINF:1320,Friends S01E01
+#EXTINF:1320,Friends S01 E01
 https://vs10.photofunny.org/v/Friends.S01E01.WEB-DL.1080p.DUAL.H.264-HDM/1080.m3u8
 
-#EXTINF:1320,Friends S01E02
+#EXTINF:1320,Friends S01 E02
 https://vs11.pictureflix.org/v/Friends.S01E02.WEB-DL.1080p.DUAL.H.264-HDM/1080.m3u8
 
-#EXTINF:1320,Friends S01E03
+#EXTINF:1320,Friends S01 E03
 https://vs9.photoflax.org/v/Friends.S01E03.WEB-DL.1080p.DUAL.H.264-HDM/1080.m3u8
 
-#EXTINF:1320,Friends S01E04
+#EXTINF:1320,Friends S01 E04
 https://vs12.photofunny.org/v/Friends.S01E04.WEB-DL.1080p.DUAL.H.264-HDM/1080.m3u8
-
-#EXTINF:1320,Friends S01E05
-https://vs11.photostack.net/v/Friends.S01E05.WEB-DL.1080p.DUAL.H.264-HDM/1080.m3u8
 
 #EXT-X-ENDLIST
