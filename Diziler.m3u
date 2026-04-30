@@ -1,4 +1,18 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E01
+https://vs2.photoflick.org/v/Love.and.Death.S01E01.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E02
+https://vs7.photoflax.org/v/Love.and.Death.S01E02.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E03
+https://vs1.photostack.net/v/Love.and.Death.S01E03.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E04
+https://vs1.photour.org/v/Love.and.Death.S01E04.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E05
+https://vs4.photoflix.org/v/Love.and.Death.S01E05.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E06
+https://vs4.photour.org/v/Love.and.Death.S01E06.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYjkwYzU3MWItMzkwMi00MmZhLWEzMzAtZDcwN2MwYTU0NTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"group-title="Love & Death (2023)",Love & Death S01 E07
+https://vs2.photomag.biz/v/Love.and.Death.S01E07.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzg3ZWIzODItZjU5Zi00OTExLTgyYjUtYWJmNmUxYTM5YTJjXkEyXkFqcGc@._V1_.jpg"group-title="Girigo (2026)",Girigo S01E01
 https://vs20.photoflick.org/v/If.Wishes.Could.Kill.S01E01.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
 #EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BYzg3ZWIzODItZjU5Zi00OTExLTgyYjUtYWJmNmUxYTM5YTJjXkEyXkFqcGc@._V1_.jpg"group-title="Girigo (2026)",Girigo S01E02
