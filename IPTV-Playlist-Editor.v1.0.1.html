@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>IPTV Editor (Logo Support)</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background:#0f1116;
+  color:#eee;
+}
+
+header{
+  padding:10px;
+  background:#151a25;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+button{
+  padding:7px 10px;
+  border:none;
+  border-radius:6px;
+  background:#2d6cff;
+  color:white;
+  cursor:pointer;
+}
+
+input{
+  padding:7px;
+  border-radius:6px;
+  border:none;
+  outline:none;
+}
+
+.container{
+  display:flex;
+  height:calc(100vh - 60px);
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:200px;
+  background:#121827;
+  padding:10px;
+  overflow:auto;
+}
+
+.cat{
+  padding:8px;
+  margin:5px 0;
+  background:#1c2233;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* TABLE */
+.main{
+  flex:1;
+  padding:10px;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  border:1px solid #2a2f3a;
+  padding:6px;
+}
+
+th{
+  background:#1b2233;
+}
+
+td{
+  background:#151a22;
+}
+
+td input{
+  width:100%;
+  background:transparent;
+  border:none;
+  color:white;
+  outline:none;
+}
+
+.delete{
+  background:#ff1744;
+  color:white;
+  border:none;
+  padding:5px 8px;
+  border-radius:6px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <button onclick="addRow()">➕ Kanal</button>
+  <button onclick="downloadM3U()">⬇️ M3U</button>
+  <input type="file" onchange="importM3U(event)">
+  <input id="search" placeholder="🔍 Ara..." oninput="render()">
+</header>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="cats"></div>
+
+  <!-- TABLE -->
+  <div class="main">
+    <table>
+      <thead>
+        <tr>
+          <th>Ad</th>
+          <th>Kategori</th>
+          <th>Logo</th>
+          <th>URL</th>
+          <th>Sil</th>
+        </tr>
+      </thead>
+      <tbody id="body"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+
+let data = [];
+let filter = "ALL";
+
+// ➕ ADD
+function addRow(){
+  data.unshift({name:"",group:"",logo:"",url:""});
+  render();
+}
+
+// ✏️ UPDATE
+function update(i,key,val){
+  data[i][key]=val;
+}
+
+// ❌ DELETE
+function del(i){
+  data.splice(i,1);
+  render();
+}
+
+// 📂 CATEGORIES
+function getCats(){
+  const set=new Set();
+  data.forEach(d=>{
+    if(d.group) set.add(d.group);
+  });
+  return ["ALL",...set];
+}
+
+function setFilter(f){
+  filter=f;
+  render();
+}
+
+// SIDEBAR
+function renderCats(){
+  const c=document.getElementById("cats");
+  c.innerHTML="";
+
+  getCats().forEach(cat=>{
+    const div=document.createElement("div");
+    div.className="cat";
+    div.innerText=cat;
+    div.onclick=()=>setFilter(cat);
+    c.appendChild(div);
+  });
+}
+
+// RENDER
+function render(){
+  renderCats();
+
+  const q=document.getElementById("search").value.toLowerCase();
+  const body=document.getElementById("body");
+  body.innerHTML="";
+
+  data.forEach((r,i)=>{
+
+    if(q){
+      const t=(r.name+" "+r.group+" "+r.url).toLowerCase();
+      if(!t.includes(q)) return;
+    }
+
+    if(filter!=="ALL" && r.group!==filter) return;
+
+    const tr=document.createElement("tr");
+
+    tr.innerHTML=`
+      <td><input value="${r.name}" onchange="update(${i},'name',this.value)"></td>
+      <td><input value="${r.group}" onchange="update(${i},'group',this.value)"></td>
+      <td><input value="${r.logo}" onchange="update(${i},'logo',this.value)"></td>
+      <td><input value="${r.url}" onchange="update(${i},'url',this.value)"></td>
+      <td><button class="delete" onclick="del(${i})">X</button></td>
+    `;
+
+    body.appendChild(tr);
+  });
+}
+
+// 📥 M3U IMPORT (LOGO SUPPORT)
+function importM3U(e){
+  const r=new FileReader();
+
+  r.onload=()=>{
+    const lines=r.result.replace(/\r/g,"").split("\n");
+
+    let cur=null;
+
+    lines.forEach(l=>{
+      l=l.trim();
+      if(!l) return;
+
+      if(l.startsWith("#EXTINF")){
+        const name=l.split(",")[1]||"";
+        const group=(l.match(/group-title="(.*?)"/)||[])[1]||"";
+        const logo=(l.match(/tvg-logo="(.*?)"/)||[])[1]||"";
+
+        cur={name,group,logo,url:""};
+      }
+      else if(l.startsWith("http")){
+        if(cur){
+          cur.url=l;
+          data.push(cur);
+          cur=null;
+        }
+      }
+    });
+
+    render();
+  };
+
+  r.readAsText(e.target.files[0]);
+}
+
+// 📤 M3U EXPORT
+function downloadM3U(){
+  let m3u="#EXTM3U\n";
+
+  data.forEach(r=>{
+    if(r.name && r.url){
+      m3u+=`#EXTINF:-1 tvg-logo="${r.logo||""}" group-title="${r.group||""}",${r.name}\n`;
+      m3u+=r.url+"\n";
+    }
+  });
+
+  const blob=new Blob([m3u],{type:"text/plain"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="playlist.m3u";
+  a.click();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
