@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV Editor Pro v1.7 - EPG & Engine</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+        :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--yellow:#d29922}
+
+        .toolbar{display:flex;gap:6px;padding:10px;background:var(--bg2);border-bottom:1px solid var(--border);align-items:center;flex-wrap:wrap}
+        .btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer;transition:0.2s}
+        .btn:hover{background:#30363d;border-color:var(--accent)}
+        .btn.epg{background:#2d2a1b;color:var(--yellow);border-color:var(--yellow)}
+
+        .main{display:flex;flex:1;overflow:hidden}
+        .sidebar{width:250px;border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column}
+        .group-list{overflow-y:auto;flex:1}
+        .group-item{padding:10px 15px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:10px;border-left:3px solid transparent}
+        .group-item.active{background:var(--bg3);border-left-color:var(--accent);color:var(--accent)}
+
+        .content{flex:1;display:flex;flex-direction:column;background:var(--bg)}
+        .channel-list{flex:1;overflow-y:auto}
+        .channel-item{display:flex;align-items:center;padding:12px;border-bottom:1px solid var(--border);cursor:pointer;transition:0.1s}
+        .channel-item:hover{background:#1c2128}
+        .ch-logo{width:45px;height:32px;background:#000;border-radius:4px;margin-right:15px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
+        .ch-logo img{max-width:100%;max-height:100%}
+
+        .ch-info{flex:1;min-width:0}
+        .ch-name-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+        .ch-name{font-size:13px;font-weight:600}
+        .epg-info{font-size:11px;color:var(--yellow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .epg-progress-bg{width:100%;height:3px;background:var(--bg3);margin-top:5px;border-radius:2px;overflow:hidden}
+        .epg-progress-bar{height:100%;background:var(--green);width:0%}
+
+        .editor-panel{width:400px;border-left:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column}
+        .ep-body{padding:20px;overflow-y:auto;flex:1}
+        #player-container{width:100%;background:#000;aspect-ratio:16/9;margin-bottom:15px;border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+
+        .field{margin-bottom:12px}
+        .field label{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}
+        .field input, .field select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:6px;outline:none}
+
+        .hidden{display:none}
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button class="btn" onclick="importM3U()">⬆ M3U Yükle</button>
+    <button class="btn" onclick="importFromURL()">🔗 URL'den Çek</button>
+    <button class="btn epg" onclick="setEPGSource()">📡 EPG Kaynağı Ekle</button>
+    <div style="width:1px;height:20px;background:var(--border)"></div>
+    <button class="btn" onclick="autoFixNames()">✨ İsimleri Düzenle</button>
+    <button class="btn success" onclick="exportM3U()">⬇ Kaydet/Dışa Aktar</button>
+    <button class="btn danger" onclick="clearData()">🗑 Sıfırla</button>
+</div>
+
+<div class="main">
+    <div class="sidebar">
+        <div style="padding:12px; font-size:11px; border-bottom:1px solid var(--border)">KATEGORİLER</div>
+        <div class="group-list" id="groupList"></div>
+    </div>
+
+    <div class="content">
+        <div class="channel-list" id="channelList"></div>
+    </div>
+
+    <div class="editor-panel hidden" id="editorPanel">
+        <div style="padding:15px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between">
+            <b>KANAL AYARLARI & TEST</b>
+            <span style="cursor:pointer" onclick="closeEditor()">✕</span>
+        </div>
+        <div class="ep-body">
+            <div id="player-container"><video id="videoPlayer" style="width:100%; height:100%" controls></video></div>
+            <button class="btn" style="width:100%; margin-bottom:15px; background:var(--accent); color:#000" onclick="testStream()">Oynat</button>
+            <div class="field"><label>Kanal Adı</label><input type="text" id="edit-name"></div>
+            <div class="field"><label>TVG-ID (EPG Eşleşmesi İçin)</label><input type="text" id="edit-tvgid"></div>
+            <div class="field"><label>Grup</label><select id="edit-group"></select></div>
+            <div class="field"><label>Yayın Linki</label><input type="text" id="edit-url"></div>
+            <div class="field"><label>Logo URL</label><input type="text" id="edit-logo"></div>
+            <div style="display:flex; gap:10px">
+                <button class="btn success" style="flex:1" onclick="saveChanges()">Güncelle</button>
+                <button class="btn danger" onclick="deleteChannel()">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let channels = JSON.parse(localStorage.getItem('iptv_data')) || [];
+    let groups = JSON.parse(localStorage.getItem('iptv_groups')) || ["Kategorisiz"];
+    let epgData = {}; // tvg-id bazlı program bilgisi
+    let activeGroup = "Tümü";
+    let editingId = null;
+
+    // --- EPG SİSTEMİ ---
+    async function setEPGSource() {
+        const url = prompt("XMLTV (.xml) EPG Linkini Yapıştırın:", "https://example.com/guide.xml");
+        if (!url) return;
+
+        alert("EPG Verileri arka planda işleniyor. (Not: Büyük dosyalarda CORS engeli olabilir)");
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(text, "text/xml");
+
+            // Basit XML Ayrıştırma
+            const programs = xmlDoc.getElementsByTagName("programme");
+            const now = new Date();
+
+            for (let prog of programs) {
+                const channelId = prog.getAttribute("channel");
+                const start = parseEPGDate(prog.getAttribute("start"));
+                const stop = parseEPGDate(prog.getAttribute("stop"));
+
+                if (now >= start && now <= stop) {
+                    const title = prog.getElementsByTagName("title")[0].textContent;
+                    epgData[channelId] = {
+                        title: title,
+                        progress: ((now - start) / (stop - start)) * 100
+                    };
+                }
+            }
+            renderChannels();
+        } catch (e) {
+            alert("EPG yüklenemedi. CORS proxy gerekebilir.");
+        }
+    }
+
+    function parseEPGDate(dateStr) {
+        // XML formatını (20231027120000) Date objesine çevirir
+        const y = dateStr.substring(0,4), m = dateStr.substring(4,6)-1, d = dateStr.substring(6,8);
+        const h = dateStr.substring(8,10), min = dateStr.substring(10,12);
+        return new Date(y, m, d, h, min);
+    }
+
+    // --- UI RENDER ---
+    function renderChannels() {
+        const filtered = channels.filter(c => activeGroup === "Tümü" || c.group === activeGroup);
+        document.getElementById('channelList').innerHTML = filtered.map(c => {
+            const epg = epgData[c.tvgid] || { title: "Yayın akışı yok", progress: 0 };
+            return `
+            <div class="channel-item" onclick="openEditor(${c.id})">
+                <div class="ch-logo">${c.logo ? `<img src="${c.logo}">` : '📺'}</div>
+                <div class="ch-info">
+                    <div class="ch-name-row">
+                        <span class="ch-name">${c.name}</span>
+                    </div>
+                    <div class="epg-info">🔴 ${epg.title}</div>
+                    <div class="epg-progress-bg"><div class="epg-progress-bar" style="width:${epg.progress}%"></div></div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // --- CORE ---
+    function parseM3UText(text) {
+        const lines = text.split('\n');
+        let name = "", logo = "", group = "Kategorisiz", tvgid = "";
+
+        lines.forEach(line => {
+            if (line.startsWith('#EXTINF')) {
+                name = (line.match(/,(.*)$/) || [])[1] || "İsimsiz";
+                logo = (line.match(/tvg-logo="([^"]*)"/) || [])[1] || "";
+                group = (line.match(/group-title="([^"]*)"/) || [])[1] || "Kategorisiz";
+                tvgid = (line.match(/tvg-id="([^"]*)"/) || [])[1] || "";
+                if (!groups.includes(group)) groups.push(group);
+            } else if (line.startsWith('http')) {
+                channels.push({ id: Date.now() + Math.random(), name: name.trim(), url: line.trim(), logo, group, tvgid });
+            }
+        });
+        updateUI();
+    }
+
+    function updateUI() {
+        renderGroups();
+        renderChannels();
+        localStorage.setItem('iptv_data', JSON.stringify(channels));
+        localStorage.setItem('iptv_groups', JSON.stringify(groups));
+    }
+
+    function renderGroups() {
+        let html = `<div class="group-item ${activeGroup === 'Tümü' ? 'active' : ''}" onclick="setGroup('Tümü')">📋 Tümü</div>`;
+        groups.forEach(g => {
+            html += `<div class="group-item ${activeGroup === g ? 'active' : ''}" onclick="setGroup('${g}')">📁 ${g}</div>`;
+        });
+        document.getElementById('groupList').innerHTML = html;
+        document.getElementById('edit-group').innerHTML = groups.map(g => `<option value="${g}">${g}</option>`).join('');
+    }
+
+    function openEditor(id) {
+        editingId = id;
+        const c = channels.find(x => x.id === id);
+        document.getElementById('edit-name').value = c.name;
+        document.getElementById('edit-url').value = c.url;
+        document.getElementById('edit-logo').value = c.logo;
+        document.getElementById('edit-group').value = c.group;
+        document.getElementById('edit-tvgid').value = c.tvgid || "";
+        document.getElementById('editorPanel').classList.remove('hidden');
+    }
+
+    function saveChanges() {
+        const c = channels.find(x => x.id === editingId);
+        c.name = document.getElementById('edit-name').value;
+        c.url = document.getElementById('edit-url').value;
+        c.group = document.getElementById('edit-group').value;
+        c.logo = document.getElementById('edit-logo').value;
+        c.tvgid = document.getElementById('edit-tvgid').value;
+        updateUI();
+    }
+
+    function testStream() {
+        const url = document.getElementById('edit-url').value;
+        const video = document.getElementById('videoPlayer');
+        if (Hls.isSupported()) {
+            const hls = new Hls(); hls.loadSource(url); hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+        } else { video.src = url; video.play(); }
+    }
+
+    function setGroup(g) { activeGroup = g; updateUI(); }
+    function closeEditor() { document.getElementById('editorPanel').classList.add('hidden'); }
+    function importM3U() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = e => {
+            const reader = new FileReader();
+            reader.onload = ev => parseM3UText(ev.target.result);
+            reader.readAsText(e.target.files[0]);
+        };
+        input.click();
+    }
+    function exportM3U() {
+        let text = "#EXTM3U\n" + channels.map(c => `#EXTINF:-1 tvg-id="${c.tvgid}" tvg-logo="${c.logo}" group-title="${c.group}",${c.name}\n${c.url}`).join('\n');
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([text], {type:'text/plain'}));
+        a.download = "playlist_with_epg.m3u";
+        a.click();
+    }
+    function clearData() { if(confirm("Sıfırlansın mı?")) { localStorage.clear(); location.reload(); } }
+    window.onload = updateUI;
+</script>
+</body>
+</html>
