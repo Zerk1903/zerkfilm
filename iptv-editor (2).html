@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTV Playlist Editor</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Courier New',monospace;background:#0d1117;color:#e6edf3;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--yellow:#d29922;--purple:#bc8cff}
+.topbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.dots{display:flex;gap:6px}.dot{width:12px;height:12px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.title{font-size:13px;color:var(--muted);margin-left:8px}
+.toolbar{display:flex;gap:6px;padding:8px 12px;background:var(--bg2);border-bottom:1px solid var(--border);align-items:center;flex-wrap:wrap}
+.btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;transition:all 0.15s;font-family:'Courier New',monospace}
+.btn:hover{background:#2d333b;border-color:var(--accent)}
+.btn.primary{background:#1f4068;border-color:var(--accent);color:var(--accent)}
+.btn.danger{background:#2d1b1b;border-color:var(--red);color:var(--red)}
+.btn.success{background:#1b2d1b;border-color:var(--green);color:var(--green)}
+.sep{width:1px;height:20px;background:var(--border);margin:0 4px}
+.search-box{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;width:180px;outline:none}
+.search-box:focus{border-color:var(--accent)}
+.main{display:flex;flex:1;overflow:hidden}
+.sidebar{width:220px;border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;overflow:hidden}
+.sidebar-header{padding:8px 12px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.group-search-wrap{padding:6px 8px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.group-search{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:5px 8px 5px 26px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;outline:none}
+.group-search:focus{border-color:var(--accent)}
+.group-search-wrap{position:relative}
+.group-search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:11px;pointer-events:none}
+.group-no-result{padding:16px;text-align:center;font-size:12px;color:var(--muted)}
+.group-list{overflow-y:auto;flex:1}
+.group-item{padding:7px 12px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:8px;border-left:2px solid transparent;transition:all 0.1s;color:var(--muted)}
+.group-item:hover{background:var(--bg3);color:var(--text)}
+.group-item.active{background:var(--bg3);border-left-color:var(--accent);color:var(--accent)}
+.group-item .count{margin-left:auto;background:var(--bg);padding:1px 6px;border-radius:8px;font-size:10px;color:var(--muted)}
+.group-item .del-group{display:none;margin-left:4px;background:none;border:none;color:var(--red);cursor:pointer;font-size:12px;padding:0 2px}
+.group-item:hover .del-group{display:inline}
+.content{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.channel-list{flex:1;overflow-y:auto}
+.channel-item{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.1s;font-size:12px}
+.channel-item:hover{background:var(--bg2)}
+.channel-item.selected{background:#1f2d3d}
+.drag-handle{color:var(--border);cursor:grab;font-size:14px;user-select:none}
+.drag-handle:active{cursor:grabbing}
+.ch-num{width:28px;text-align:right;color:var(--muted);font-size:11px}
+.ch-logo{width:28px;height:20px;border-radius:3px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--muted);flex-shrink:0;overflow:hidden}
+.ch-logo img{width:100%;height:100%;object-fit:cover}
+.ch-info{flex:1;min-width:0}
+.ch-name{color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch-group{font-size:10px;color:var(--muted);margin-top:1px}
+.ch-badge{font-size:9px;padding:1px 6px;border-radius:8px;flex-shrink:0}
+.badge-hd{background:#1a2a1a;color:var(--green);border:1px solid #2d4a2d}
+.badge-sd{background:#1a1a2a;color:#8b9fd4;border:1px solid #2d2d4a}
+.badge-4k{background:#2a1a2a;color:var(--purple);border:1px solid #3d2a3d}
+.badge-fhd{background:#2a2a1a;color:var(--yellow);border:1px solid #3d3d2a}
+.ch-actions{display:flex;gap:4px;opacity:0}
+.channel-item:hover .ch-actions{opacity:1}
+.icon-btn{background:none;border:1px solid var(--border);color:var(--muted);width:22px;height:22px;border-radius:4px;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;transition:all 0.1s}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+.icon-btn.del:hover{border-color:var(--red);color:var(--red)}
+.icon-btn.play:hover{border-color:var(--green);color:var(--green)}
+.player-bar{background:var(--bg2);border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;padding:8px 14px;min-height:52px;transition:all 0.2s}
+.player-bar.hidden{display:none}
+.player-thumb{width:36px;height:36px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;overflow:hidden}
+.player-thumb img{width:100%;height:100%;object-fit:cover}
+.player-info{flex:1;min-width:0}
+.player-name{font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player-url{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.player-controls{display:flex;gap:6px;align-items:center}
+.play-pause-btn{background:#1b2d1b;border:1px solid var(--green);color:var(--green);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
+.play-pause-btn:hover{background:#2a3d2a}
+.player-status{font-size:10px;padding:2px 8px;border-radius:8px;flex-shrink:0}
+.ps-loading{background:#2a2a1a;color:var(--yellow);border:1px solid #3d3d2a}
+.ps-playing{background:#1a2a1a;color:var(--green);border:1px solid #2d4a2d}
+.ps-error{background:#2d1b1b;color:var(--red);border:1px solid #4a2d2d}
+.ps-stopped{background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.open-vlc-btn{background:var(--bg3);border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;white-space:nowrap;font-family:'Courier New',monospace;transition:all 0.15s}
+.open-vlc-btn:hover{border-color:var(--purple);color:var(--purple)}
+.close-player-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 4px;line-height:1}
+.close-player-btn:hover{color:var(--red)}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);gap:12px;font-size:13px}
+.empty-state .big{font-size:36px}
+.statusbar{display:flex;gap:16px;padding:6px 14px;background:var(--bg2);border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
+.stat{display:flex;align-items:center;gap:4px}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.editor-panel{width:300px;border-left:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;transition:width 0.2s}
+.editor-panel.hidden{width:0;overflow:hidden}
+.ep-header{padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--accent);display:flex;justify-content:space-between;align-items:center;white-space:nowrap}
+.ep-body{padding:12px;flex:1;overflow-y:auto}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.field input,.field select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:6px 8px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;outline:none}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.ep-footer{padding:10px 12px;border-top:1px solid var(--border);display:flex;gap:6px}
+.notification{position:fixed;top:60px;right:20px;padding:8px 16px;border-radius:8px;font-size:12px;z-index:1000;animation:slideIn 0.2s ease;pointer-events:none}
+.notification.ok{background:#1f4068;border:1px solid var(--accent);color:var(--accent)}
+.notification.warn{background:#2d2a1b;border:1px solid var(--yellow);color:var(--yellow)}
+.notification.err{background:#2d1b1b;border:1px solid var(--red);color:var(--red)}
+@keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:500}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;width:320px}
+.modal h3{font-size:14px;color:var(--accent);margin-bottom:16px}
+.modal input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:6px;font-size:13px;font-family:'Courier New',monospace;outline:none;margin-bottom:12px}
+.modal input:focus{border-color:var(--accent)}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end}
+select option{background:var(--bg3)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+  <span class="title" id="fileTitle">IPTV Playlist Editor — yeni_liste.m3u</span>
+</div>
+
+<div class="toolbar">
+  <button class="btn primary" onclick="importM3U()">⬆ İçe Aktar</button>
+  <button class="btn success" onclick="exportM3U()">⬇ Dışa Aktar</button>
+  <div class="sep"></div>
+  <button class="btn" onclick="openAddChannel()">+ Kanal Ekle</button>
+  <button class="btn" onclick="openAddGroup()">+ Grup Ekle</button>
+  <button class="btn danger" onclick="deleteSelected()">✕ Seçileni Sil</button>
+  <div class="sep"></div>
+  <input class="search-box" type="text" placeholder="Kanal ara..." id="searchBox" oninput="renderChannels()">
+  <button class="btn" onclick="sortChannels()">⇅ A-Z Sırala</button>
+  <button class="btn" onclick="clearAll()">🗑 Temizle</button>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="sidebar-header"><span>Gruplar</span><span id="groupCount">0</span></div>
+    <div class="group-search-wrap">
+      <span class="group-search-icon">🔍</span>
+      <input class="group-search" type="text" id="groupSearchBox" placeholder="Grup ara..." oninput="renderGroups()">
+    </div>
+    <div class="group-list" id="groupList"></div>
+  </div>
+  <div class="content">
+    <div class="channel-list" id="channelList"></div>
+  </div>
+  <div class="editor-panel hidden" id="editorPanel">
+    <div class="ep-header">
+      <span>Kanal Düzenle</span>
+      <button class="icon-btn" onclick="closeEditor()">✕</button>
+    </div>
+    <div class="ep-body">
+      <div class="field"><label>Kanal Adı</label><input id="ep-name" type="text" placeholder="Kanal adı..."></div>
+      <div class="field"><label>Stream URL</label><input id="ep-url" type="text" placeholder="http://..."></div>
+      <div class="field"><label>Logo URL</label><input id="ep-logo" type="text" placeholder="http://logo.png"></div>
+      <div class="field"><label>Grup</label>
+        <select id="ep-group"></select>
+      </div>
+      <div class="field"><label>Kalite</label>
+        <select id="ep-quality">
+          <option value="HD">HD</option>
+          <option value="FHD">FHD</option>
+          <option value="4K">4K</option>
+          <option value="SD">SD</option>
+        </select>
+      </div>
+      <div class="field"><label>TVG-ID (EPG)</label><input id="ep-epg" type="text" placeholder="tvg-id..."></div>
+    </div>
+    <div class="ep-footer">
+      <button class="btn primary" style="flex:1" onclick="saveChannel()">💾 Kaydet</button>
+      <button class="btn" onclick="closeEditor()">İptal</button>
+    </div>
+  </div>
+</div>
+
+
+  <div class="stat"><div class="dot-live"></div><span id="totalStat">0 kanal</span></div>
+  <div class="stat">📁 <span id="groupStat">0 grup</span></div>
+  <div class="stat">🎬 <span id="hdStat">0 HD+</span></div>
+  <div class="stat" style="margin-left:auto;font-size:10px;color:#444">IPTV Playlist Editor v1.0</div>
+</div>
+
+<!-- Video Player Modal -->
+<div id="playerModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:900;flex-direction:column;align-items:center;justify-content:center;">
+  <div style="width:min(900px,96vw);display:flex;flex-direction:column;gap:0;">
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#161b22;border-radius:10px 10px 0 0;border:1px solid #30363d;border-bottom:none;">
+      <div id="pmThumb" style="width:32px;height:32px;border-radius:6px;background:#21262d;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;overflow:hidden;">📺</div>
+      <div style="flex:1;min-width:0;">
+        <div id="pmName" style="font-size:13px;font-weight:500;color:#e6edf3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</div>
+        <div id="pmUrl" style="font-size:10px;color:#8b949e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;">—</div>
+      </div>
+      <span id="pmStatus" style="font-size:11px;padding:2px 10px;border-radius:8px;background:#21262d;color:#8b949e;border:1px solid #30363d;flex-shrink:0;">Bekleniyor</span>
+      <button onclick="openInVlc()" style="background:#21262d;border:1px solid #30363d;color:#bc8cff;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;white-space:nowrap;">VLC'de Aç</button>
+      <button onclick="closePlayer()" style="background:none;border:none;color:#8b949e;font-size:20px;cursor:pointer;line-height:1;padding:0 2px;" title="Kapat">✕</button>
+    </div>
+    <!-- Video -->
+    <div style="position:relative;background:#000;border-left:1px solid #30363d;border-right:1px solid #30363d;">
+      <video id="videoEl" style="width:100%;display:block;max-height:70vh;background:#000;" controls playsinline></video>
+      <div id="pmOverlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(0,0,0,0.7);pointer-events:none;">
+        <div id="pmSpinner" style="width:40px;height:40px;border:3px solid #30363d;border-top-color:#58a6ff;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <div id="pmOverlayText" style="color:#8b949e;font-size:13px;">Yükleniyor...</div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div style="padding:8px 14px;background:#161b22;border-radius:0 0 10px 10px;border:1px solid #30363d;border-top:none;font-size:11px;color:#8b949e;display:flex;gap:16px;">
+      <span>⎵ Oynat/Duraklat</span><span>F Tam Ekran</span><span>ESC Kapat</span>
+    </div>
+  </div>
+</div>
+<style>
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" style="display:none" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 id="modalTitle">Grup Ekle</h3>
+    <input type="text" id="modalInput" placeholder="Grup adı..." onkeydown="if(event.key==='Enter')confirmModal()">
+    <div class="modal-btns">
+      <button class="btn" onclick="closeModal()">İptal</button>
+      <button class="btn primary" onclick="confirmModal()">Tamam</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let channels = [];
+let groups = [];
+let activeGroup = 'Tümü';
+let selectedId = null;
+let editingId = null;
+let nextId = 1;
+let dragSrc = null;
+let modalCallback = null;
+
+function getGroupCounts() {
+  const g = {};
+  channels.forEach(c => { g[c.group] = (g[c.group] || 0) + 1; });
+  return g;
+}
+
+function renderGroups() {
+  const counts = getGroupCounts();
+  const total = channels.length;
+  document.getElementById('groupCount').textContent = groups.length;
+  const gsearch = (document.getElementById('groupSearchBox')?.value || '').toLowerCase();
+  const filteredGroups = gsearch ? groups.filter(g => g.toLowerCase().includes(gsearch)) : groups;
+  let html = '';
+  if (!gsearch) {
+    html += `<div class="group-item ${activeGroup==='Tümü'?'active':''}" onclick="setGroup('Tümü')">
+      <span>📋</span><span>Tümü</span><span class="count">${total}</span></div>`;
+  }
+  if (filteredGroups.length === 0 && gsearch) {
+    html += `<div class="group-no-result">Grup bulunamadı</div>`;
+  }
+  filteredGroups.forEach(gr => {
+    const icons = {'Ulusal':'📺','Spor':'⚽','Haber':'📰','Belgesel':'🎬','Çocuk':'🎠','Müzik':'🎵','Film':'🎥','Dizi':'📺','Diğer':'📡'};
+    const icon = icons[gr] || '📡';
+    html += `<div class="group-item ${activeGroup===gr?'active':''}" onclick="setGroup('${gr}')">
+      <span>${icon}</span><span style="flex:1">${gr}</span>
+      <span class="count">${counts[gr]||0}</span>
+      <button class="del-group" onclick="event.stopPropagation();deleteGroup('${gr}')" title="Grubu sil">✕</button>
+    </div>`;
+  });
+  document.getElementById('groupList').innerHTML = html;
+  updateGroupSelect();
+}
+
+function updateGroupSelect() {
+  const sel = document.getElementById('ep-group');
+  const val = sel.value;
+  sel.innerHTML = groups.map(g => `<option value="${g}" ${g===val?'selected':''}>${g}</option>`).join('');
+  if (!sel.value && groups.length) sel.value = groups[0];
+}
+
+function renderChannels() {
+  const search = document.getElementById('searchBox').value.toLowerCase();
+  const filtered = channels.filter(c => {
+    const matchGroup = activeGroup === 'Tümü' || c.group === activeGroup;
+    const matchSearch = !search || c.name.toLowerCase().includes(search) || c.group.toLowerCase().includes(search) || c.url.toLowerCase().includes(search);
+    return matchGroup && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    const msg = channels.length === 0
+      ? '<div class="big">📡</div><div>Henüz kanal yok</div><div style="font-size:11px">M3U içe aktarın veya + Kanal Ekle butonunu kullanın</div>'
+      : '<div class="big">🔍</div><div>Kanal bulunamadı</div>';
+    document.getElementById('channelList').innerHTML = `<div class="empty-state">${msg}</div>`;
+    updateStats();
+    return;
+  }
+
+  let html = '';
+  filtered.forEach((c, i) => {
+    const initials = c.name.split(' ').map(w => w[0] || '').join('').substring(0, 2).toUpperCase() || '📺';
+    const qMap = {'HD':'badge-hd','SD':'badge-sd','4K':'badge-4k','FHD':'badge-fhd'};
+    const qClass = qMap[c.quality] || 'badge-sd';
+    const globalIdx = channels.indexOf(c) + 1;
+    const logoHtml = c.logo
+      ? `<img src="${c.logo}" onerror="this.parentElement.textContent='${initials}'">`
+      : initials;
+    html += `<div class="channel-item ${selectedId===c.id?'selected':''}"
+      draggable="true"
+      ondragstart="dragStart(event,${c.id})"
+      ondragover="dragOver(event)"
+      ondrop="drop(event,${c.id})"
+      ondragend="dragEnd()"
+      onclick="selectChannel(${c.id})">
+      <span class="drag-handle" title="Sürükle">⠿</span>
+      <span class="ch-num">${globalIdx}</span>
+      <div class="ch-logo">${logoHtml}</div>
+      <div class="ch-info">
+        <div class="ch-name">${c.name}</div>
+        <div class="ch-group">${c.group}</div>
+      </div>
+      <span class="ch-badge ${qClass}">${c.quality}</span>
+      <div class="ch-actions">
+        <button class="icon-btn play" title="Oynat" onclick="event.stopPropagation();playChannel(${c.id})">▶</button>
+        <button class="icon-btn" title="Düzenle" onclick="event.stopPropagation();editChannel(${c.id})">✎</button>
+        <button class="icon-btn del" title="Sil" onclick="event.stopPropagation();removeChannel(${c.id})">✕</button>
+      </div>
+    </div>`;
+  });
+  document.getElementById('channelList').innerHTML = html;
+  updateStats();
+}
+
+function updateStats() {
+  document.getElementById('totalStat').textContent = channels.length + ' kanal';
+  document.getElementById('groupStat').textContent = groups.length + ' grup';
+  document.getElementById('hdStat').textContent = channels.filter(c => ['HD','FHD','4K'].includes(c.quality)).length + ' HD+';
+}
+
+function setGroup(g) { activeGroup = g; renderGroups(); renderChannels(); }
+
+function selectChannel(id) {
+  selectedId = selectedId === id ? null : id;
+  renderChannels();
+}
+
+function editChannel(id) {
+  editingId = id;
+  const c = channels.find(x => x.id === id);
+  document.getElementById('ep-name').value = c.name;
+  document.getElementById('ep-url').value = c.url;
+  document.getElementById('ep-logo').value = c.logo;
+  updateGroupSelect();
+  document.getElementById('ep-group').value = c.group;
+  document.getElementById('ep-quality').value = c.quality;
+  document.getElementById('ep-epg').value = c.epg;
+  document.getElementById('editorPanel').classList.remove('hidden');
+}
+
+function closeEditor() {
+  document.getElementById('editorPanel').classList.add('hidden');
+  editingId = null;
+}
+
+function saveChannel() {
+  if (editingId === null) return;
+  const c = channels.find(x => x.id === editingId);
+  if (!c) return;
+  const name = document.getElementById('ep-name').value.trim();
+  if (!name) { notify('Kanal adı boş olamaz', 'warn'); return; }
+  c.name = name;
+  c.url = document.getElementById('ep-url').value.trim();
+  c.logo = document.getElementById('ep-logo').value.trim();
+  c.group = document.getElementById('ep-group').value;
+  c.quality = document.getElementById('ep-quality').value;
+  c.epg = document.getElementById('ep-epg').value.trim();
+  closeEditor();
+  renderGroups();
+  renderChannels();
+  notify('Kanal güncellendi');
+}
+
+function openAddChannel() {
+  if (groups.length === 0) {
+    notify('Önce bir grup ekleyin', 'warn');
+    return;
+  }
+  const newC = { id: nextId++, name: 'Yeni Kanal', url: '', logo: '', group: activeGroup === 'Tümü' ? groups[0] : activeGroup, quality: 'HD', epg: '' };
+  channels.push(newC);
+  renderGroups();
+  renderChannels();
+  editChannel(newC.id);
+}
+
+function openAddGroup() {
+  showModal('Yeni Grup Ekle', 'Grup adı (örn: Spor, Haber...)', name => {
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    if (groups.includes(trimmed)) { notify('Bu grup zaten var', 'warn'); return; }
+    groups.push(trimmed);
+    renderGroups();
+    renderChannels();
+    notify(`"${trimmed}" grubu eklendi`);
+  });
+}
+
+function deleteGroup(gr) {
+  const count = channels.filter(c => c.group === gr).length;
+  if (count > 0) {
+    if (!confirm(`"${gr}" grubundaki ${count} kanal da silinecek. Devam edilsin mi?`)) return;
+    channels = channels.filter(c => c.group !== gr);
+  }
+  groups = groups.filter(g => g !== gr);
+  if (activeGroup === gr) activeGroup = 'Tümü';
+  renderGroups();
+  renderChannels();
+  notify(`"${gr}" grubu silindi`);
+}
+
+function removeChannel(id) {
+  channels = channels.filter(c => c.id !== id);
+  if (selectedId === id) selectedId = null;
+  if (editingId === id) closeEditor();
+  renderGroups();
+  renderChannels();
+}
+
+function deleteSelected() {
+  if (!selectedId) { notify('Önce bir kanal seçin', 'warn'); return; }
+  removeChannel(selectedId);
+  selectedId = null;
+  notify('Kanal silindi');
+}
+
+function sortChannels() {
+  channels.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+  renderChannels();
+  notify('Kanallar A-Z sıralandı');
+}
+
+function clearAll() {
+  if (channels.length === 0 && groups.length === 0) return;
+  if (!confirm('Tüm kanallar ve gruplar silinecek. Emin misiniz?')) return;
+  channels = [];
+  groups = [];
+  activeGroup = 'Tümü';
+  selectedId = null;
+  closeEditor();
+  renderGroups();
+  renderChannels();
+  notify('Liste temizlendi');
+}
+
+// Drag & Drop
+function dragStart(e, id) { dragSrc = id; e.dataTransfer.effectAllowed = 'move'; }
+function dragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }
+function drop(e, id) {
+  e.preventDefault();
+  if (dragSrc === id) return;
+  const si = channels.findIndex(c => c.id === dragSrc);
+  const di = channels.findIndex(c => c.id === id);
+  const [moved] = channels.splice(si, 1);
+  channels.splice(di, 0, moved);
+  renderChannels();
+}
+function dragEnd() { dragSrc = null; }
+
+// Import M3U
+function importM3U() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.m3u,.m3u8,text/plain';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    document.getElementById('fileTitle').textContent = `IPTV Playlist Editor — ${file.name}`;
+    const reader = new FileReader();
+    reader.onload = ev => parseM3U(ev.target.result);
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function parseM3U(text) {
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  let imported = 0;
+  const newGroups = new Set(groups);
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].startsWith('#EXTINF')) {
+      const info = lines[i];
+      let url = '';
+      for (let j = i + 1; j < lines.length; j++) {
+        if (!lines[j].startsWith('#')) { url = lines[j]; i = j; break; }
+        if (lines[j].startsWith('#EXTINF')) break;
+      }
+      if (!url) continue;
+      const nameMatch = info.match(/,(.+)$/);
+      const groupMatch = info.match(/group-title="([^"]*)"/);
+      const logoMatch = info.match(/tvg-logo="([^"]*)"/);
+      const epgMatch = info.match(/tvg-id="([^"]*)"/);
+      const qualityGuess = url.includes('4k') || url.includes('4K') ? '4K' :
+                           url.includes('fhd') || url.includes('FHD') ? 'FHD' :
+                           url.includes('sd') || url.includes('SD') ? 'SD' : 'HD';
+      const group = groupMatch ? groupMatch[1] || 'Diğer' : 'Diğer';
+      newGroups.add(group);
+      channels.push({
+        id: nextId++,
+        name: nameMatch ? nameMatch[1].trim() : 'Kanal ' + nextId,
+        url,
+        logo: logoMatch ? logoMatch[1] : '',
+        group,
+        quality: qualityGuess,
+        epg: epgMatch ? epgMatch[1] : ''
+      });
+      imported++;
+    }
+  }
+  groups = [...newGroups];
+  renderGroups();
+  renderChannels();
+  notify(`${imported} kanal içe aktarıldı`);
+}
+
+// Export M3U
+function exportM3U() {
+  if (channels.length === 0) { notify('Dışa aktarılacak kanal yok', 'warn'); return; }
+  let m3u = '#EXTM3U\n';
+  channels.forEach(c => {
+    m3u += `#EXTINF:-1 tvg-id="${c.epg}" tvg-logo="${c.logo}" group-title="${c.group}",${c.name}\n${c.url}\n`;
+  });
+  const blob = new Blob([m3u], { type: 'audio/x-mpegurl' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'playlist.m3u';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  notify(`playlist.m3u indirildi (${channels.length} kanal)`);
+}
+
+// Modal
+function showModal(title, placeholder, cb) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalInput').placeholder = placeholder;
+  document.getElementById('modalInput').value = '';
+  document.getElementById('modalOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('modalInput').focus(), 50);
+  modalCallback = cb;
+}
+function confirmModal() {
+  const val = document.getElementById('modalInput').value;
+  document.getElementById('modalOverlay').style.display = 'none';
+  if (modalCallback && val.trim()) modalCallback(val);
+  modalCallback = null;
+}
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').style.display = 'none';
+    modalCallback = null;
+  }
+}
+
+// Notification
+function notify(msg, type = 'ok') {
+  const n = document.createElement('div');
+  n.className = `notification ${type}`;
+  n.textContent = msg;
+  document.body.appendChild(n);
+  setTimeout(() => n.remove(), 2500);
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeEditor(); closeModal(); closePlayer(); }
+  if (e.key === 'Delete' && selectedId && document.activeElement.tagName !== 'INPUT') deleteSelected();
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); exportM3U(); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'o') { e.preventDefault(); importM3U(); }
+  if (e.key === ' ' && document.activeElement.tagName !== 'INPUT' && currentPlayId !== null) { e.preventDefault(); togglePlay(); }
+  if ((e.key === 'f' || e.key === 'F') && currentPlayId !== null && document.activeElement.tagName !== 'INPUT') { document.getElementById('videoEl').requestFullscreen?.(); }
+});
+
+// Player
+let currentPlayId = null;
+let hlsInstance = null;
+
+function showOverlay(text) {
+  const ov = document.getElementById('pmOverlay');
+  ov.style.display = 'flex';
+  ov.style.pointerEvents = 'none';
+  document.getElementById('pmOverlayText').textContent = text;
+  document.getElementById('pmSpinner').style.display = text === '' ? 'none' : 'block';
+}
+function hideOverlay() {
+  document.getElementById('pmOverlay').style.display = 'none';
+}
+function setStatus(text, color) {
+  const el = document.getElementById('pmStatus');
+  el.textContent = text;
+  el.style.color = color || '#8b949e';
+  el.style.borderColor = color || '#30363d';
+}
+
+function playChannel(id) {
+  const c = channels.find(x => x.id === id);
+  if (!c) return;
+  if (!c.url) { notify('Bu kanalın URL\'si yok', 'warn'); return; }
+  window.open(c.url, '_blank');
+  notify(`${c.name} yeni sekmede açılıyor...`);
+  currentPlayId = id;
+}
+
+function togglePlay() {
+  const video = document.getElementById('videoEl');
+  if (!currentPlayId) return;
+  video.paused ? video.play().catch(()=>{}) : video.pause();
+}
+
+function openInVlc() {
+  if (!currentPlayId) return;
+  const c = channels.find(x => x.id === currentPlayId);
+  if (!c || !c.url) return;
+  window.open('vlc://' + c.url, '_blank');
+  notify('VLC protokolü çağrıldı');
+}
+
+function closePlayer() {
+  const video = document.getElementById('videoEl');
+  video.pause();
+  video.src = '';
+  if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+  currentPlayId = null;
+  document.getElementById('playerModal').style.display = 'none';
+}
+
+renderGroups();
+renderChannels();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.12/hls.min.js"></script>
+</body>
+</html>
