@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>IPTV Excel Editor</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#0f1116;
+  color:#eee;
+  padding:20px;
+}
+
+button{
+  padding:6px 10px;
+  margin:5px;
+  background:#2d6cff;
+  border:none;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th,td{
+  border:1px solid #2a2f3a;
+  padding:6px;
+}
+
+td{
+  background:#151a22;
+}
+
+input{
+  width:100%;
+  background:transparent;
+  border:none;
+  color:white;
+  outline:none;
+}
+
+th{
+  background:#1c2230;
+}
+
+.actions{
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📊 IPTV Excel Editor</h2>
+
+<button onclick="addRow()">➕ Satır</button>
+<button onclick="downloadM3U()">⬇️ M3U</button>
+<button onclick="saveJSON()">💾 Kaydet</button>
+<input type="file" onchange="loadJSON(event)">
+<input type="file" onchange="loadM3U(event)">
+
+<table>
+<thead>
+<tr>
+  <th>Ad</th>
+  <th>Kategori</th>
+  <th>Logo</th>
+  <th>URL</th>
+  <th>Sil</th>
+</tr>
+</thead>
+
+<tbody id="body"></tbody>
+</table>
+
+<script>
+let data = JSON.parse(localStorage.getItem("iptv_excel") || "[]");
+
+// SAVE AUTO
+function save(){
+  localStorage.setItem("iptv_excel", JSON.stringify(data));
+}
+
+// ADD ROW
+function addRow(){
+  data.unshift({name:"",group:"",logo:"",url:""});
+  save();
+  render();
+}
+
+// UPDATE CELL
+function update(i,key,val){
+  data[i][key]=val;
+  save();
+}
+
+// DELETE ROW
+function del(i){
+  data.splice(i,1);
+  save();
+  render();
+}
+
+// RENDER TABLE
+function render(){
+  const body=document.getElementById("body");
+  body.innerHTML="";
+
+  data.forEach((r,i)=>{
+    const tr=document.createElement("tr");
+
+    tr.innerHTML=`
+      <td><input value="${r.name}" onchange="update(${i},'name',this.value)"></td>
+      <td><input value="${r.group}" onchange="update(${i},'group',this.value)"></td>
+      <td><input value="${r.logo}" onchange="update(${i},'logo',this.value)"></td>
+      <td><input value="${r.url}" onchange="update(${i},'url',this.value)"></td>
+      <td class="actions"><button onclick="del(${i})">❌</button></td>
+    `;
+
+    body.appendChild(tr);
+  });
+}
+
+// M3U EXPORT
+function downloadM3U(){
+  let m3u="#EXTM3U\n";
+
+  data.forEach(r=>{
+    if(r.name && r.url){
+      m3u+=`#EXTINF:-1 tvg-logo="${r.logo||""}" group-title="${r.group||""}",${r.name}\n`;
+      m3u+=r.url+"\n";
+    }
+  });
+
+  const blob=new Blob([m3u],{type:"text/plain"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="playlist.m3u";
+  a.click();
+}
+
+// JSON SAVE
+function saveJSON(){
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="backup.json";
+  a.click();
+}
+
+// JSON LOAD
+function loadJSON(e){
+  const r=new FileReader();
+  r.onload=()=>{
+    data=JSON.parse(r.result);
+    save();
+    render();
+  };
+  r.readAsText(e.target.files[0]);
+}
+
+// M3U LOAD
+function loadM3U(e){
+  const r=new FileReader();
+
+  r.onload=()=>{
+    const lines=r.result.split("\n");
+    let cur={};
+
+    lines.forEach(l=>{
+      if(l.startsWith("#EXTINF")){
+        const name=l.split(",")[1]||"";
+        const group=(l.match(/group-title="(.*?)"/)||[])[1]||"";
+        const logo=(l.match(/tvg-logo="(.*?)"/)||[])[1]||"";
+        cur={name,group,logo};
+      }
+      else if(l.startsWith("http")){
+        cur.url=l.trim();
+        data.push(cur);
+      }
+    });
+
+    save();
+    render();
+  };
+
+  r.readAsText(e.target.files[0]);
+}
+
+render();
+</script>
+
+</body>
+</html>
