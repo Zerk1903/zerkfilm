@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV Editor Pro v1.5 - URL Support</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+        :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149}
+
+        /* Toolbar */
+        .toolbar{display:flex;gap:8px;padding:10px;background:var(--bg2);border-bottom:1px solid var(--border);align-items:center;flex-wrap:wrap}
+        .btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;transition:0.2s}
+        .btn:hover{background:#30363d;border-color:var(--accent)}
+        .btn.primary{background:#1f4068;color:var(--accent);border-color:var(--accent)}
+        .btn.success{background:#1b2d1b;color:var(--green);border-color:var(--green)}
+        .btn.danger{background:#2d1b1b;color:var(--red);border-color:var(--red)}
+
+        .main{display:flex;flex:1;overflow:hidden}
+
+        /* Sidebar */
+        .sidebar{width:240px;border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column}
+        .sidebar-header{padding:12px;font-size:11px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+        .group-list{overflow-y:auto;flex:1}
+        .group-item{padding:10px 15px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:10px;border-left:3px solid transparent}
+        .group-item.active{background:var(--bg3);border-left-color:var(--accent);color:var(--accent)}
+        .count{margin-left:auto;font-size:10px;background:var(--bg);padding:2px 6px;border-radius:10px}
+
+        /* Content */
+        .content{flex:1;display:flex;flex-direction:column;background:var(--bg)}
+        .channel-list{flex:1;overflow-y:auto}
+        .channel-item{display:flex;align-items:center;padding:10px;border-bottom:1px solid var(--border);cursor:grab;background:var(--bg)}
+        .ch-check{margin-right:15px;width:16px;height:16px}
+        .ch-logo{width:45px;height:30px;background:#000;border-radius:4px;margin-right:15px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .ch-logo img{max-width:100%;max-height:100%}
+        .ch-info{flex:1;min-width:0}
+        .ch-name{font-size:13px;font-weight:600}
+        .ch-url{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+        /* Editor & Video */
+        .editor-panel{width:380px;border-left:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column}
+        .ep-body{padding:20px;overflow-y:auto;flex:1}
+        #player-container{width:100%;background:#000;aspect-ratio:16/9;margin-bottom:15px;border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+        video{width:100%;height:100%}
+        .field{margin-bottom:15px}
+        .field label{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+        .field input, .field select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:6px;outline:none}
+
+        .hidden{display:none}
+        .statusbar{padding:6px 15px;background:var(--bg2);border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button class="btn primary" onclick="importM3U()">⬆ Dosya Seç</button>
+    <button class="btn primary" onclick="importFromURL()">🔗 M3U URL Ekle</button>
+    <button class="btn success" onclick="exportM3U()">⬇ Dışa Aktar</button>
+    <div style="width:1px;height:20px;background:var(--border)"></div>
+    <button class="btn" onclick="addNewChannel()">+ Kanal</button>
+    <button class="btn" onclick="addNewGroup()">+ Kategori</button>
+    <input type="text" class="btn" style="width:150px; text-align:left" id="searchBox" placeholder="Ara..." oninput="renderChannels()">
+    <button class="btn danger" onclick="clearData()">🗑 Sıfırla</button>
+</div>
+
+<div class="main">
+    <div class="sidebar">
+        <div class="sidebar-header">Kategoriler <span id="groupCount">0</span></div>
+        <div class="group-list" id="groupList"></div>
+    </div>
+
+    <div class="content">
+        <div class="channel-list" id="channelList"></div>
+    </div>
+
+    <div class="editor-panel hidden" id="editorPanel">
+        <div style="padding:15px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between">
+            <b>DÜZENLE & TEST</b>
+            <span style="cursor:pointer" onclick="closeEditor()">✕</span>
+        </div>
+        <div class="ep-body">
+            <div id="player-container"><video id="videoPlayer" controls></video></div>
+            <button class="btn primary" style="width:100%; margin-bottom:15px" onclick="testStream()">▶ Yayını Başlat</button>
+            <div class="field"><label>Kanal Adı</label><input type="text" id="edit-name"></div>
+            <div class="field"><label>Grup</label><select id="edit-group"></select></div>
+            <div class="field"><label>URL</label><input type="text" id="edit-url"></div>
+            <div class="field"><label>Logo</label><input type="text" id="edit-logo"></div>
+            <div style="display:flex; gap:10px">
+                <button class="btn success" style="flex:1" onclick="saveChanges()">Kaydet</button>
+                <button class="btn danger" onclick="deleteChannel()">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="statusbar" id="stat-total">0 Kanal Yüklü</div>
+
+<script>
+    let channels = JSON.parse(localStorage.getItem('iptv_data')) || [];
+    let groups = JSON.parse(localStorage.getItem('iptv_groups')) || ["Kategorisiz"];
+    let activeGroup = "Tümü";
+    let editingId = null;
+
+    window.onload = () => {
+        new Sortable(document.getElementById('channelList'), { animation: 150, onEnd: () => {
+            // Sıralama değiştiğinde listeyi güncelle
+            const items = [...document.querySelectorAll('.channel-item')];
+            const newChannels = items.map(el => channels.find(c => c.id == el.dataset.id));
+            channels = newChannels;
+            saveToLocal();
+        }});
+        updateUI();
+    };
+
+    function saveToLocal() {
+        localStorage.setItem('iptv_data', JSON.stringify(channels));
+        localStorage.setItem('iptv_groups', JSON.stringify(groups));
+    }
+
+    function updateUI() {
+        renderGroups();
+        renderChannels();
+        saveToLocal();
+    }
+
+    // --- M3U URL'DEN AKTARMA ÖZELLİĞİ ---
+    async function importFromURL() {
+        const url = prompt("M3U Playlist URL'sini yapıştırın:");
+        if (!url) return;
+
+        try {
+            alert("Liste çekiliyor, lütfen bekleyin...");
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Dosya alınamadı.");
+            const data = await response.text();
+            parseM3UText(data);
+            alert("Liste başarıyla eklendi!");
+        } catch (error) {
+            console.error(error);
+            alert("Hata: Tarayıcı güvenliği (CORS) nedeniyle doğrudan bazı linkler engellenebilir. Eğer yüklenmezse dosyayı indirip 'Dosya Seç' ile yükleyin.");
+        }
+    }
+
+    function parseM3UText(text) {
+        const lines = text.split('\n');
+        let name = "", logo = "", group = "Kategorisiz";
+
+        lines.forEach(line => {
+            line = line.trim();
+            if (line.startsWith('#EXTINF')) {
+                name = (line.match(/,(.*)$/) || [])[1] || "İsimsiz";
+                logo = (line.match(/tvg-logo="([^"]*)"/) || [])[1] || "";
+                group = (line.match(/group-title="([^"]*)"/) || [])[1] || "Kategorisiz";
+                if (!groups.includes(group)) groups.push(group);
+            } else if (line.startsWith('http')) {
+                channels.push({ id: Date.now() + Math.random(), name, url: line, logo, group });
+            }
+        });
+        updateUI();
+    }
+
+    // --- DİĞER FONKSİYONLAR ---
+    function renderGroups() {
+        const counts = {};
+        channels.forEach(c => counts[c.group] = (counts[c.group] || 0) + 1);
+        let html = `<div class="group-item ${activeGroup === 'Tümü' ? 'active' : ''}" onclick="setGroup('Tümü')">📋 Tümü <span class="count">${channels.length}</span></div>`;
+        groups.forEach(g => {
+            html += `<div class="group-item ${activeGroup === g ? 'active' : ''}" onclick="setGroup('${g}')">📁 ${g} <span class="count">${counts[g] || 0}</span></div>`;
+        });
+        document.getElementById('groupList').innerHTML = html;
+        document.getElementById('groupCount').innerText = groups.length;
+        document.getElementById('edit-group').innerHTML = groups.map(g => `<option value="${g}">${g}</option>`).join('');
+    }
+
+    function renderChannels() {
+        const search = document.getElementById('searchBox').value.toLowerCase();
+        const filtered = channels.filter(c => (activeGroup === "Tümü" || c.group === activeGroup) && (c.name.toLowerCase().includes(search)));
+
+        document.getElementById('channelList').innerHTML = filtered.map(c => `
+            <div class="channel-item" data-id="${c.id}" onclick="openEditor(${c.id})">
+                <div class="ch-logo">${c.logo ? `<img src="${c.logo}" onerror="this.src=''">` : '📺'}</div>
+                <div class="ch-info">
+                    <div class="ch-name">${c.name}</div>
+                    <div class="ch-url">${c.url}</div>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('stat-total').innerText = channels.length + " Kanal Yüklü";
+    }
+
+    function testStream() {
+        const url = document.getElementById('edit-url').value;
+        const video = document.getElementById('videoPlayer');
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+        } else {
+            video.src = url;
+            video.play();
+        }
+    }
+
+    function setGroup(g) { activeGroup = g; renderChannels(); renderGroups(); }
+    function openEditor(id) {
+        editingId = id;
+        const c = channels.find(x => x.id === id);
+        document.getElementById('edit-name').value = c.name;
+        document.getElementById('edit-url').value = c.url;
+        document.getElementById('edit-logo').value = c.logo;
+        document.getElementById('edit-group').value = c.group;
+        document.getElementById('editorPanel').classList.remove('hidden');
+    }
+    function saveChanges() {
+        const c = channels.find(x => x.id === editingId);
+        c.name = document.getElementById('edit-name').value;
+        c.url = document.getElementById('edit-url').value;
+        c.group = document.getElementById('edit-group').value;
+        c.logo = document.getElementById('edit-logo').value;
+        updateUI();
+        alert("Kaydedildi!");
+    }
+    function importM3U() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = e => {
+            const reader = new FileReader();
+            reader.onload = ev => parseM3UText(ev.target.result);
+            reader.readAsText(e.target.files[0]);
+        };
+        input.click();
+    }
+    function exportM3U() {
+        let text = "#EXTM3U\n" + channels.map(c => `#EXTINF:-1 tvg-logo="${c.logo}" group-title="${c.group}",${c.name}\n${c.url}`).join('\n');
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([text], {type:'text/plain'}));
+        a.download = "playlist_pro.m3u";
+        a.click();
+    }
+    function clearData() { if(confirm("Tüm veriler temizlensin mi?")) { localStorage.clear(); location.reload(); } }
+    function closeEditor() { document.getElementById('editorPanel').classList.add('hidden'); document.getElementById('videoPlayer').pause(); }
+    function addNewGroup() { const n = prompt("Grup adı:"); if(n) { groups.push(n); updateUI(); } }
+    function deleteChannel() { channels = channels.filter(c => c.id !== editingId); closeEditor(); updateUI(); }
+    function addNewChannel() {
+        const id = Date.now();
+        channels.push({id, name: "Yeni Kanal", url: "", logo: "", group: "Kategorisiz"});
+        updateUI();
+        openEditor(id);
+    }
+</script>
+</body>
+</html>
