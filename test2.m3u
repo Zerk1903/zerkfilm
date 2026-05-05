@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:-1 tvg-logo="https://m.media-amazon.com/images/M/MV5BMzYxMTZkYzItNjAxYi00ZDUzLWI5N2YtNWQ1MzI5YTg4N2UwXkEyXkFqcGc@._V1_.jpg" group-title="Filmler" type="movie" catchup="default" catchup-days="7",Yeni Kanal
+http://https://vs6.photofunny.org/v/King.Ivory.2024.WEB-DL.1080p.DUAL.H.264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzaLdFWWM4eAj2UVtOt3joQQxnaj4HjSrjDw&s" group-title="prison break" type="series" catchup="default" catchup-days="7",Yeni Kanal
+http://https://vs9.pictureflix.org/v/Prison.Break.S02E18.Bluray.1080p.DUAL.x264-HDM/master.m3u8
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/tr/9/95/TRT_1_logosu_%282001-2009%29.png" group-title="tv",trt 1
+http://https://trt.daioncdn.net/trt-1/master_1080p.m3u8?&sid=8dy1abfs4ocm&app=ed3904e8-737b-4a5e-856a-1b0d7a0a94e2&ce=2
