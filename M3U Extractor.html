@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M3U Bölücü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0f;
+    --bg2: #141418;
+    --bg3: #1c1c22;
+    --border: #2a2a35;
+    --border2: #3a3a48;
+    --accent: #7c6aff;
+    --accent2: #a594ff;
+    --accent-glow: rgba(124,106,255,0.25);
+    --text: #f0eeff;
+    --text2: #8b8aa0;
+    --text3: #5a5970;
+    --success: #4ade80;
+    --success-bg: rgba(74,222,128,0.08);
+    --danger: #ff6b6b;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 16px 80px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    background: rgba(124,106,255,0.1);
+    border: 1px solid rgba(124,106,255,0.25);
+    border-radius: 100px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .header-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #f0eeff 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-sub {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text2);
+    font-weight: 400;
+  }
+
+  /* Drop Zone */
+  .drop-zone {
+    border: 1.5px dashed var(--border2);
+    border-radius: 16px;
+    padding: 40px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .drop-zone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(124,106,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .drop-zone:hover, .drop-zone.drag-over {
+    border-color: var(--accent);
+    background: var(--bg3);
+    box-shadow: 0 0 0 1px rgba(124,106,255,0.2), inset 0 0 40px rgba(124,106,255,0.05);
+  }
+  .drop-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, rgba(124,106,255,0.2), rgba(124,106,255,0.05));
+    border: 1px solid rgba(124,106,255,0.3);
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 26px;
+  }
+  .drop-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .drop-sub {
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* File Info */
+  .file-info {
+    display: none;
+    margin-top: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    align-items: center;
+    gap: 12px;
+    animation: slideIn 0.2s ease;
+  }
+  .file-info.visible { display: flex; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .file-icon {
+    width: 38px; height: 38px;
+    background: var(--success-bg);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .file-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .file-meta {
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+  }
+  .reset-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text3);
+    font-size: 18px;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .reset-btn:hover { color: var(--danger); }
+
+  /* Section Labels */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .section-label .count-badge {
+    font-size: 10px;
+    background: rgba(124,106,255,0.15);
+    color: var(--accent2);
+    border: 1px solid rgba(124,106,255,0.2);
+    border-radius: 100px;
+    padding: 2px 8px;
+    letter-spacing: 0;
+  }
+
+  /* Group Section */
+  .group-section { display: none; margin-top: 24px; }
+  .group-section.visible { display: block; }
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .toolbar-btns { display: flex; gap: 6px; }
+
+  .mini-btn {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 5px 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mini-btn:hover { border-color: var(--accent); color: var(--accent2); }
+
+  .group-list {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    max-height: 260px;
+    overflow-y: auto;
+    background: var(--bg2);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+  }
+  .group-list::-webkit-scrollbar { width: 4px; }
+  .group-list::-webkit-scrollbar-track { background: transparent; }
+  .group-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+  .group-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    font-size: 13px;
+  }
+  .group-row:last-child { border-bottom: none; }
+  .group-row:hover { background: var(--bg3); }
+
+  .group-row input[type=checkbox] {
+    width: 16px; height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .group-name { flex: 1; color: var(--text); font-weight: 500; }
+  .group-badge {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text3);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+
+  /* Input Row */
+  .input-row {
+    display: none;
+    margin-top: 16px;
+  }
+  .input-row.visible { display: block; }
+  .input-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .zip-name-input {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .zip-name-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+  /* Main Button */
+  .bol-btn {
+    display: none;
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, var(--accent), #9b87ff);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
+    box-shadow: 0 4px 24px rgba(124,106,255,0.35);
+  }
+  .bol-btn.visible { display: block; }
+  .bol-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .bol-btn:hover::before { opacity: 1; }
+  .bol-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(124,106,255,0.45); }
+  .bol-btn:active { transform: translateY(0); }
+  .bol-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* Progress */
+  .progress-wrap {
+    display: none;
+    margin-top: 16px;
+  }
+  .progress-wrap.visible { display: block; }
+  .progress-track {
+    height: 3px;
+    background: var(--bg3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0%;
+    transition: width 0.15s;
+    border-radius: 3px;
+  }
+  .progress-text {
+    margin-top: 8px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text2);
+  }
+
+  /* Done */
+  .done-section {
+    display: none;
+    margin-top: 14px;
+    background: var(--success-bg);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease;
+  }
+  .done-section.visible { display: flex; }
+  .done-text {
+    font-size: 13px;
+    color: var(--success);
+    font-weight: 600;
+    flex: 1;
+  }
+  .done-sub {
+    font-size: 11px;
+    color: rgba(74,222,128,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 24px 0;
+  }
+
+  /* Info tip */
+  .info-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(124,106,255,0.06);
+    border: 1px solid rgba(124,106,255,0.15);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .info-tip .tip-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="header-badge">M3U Bölücü v2.0</div>
+    <h1>M3U Bölücü</h1>
+    <p class="header-sub">M3U dosyalarını dizi gruplarına böl, tek ZIP ile indir</p>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+    <div class="drop-icon">📂</div>
+    <p class="drop-title">M3U dosyasını buraya sürükle</p>
+    <p class="drop-sub">.m3u / .m3u8 • veya tıklayarak seç</p>
+    <input type="file" id="file-input" accept=".m3u,.m3u8" style="display:none">
+  </div>
+
+  <!-- File Info -->
+  <div class="file-info" id="file-info">
+    <div class="file-icon">✅</div>
+    <div style="flex:1; min-width:0;">
+      <p class="file-name" id="file-name">-</p>
+      <p class="file-meta" id="file-meta">-</p>
+    </div>
+    <button class="reset-btn" onclick="resetAll()" title="Temizle">✕</button>
+  </div>
+
+  <!-- Group Section -->
+  <div class="group-section" id="group-section">
+    <div class="divider"></div>
+    <div class="toolbar">
+      <div class="section-label" style="margin-bottom:0;">
+        Dizi Grupları
+        <span class="count-badge" id="group-count">0</span>
+      </div>
+      <div class="toolbar-btns">
+        <button class="mini-btn" onclick="selectAll(true)">Tümünü seç</button>
+        <button class="mini-btn" onclick="selectAll(false)">Kaldır</button>
+      </div>
+    </div>
+    <div style="margin-top: 10px;" class="group-list" id="group-list"></div>
+  </div>
+
+  <!-- ZIP name input -->
+  <div class="input-row" id="klasor-row">
+    <label class="input-label" for="klasor-adi">ZIP dosya adı</label>
+    <input class="zip-name-input" type="text" id="klasor-adi" value="diziler" placeholder="diziler">
+  </div>
+
+  <div class="info-tip" id="info-tip" style="display:none;">
+    <span class="tip-icon">💡</span>
+    <span>Tüm seçili .m3u dosyaları tek bir <strong>ZIP arşivine</strong> eklenerek indirilir — tarayıcı izni yalnızca bir kez istenir.</span>
+  </div>
+
+  <!-- Main Button -->
+  <button class="bol-btn" id="bol-btn" onclick="bol()">
+    ⬇ Seçili dizileri böl ve ZIP olarak indir
+  </button>
+
+  <!-- Progress -->
+  <div class="progress-wrap" id="progress-bar-wrap">
+    <div class="progress-track">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <p class="progress-text" id="progress-text">Hazırlanıyor…</p>
+  </div>
+
+  <!-- Done -->
+  <div class="done-section" id="done-section">
+    <div style="font-size:22px;">🎉</div>
+    <div>
+      <p class="done-text" id="done-text">-</p>
+      <p class="done-sub" id="done-sub">ZIP dosyası indirildi</p>
+    </div>
+  </div>
+</div>
+
+<script>
+let gruplar = {};
+let siraliIsimler = [];
+
+const dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('drag-over'); const f = e.dataTransfer.files[0]; if(f) handleFile(f); });
+document.getElementById('file-input').addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
+
+function temizAd(s) {
+  return s.replace(/[\\/:*?"<>|]/g, '_').replace(/^[\. ]+|[\. ]+$/g, '') || 'isimsiz';
+}
+
+function show(id) { const el = document.getElementById(id); el.style.display = ''; el.classList.add('visible'); }
+function hide(id) { const el = document.getElementById(id); el.style.display = 'none'; el.classList.remove('visible'); }
+
+function handleFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    const lines = text.split(/\r?\n/);
+    gruplar = {};
+    siraliIsimler = [];
+    let header = '';
+    let i = 0;
+    if(lines[0] && lines[0].trim().startsWith('#EXTM3U')) { header = lines[0]; i = 1; }
+    while(i < lines.length) {
+      const line = lines[i];
+      if(line.trim().startsWith('#EXTINF')) {
+        const extinf = line;
+        const url = (lines[i+1] || '').trim();
+        i += 2;
+        let ad = '';
+        const gm = extinf.match(/group-title="([^"]*)"/i);
+        if(gm) ad = gm[1].trim();
+        if(!ad) { const tm = extinf.match(/tvg-name="([^"]*)"/i); if(tm) ad = tm[1].trim(); }
+        if(!ad) { const vi = extinf.lastIndexOf(','); if(vi !== -1) ad = extinf.slice(vi+1).trim(); }
+        if(!ad) ad = 'Bilinmeyen';
+        if(!gruplar[ad]) { gruplar[ad] = { header, satirlar: [] }; siraliIsimler.push(ad); }
+        gruplar[ad].satirlar.push(extinf);
+        if(url) gruplar[ad].satirlar.push(url);
+      } else { i++; }
+    }
+
+    document.getElementById('file-info').classList.add('visible');
+    document.getElementById('file-info').style.display = 'flex';
+    document.getElementById('file-name').textContent = file.name;
+    document.getElementById('file-meta').textContent = `${siraliIsimler.length} dizi grubu · ${(file.size/1024).toFixed(1)} KB`;
+
+    renderGroups();
+    document.getElementById('group-section').style.display = 'block';
+    document.getElementById('group-section').classList.add('visible');
+    document.getElementById('group-count').textContent = siraliIsimler.length;
+
+    document.getElementById('klasor-row').style.display = 'block';
+    document.getElementById('info-tip').style.display = 'flex';
+    document.getElementById('bol-btn').style.display = 'block';
+    document.getElementById('bol-btn').classList.add('visible');
+  };
+  reader.readAsText(file, 'utf-8');
+}
+
+function renderGroups() {
+  const list = document.getElementById('group-list');
+  list.innerHTML = '';
+  siraliIsimler.forEach(ad => {
+    const kanal = gruplar[ad].satirlar.filter(s => s.startsWith('#EXTINF')).length;
+    const row = document.createElement('label');
+    row.className = 'group-row';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.checked = true; cb.dataset.ad = ad;
+    const span = document.createElement('span');
+    span.className = 'group-name';
+    span.textContent = ad;
+    const badge = document.createElement('span');
+    badge.className = 'group-badge';
+    badge.textContent = kanal + ' kanal';
+    row.appendChild(cb); row.appendChild(span); row.appendChild(badge);
+    list.appendChild(row);
+  });
+}
+
+function selectAll(val) {
+  document.querySelectorAll('#group-list input[type=checkbox]').forEach(cb => cb.checked = val);
+}
+
+async function bol() {
+  const secili = [...document.querySelectorAll('#group-list input[type=checkbox]')].filter(cb => cb.checked).map(cb => cb.dataset.ad);
+  if(!secili.length) { alert('En az bir dizi seçin.'); return; }
+
+  const btn = document.getElementById('bol-btn');
+  btn.disabled = true;
+
+  document.getElementById('progress-bar-wrap').style.display = 'block';
+  document.getElementById('progress-bar-wrap').classList.add('visible');
+  document.getElementById('done-section').style.display = 'none';
+  document.getElementById('done-section').classList.remove('visible');
+
+  const zipAdi = (document.getElementById('klasor-adi').value.trim() || 'diziler');
+  const zip = new JSZip();
+  const toplam = secili.length;
+
+  for(let idx = 0; idx < secili.length; idx++) {
+    const ad = secili[idx];
+    const g = gruplar[ad];
+    const icerik = (g.header ? g.header + '\n' : '#EXTM3U\n') + g.satirlar.join('\n') + '\n';
+    zip.file(temizAd(ad) + '.m3u', icerik);
+
+    const pct = Math.round((idx+1) / toplam * 80);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = `${idx+1} / ${toplam} dosya ZIP'e ekleniyor…`;
+    await new Promise(r => setTimeout(r, 20));
+  }
+
+  document.getElementById('progress-text').textContent = 'ZIP oluşturuluyor…';
+  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } }, meta => {
+    const pct = 80 + Math.round(meta.percent * 0.2);
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  document.getElementById('progress-bar').style.width = '100%';
+  document.getElementById('progress-text').textContent = 'İndiriliyor…';
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = temizAd(zipAdi) + '.zip';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  await new Promise(r => setTimeout(r, 400));
+
+  document.getElementById('done-section').style.display = 'flex';
+  document.getElementById('done-section').classList.add('visible');
+  document.getElementById('done-text').textContent = `${secili.length} adet .m3u dosyası başarıyla indirildi`;
+  document.getElementById('done-sub').textContent = `${temizAd(zipAdi)}.zip — ZIP arşivi`;
+  btn.disabled = false;
+}
+
+function resetAll() {
+  gruplar = {}; siraliIsimler = [];
+  document.getElementById('file-input').value = '';
+  ['file-info','group-section','klasor-row','bol-btn','progress-bar-wrap','done-section','info-tip'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.display = 'none';
+    el.classList.remove('visible');
+  });
+  document.getElementById('progress-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>
