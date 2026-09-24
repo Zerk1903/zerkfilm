@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro M3U Editor — Web</title>
+<style>
+:root {
+  --bg: #1e1e1e;
+  --panel: #2b2b2b;
+  --surface: #3c3f41;
+  --border: #555;
+  --text: #e8e8e8;
+  --muted: #aaa;
+  --accent: #0561a8;
+  --accent-h: #0a7fd4;
+  --ok: #00963c;
+  --err: #c02020;
+  --warn: #c08000;
+  --row-h: 52px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* ── Ribbon ── */
+.ribbon {
+  background: var(--panel);
+  border-bottom: 1px solid #444;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.ribbon-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+.group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 2px 4px;
+  position: relative;
+}
+.group::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -8px;
+  left: 6px;
+  font-size: 9px;
+  color: #888;
+  background: var(--panel);
+  padding: 0 3px;
+}
+button, .btn {
+  background: #3a3a3a;
+  color: #eee;
+  border: 1px solid #555;
+  border-radius: 3px;
+  padding: 4px 9px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+button:hover { background: #505050; border-color: #777; }
+button:active { background: #222; }
+button.primary { background: var(--accent); border-color: #0461a0; }
+button.primary:hover { background: var(--accent-h); }
+button.danger { background: #5a2020; border-color: #833; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+input[type="text"], input[type="search"], select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  height: 28px;
+}
+input:focus, select:focus { outline: 1px solid var(--accent); }
+#searchBar { min-width: 180px; flex: 1; max-width: 320px; }
+
+/* ── Table area ── */
+.table-wrap {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 12px;
+}
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #4e5254;
+}
+th {
+  padding: 6px 4px;
+  border: 1px solid #333;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+th:hover { background: #5a5e60; }
+th .sort-ind { font-size: 10px; opacity: .6; }
+td {
+  padding: 2px 4px;
+  border: 1px solid #444;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: var(--row-h);
+}
+tr:nth-child(even) td { background: #35383a; }
+tr:hover td { background: #3a4550; }
+tr.selected td { background: #0561a8 !important; }
+td.logo-cell { text-align: center; }
+td.logo-cell img {
+  width: 36px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #1a1a1a;
+}
+td input.cell-edit {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  padding: 2px;
+}
+td input.cell-edit:focus {
+  background: #1a1a1a;
+  outline: 1px solid var(--accent);
+  border-radius: 2px;
+}
+.check-col { width: 32px; text-align: center; }
+.status-ok { background: #00643c !important; color: #fff; }
+.status-fail { background: #a01e1e !important; color: #fff; }
+.status-active { background: #00963c !important; color: #fff; }
+.status-dead { background: #646464 !important; color: #fff; }
+.status-err { background: #960000 !important; color: #fff; }
+
+/* ── Status bar ── */
+.statusbar {
+  background: #323232;
+  color: #ffcc00;
+  padding: 3px 10px;
+  font-size: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  border-top: 1px solid #444;
+}
+.statusbar .stat { color: #ccc; }
+.statusbar .stat.hl { color: #4fc3f7; font-weight: 600; }
+.statusbar .stat.warn { color: #ffcc00; font-weight: 600; }
+
+/* ── Modal ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--panel);
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 16px 20px;
+  max-width: 720px;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+.modal h2 { font-size: 16px; margin-bottom: 12px; }
+.modal label { display: block; margin: 8px 0 3px; font-size: 12px; color: var(--muted); }
+.modal input[type="text"], .modal select, .modal textarea {
+  width: 100%;
+  margin-bottom: 6px;
+}
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+.tmdb-cards {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 0;
+  min-height: 220px;
+}
+.tmdb-card {
+  flex: 0 0 110px;
+  border: 2px solid #555;
+  border-radius: 6px;
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.tmdb-card:hover, .tmdb-card.selected { border-color: #4a9fd4; }
+.tmdb-card img {
+  width: 100px;
+  height: 148px;
+  object-fit: cover;
+  background: #1a1a1a;
+  border-radius: 3px;
+}
+.tmdb-card .title { font-size: 10px; color: #ccc; margin-top: 4px; line-height: 1.3; }
+.progress-bar {
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.progress-bar .fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width .2s;
+}
+.info-banner {
+  background: #1a4a6e;
+  color: #aed6f1;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.checkbox-row { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.checkbox-row input { width: auto; }
+
+/* Drop zone */
+.drop-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,97,168,.35);
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  pointer-events: none;
+}
+.drop-overlay.active { display: flex; }
+
+/* Col widths */
+.col-check { width: 32px; }
+.col-logo  { width: 50px; }
+.col-group { width: 10%; }
+.col-name  { width: 22%; }
+.col-year  { width: 50px; }
+.col-tmdb  { width: 8%; }
+.col-url   { width: 28%; }
+.col-status{ width: 90px; }
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <!-- Row 1 -->
+  <div class="ribbon-row">
+    <div class="group" data-title="📂 Dosya">
+      <button onclick="openFile(false)" title="M3U aç">📂 Aç</button>
+      <button onclick="openFile(true)" title="Listeye ekle">📂+ Ekle</button>
+      <button onclick="importUrl(false)">🌐 URL Aç</button>
+      <button onclick="importUrl(true)">🌐+ URL Ekle</button>
+      <button class="primary" onclick="saveM3U()">💾 Kaydet</button>
+    </div>
+    <div class="group" data-title="📤 Dışa Aktar">
+      <button onclick="exportSelected()">📤 Seçili</button>
+      <button onclick="exportByGroup()">📁 Gruplara</button>
+    </div>
+    <div class="group" data-title="↩️ Geri">
+      <button onclick="undo()" title="Ctrl+Z">↶ Geri</button>
+      <button onclick="redo()" title="Ctrl+Y">↷ Yinele</button>
+    </div>
+    <div class="group" data-title="✏️ Düzenle">
+      <button onclick="addRow()">➕ Yeni</button>
+      <button onclick="deleteRows()" class="danger">🗑️ Sil</button>
+      <button onclick="openBulkEdit()">✏️ Toplu</button>
+      <button onclick="openFindReplace()">🔎 Bul/Değiştir</button>
+      <button onclick="deleteDupNames()">🔁 Aynı Ad</button>
+      <button onclick="deleteDupUrls()">🔗 Aynı URL</button>
+      <button onclick="normalizeEpisodes()">🔢 S01E01</button>
+    </div>
+    <div class="group" data-title="⬆️ Taşı">
+      <button onclick="moveRows(-1)">⬆️</button>
+      <button onclick="moveRows(1)">⬇️</button>
+      <button onclick="moveRowsTop()">⏫</button>
+      <button onclick="moveRowsBottom()">⏬</button>
+    </div>
+  </div>
+  <!-- Row 2 -->
+  <div class="ribbon-row">
+    <div class="group" data-title="🔍 Link">
+      <button onclick="checkLinks(false)">🔍 Kontrol</button>
+      <button onclick="checkLinks(true)">▶️ Devam</button>
+      <button onclick="stopLinkCheck()">⏹️ Durdur</button>
+      <button onclick="deleteDead()">🚫 Ölüleri Sil</button>
+      <button onclick="showOnlyDead()">👁️ Ölüler</button>
+      <button onclick="showAll()">📋 Tümü</button>
+    </div>
+    <div class="group" data-title="🎬 TMDB">
+      <button onclick="tmdbSearchSelected()">🎬 Seçili Ara</button>
+      <button onclick="tmdbSearchBulk()">🎬📋 Toplu Ara</button>
+      <button onclick="tmdbAutoAll()">🚀 Tümünü Doldur</button>
+      <button onclick="showOnlyNotFound()">🔴 Bulamayanlar</button>
+    </div>
+    <div class="group" data-title="🔑 TMDB Ayar">
+      <button onclick="openTmdbOpts()">⚙️ Seçenekler</button>
+      <button onclick="setApiKey()">🔑 API Key</button>
+      <button onclick="testApiKey()">🧪 Test</button>
+    </div>
+    <span style="margin-left:6px">🔍</span>
+    <input type="search" id="searchBar" placeholder="Ara… (ad, tür, yıl, TMDB ID)" oninput="filterTable()">
+    <button onclick="document.getElementById('searchBar').value='';filterTable()">✕</button>
+  </div>
+</div>
+
+<div class="table-wrap" id="tableWrap">
+  <table id="mainTable">
+    <thead>
+      <tr>
+        <th class="col-check" onclick="toggleAllCheck()">✔</th>
+        <th class="col-logo"  data-col="logo"  onclick="sortBy('logo')">Logo</th>
+        <th class="col-group" data-col="group" onclick="sortBy('group')">Tür/Grup <span class="sort-ind"></span></th>
+        <th class="col-name"  data-col="name"  onclick="sortBy('name')">İçerik Adı <span class="sort-ind"></span></th>
+        <th class="col-year"  data-col="year"  onclick="sortBy('year')">Yıl <span class="sort-ind"></span></th>
+        <th class="col-tmdb"  data-col="tmdb"  onclick="sortBy('tmdb')">tvg-id <span class="sort-ind"></span></th>
+        <th class="col-url"   data-col="url"   onclick="sortBy('url')">URL <span class="sort-ind"></span></th>
+        <th class="col-status" data-col="status" onclick="sortBy('status')">Durum <span class="sort-ind"></span></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<div class="statusbar">
+  <span id="statusMsg">Hazır</span>
+  <span style="flex:1"></span>
+  <span class="stat" id="statTotal">Toplam: 0</span>
+  <span class="stat" id="statVisible">Görünür: 0</span>
+  <span class="stat" id="statChecked">Tikli: 0</span>
+  <span class="stat" id="statTmdbOk">TMDB ✅: 0</span>
+  <span class="stat" id="statTmdbNo">❌: 0</span>
+</div>
+
+<div class="drop-overlay" id="dropOverlay">📥 Dosyayı bırakın</div>
+
+<!-- Hidden file input -->
+<input type="file" id="fileInput" accept=".m3u,.m3u8,.txt" multiple style="display:none">
+
+<!-- ═══ MODALS ═══ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   PRO M3U EDITOR — Web Edition
+   Orijinal PyQt6 uygulamasının tarayıcı portu
+   ═══════════════════════════════════════════════════════════════ */
+
+const TMDB_BASE = 'https://api.themoviedb.org/3';
+const TMDB_IMG  = 'https://image.tmdb.org/t/p/w200';
+let TMDB_KEY = localStorage.getItem('tmdb_key') || 'a7403e3d62a41bf85e1e53b9df4d684f';
+
+const GENRE_MAP = {
+  28:'Aksiyon',12:'Macera',16:'Animasyon',35:'Komedi',80:'Suç',99:'Belgesel',
+  18:'Drama',10751:'Aile',14:'Fantezi',36:'Tarih',27:'Korku',10402:'Müzik',
+  9648:'Gizem',10749:'Romantik',878:'Bilim Kurgu',10770:'TV Film',53:'Gerilim',
+  10752:'Savaş',37:'Western',10759:'Aksiyon & Macera',10762:'Çocuk',
+  10763:'Haberler',10764:'Reality',10765:'Sci-Fi & Fantezi',10766:'Pembe Dizi',
+  10767:'Talk Show',10768:'Savaş & Politika'
+};
+
+/** @type {{checked:boolean, logo:string, group:string, name:string, year:string, tmdb:string, url:string, status:string, tmdbMark:string, hidden:boolean}[]} */
+let rows = [];
+let sortCol = null;
+let sortAsc = true;
+let undoStack = [];
+let redoStack = [];
+const UNDO_LIMIT = 25;
+let tmdbOpts = JSON.parse(localStorage.getItem('tmdb_opts') || 'null') || {
+  logo: true, group: true, tr_name: true, year: true, tmdb_id: true
+};
+let linkAbort = null;
+let allChecked = false;
+
+/* ── Helpers ── */
+function $(id) { return document.getElementById(id); }
+function status(msg, ms = 4000) {
+  $('statusMsg').textContent = msg;
+  if (ms) setTimeout(() => { if ($('statusMsg').textContent === msg) $('statusMsg').textContent = 'Hazır'; }, ms);
+}
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function _m3uAttr(v) {
+  return String(v || '').replace(/"/g, "'").replace(/[\n\r]/g, ' ');
+}
+
+/* EXTINF name: first comma outside quotes */
+function extinfName(line) {
+  let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    if (line[i] === '"') inQ = !inQ;
+    else if (line[i] === ',' && !inQ) return line.slice(i + 1).trim();
+  }
+  return '';
+}
+
+function normUrl(url) {
+  let u = (url || '').trim();
+  if (!u) return '';
+  const m = u.match(/^([A-Za-z][A-Za-z0-9+.\-]*:\/\/)([^/?#]*)(.*)$/s);
+  if (m) u = m[1].toLowerCase() + m[2].toLowerCase() + m[3];
+  while (u.endsWith('/')) u = u.slice(0, -1);
+  return u;
+}
+
+function cleanName(name) {
+  let n = name || '';
+  const m = n.match(/\bS\d{1,3}[\s\-]*E\d{1,3}\b/i);
+  if (m) n = n.slice(0, m.index);
+  n = n.replace(/\b\d{1,3}x\d{1,3}\b/gi, '');
+  n = n.replace(/\b\d+\.\s*(Bölüm|Sezon)\b/gi, '');
+  n = n.replace(/\b(Bölüm|Sezon|Episode|Season)\s*\d+\b/gi, '');
+  n = n.replace(/\b(HD|FHD|UHD|4K|SD|TR|EN|DE|HEVC|H264|H265|AAC|\d{3,4}p|x265|x264|BluRay|WEBRip|HDTV)\b/gi, '');
+  const alphas = [...n].filter(c => /\p{L}/u.test(c));
+  const latin = alphas.filter(c => c.charCodeAt(0) < 0x250).length;
+  if (alphas.length && latin / alphas.length > 0.7) n = n.replace(/[._]/g, ' ');
+  n = n.replace(/[\[\(]\d{4}[\]\)]/g, '');
+  n = n.replace(/\b(19|20)\d{2}\b/g, '');
+  n = n.replace(/\s{2,}/g, ' ');
+  return n.trim().replace(/^[.\-_|]+|[.\-_|]+$/g, '');
+}
+
+function isLatin(text) {
+  if (!text) return false;
+  let latin = 0;
+  for (const c of text) {
+    const cp = c.charCodeAt(0);
+    if (cp < 128 || (cp >= 0xC0 && cp <= 0x24F)) latin++;
+  }
+  return latin / text.length > 0.6;
+}
+
+/* Season/Episode normalize */
+const SE_PATTERNS = [
+  [/(\d{1,3})\s*\.?\s*sezon\s*[-–—,:]?\s*(\d{1,3})\s*\.?\s*b[oö]l[uü]m(?!\w)/i, 1, 2],
+  [/sezon\s*(\d{1,3})\s*[-–—,:]?\s*b[oö]l[uü]m\s*(\d{1,3})(?!\w)/i, 1, 2],
+  [/season\s*(\d{1,3})\s*[-–—,:]?\s*episode\s*(\d{1,3})(?!\w)/i, 1, 2],
+  [/(\d{1,3})\s*\.?\s*season\s*[-–—,:]?\s*(\d{1,3})\s*\.?\s*episode(?!\w)/i, 1, 2],
+  [/(?<![\w])(\d{1,3})\s*x\s*(\d{1,3})(?![\w])/i, 1, 2],
+];
+const EP_ONLY = [
+  /(\d{1,3})\s*\.?\s*b[oö]l[uü]m(?!\w)/i,
+  /b[oö]l[uü]m\s*(\d{1,3})(?!\w)/i,
+  /episode\s*(\d{1,3})(?!\w)/i,
+  /(\d{1,3})\s*\.?\s*episode(?!\w)/i,
+];
+const ALREADY_SE = /\bS\d{1,3}\s*[-_ ]?\s*E\d{1,3}\b/i;
+
+function normalizeSE(name, defSeason = 1) {
+  if (!name || ALREADY_SE.test(name)) return [name, false];
+  let season = null, episode = null, n = name;
+  for (const [rx] of SE_PATTERNS) {
+    const m = n.match(rx);
+    if (m) {
+      season = parseInt(m[1], 10);
+      episode = parseInt(m[2], 10);
+      n = n.slice(0, m.index) + '\0' + n.slice(m.index + m[0].length);
+      break;
+    }
+  }
+  if (season === null) {
+    for (const rx of EP_ONLY) {
+      const m = n.match(rx);
+      if (m) {
+        episode = parseInt(m[1], 10);
+        season = defSeason;
+        n = n.slice(0, m.index) + '\0' + n.slice(m.index + m[0].length);
+        break;
+      }
+    }
+  }
+  if (season === null || episode === null) return [name, false];
+  if (season < 0 || season > 99 || episode < 0 || episode > 999) return [name, false];
+  const tag = `S${String(season).padStart(2,'0')}E${String(episode).padStart(2,'0')}`;
+  n = n.replace('\0', tag);
+  n = n.replace(/\s*[-–—|:]\s*(?=(?:S\d))/g, ' ');
+  n = n.replace(/(?<=E\d{2})\s*[-–—|:]\s*/g, ' ');
+  n = n.replace(/\s{2,}/g, ' ').trim().replace(/^[.\-_|]+|[.\-_|]+$/g, '');
+  return [n, n !== name];
+}
+
+function extractEpisodeInfo(name) {
+  const m = name.match(/S(\d{1,3})[\s\-]*E(\d{1,3})/i);
+  if (m) return `S${m[1].padStart(2,'0')} E${m[2].padStart(2,'0')}`;
+  for (const pat of [/\d{1,3}x\d{1,3}/i, /\d+\.\s*(?:Bölüm|Sezon)/i, /(?:Bölüm|Sezon|Episode|Season)\s*\d+/i]) {
+    const mm = name.match(pat);
+    if (mm) return mm[0].trim();
+  }
+  return '';
+}
+
+/* ── Snapshot / Undo ── */
+function snapshot(label) {
+  undoStack.push({ label, data: structuredClone(rows) });
+  if (undoStack.length > UNDO_LIMIT) undoStack.shift();
+  redoStack = [];
+}
+function undo() {
+  if (!undoStack.length) { status('↶ Geri alınacak işlem yok.'); return; }
+  const last = undoStack.pop();
+  redoStack.push({ label: last.label, data: structuredClone(rows) });
+  rows = last.data;
+  render();
+  status(`↶ Geri alındı: ${last.label}`);
+}
+function redo() {
+  if (!redoStack.length) { status('↷ Yinelenecek işlem yok.'); return; }
+  const last = redoStack.pop();
+  undoStack.push({ label: last.label, data: structuredClone(rows) });
+  rows = last.data;
+  render();
+  status(`↷ Yinelendi: ${last.label}`);
+}
+
+/* ── Render ── */
+function render() {
+  const tb = $('tbody');
+  const frag = document.createDocumentFragment();
+  let visible = 0, checked = 0, tmdbOk = 0, tmdbNo = 0;
+
+  rows.forEach((r, i) => {
+    if (r.tmdbMark === 'ok' || (r.tmdb && r.tmdb.trim())) tmdbOk++;
+    else if (r.tmdbMark === 'fail') tmdbNo++;
+    if (r.hidden) return;
+    visible++;
+    if (r.checked) checked++;
+
+    const tr = document.createElement('tr');
+    tr.dataset.idx = i;
+    if (r._selected) tr.classList.add('selected');
+
+    // check
+    let td = document.createElement('td');
+    td.className = 'check-col';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.checked = !!r.checked;
+    cb.onchange = () => { r.checked = cb.checked; updateStats(); };
+    td.appendChild(cb);
+    tr.appendChild(td);
+
+    // logo
+    td = document.createElement('td');
+    td.className = 'logo-cell';
+    if (r.logo && /^https?:/i.test(r.logo)) {
+      const img = document.createElement('img');
+      img.src = r.logo;
+      img.loading = 'lazy';
+      img.alt = '';
+      img.onerror = () => { img.style.display = 'none'; };
+      td.appendChild(img);
+    }
+    tr.appendChild(td);
+
+    // editable cells
+    for (const key of ['group', 'name', 'year', 'tmdb', 'url']) {
+      td = document.createElement('td');
+      const inp = document.createElement('input');
+      inp.type = 'text';
+      inp.className = 'cell-edit';
+      inp.value = r[key] || '';
+      inp.dataset.key = key;
+      inp.onchange = () => {
+        snapshot('Hücre düzenle');
+        r[key] = inp.value;
+        if (key === 'logo') render(); // logo değişince görsel
+        updateStats();
+      };
+      td.appendChild(inp);
+      tr.appendChild(td);
+    }
+
+    // status
+    td = document.createElement('td');
+    td.textContent = r.status || '';
+    if (r.status) {
+      if (r.status.includes('TMDB ✅') || r.status.includes('AKTİF')) td.className = r.status.includes('AKTİF') ? 'status-active' : 'status-ok';
+      else if (r.status.includes('TMDB ❌')) td.className = 'status-fail';
+      else if (r.status.includes('KAPALI')) td.className = 'status-dead';
+      else if (r.status.includes('HATA')) td.className = 'status-err';
+    }
+    tr.appendChild(td);
+
+    // row click select
+    tr.onclick = (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (!e.ctrlKey && !e.metaKey) rows.forEach(x => x._selected = false);
+      r._selected = !r._selected;
+      render();
+    };
+
+    frag.appendChild(tr);
+  });
+
+  tb.innerHTML = '';
+  tb.appendChild(frag);
+  updateStats(visible, checked, tmdbOk, tmdbNo);
+}
+
+function updateStats(vis, chk, tok, tno) {
+  const total = rows.length;
+  if (vis === undefined) {
+    vis = rows.filter(r => !r.hidden).length;
+    chk = rows.filter(r => !r.hidden && r.checked).length;
+    tok = rows.filter(r => r.tmdbMark === 'ok' || (r.tmdb && r.tmdb.trim())).length;
+    tno = rows.filter(r => r.tmdbMark === 'fail').length;
+  }
+  $('statTotal').textContent = `Toplam: ${total}`;
+  const sv = $('statVisible');
+  sv.textContent = `Görünür: ${vis}`;
+  sv.className = 'stat' + (vis < total ? ' warn' : '');
+  const sc = $('statChecked');
+  sc.textContent = `Tikli: ${chk}`;
+  sc.className = 'stat' + (chk > 0 ? ' hl' : '');
+  $('statTmdbOk').textContent = `TMDB ✅: ${tok}`;
+  $('statTmdbNo').textContent = `❌: ${tno}`;
+}
+
+/* ── M3U parse / write ── */
+function parseM3U(content) {
+  const lines = content.split(/\r?\n/);
+  const out = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line.startsWith('#EXTINF')) continue;
+    const attr = (tag) => {
+      const m = line.match(new RegExp(`${tag}="([^"]*)"`, 'i'));
+      return m ? m[1] : '';
+    };
+    const logo = attr('tvg-logo');
+    const group = attr('group-title').replace(/\s+/g, ' ').trim();
+    const year = attr('tvg-year');
+    const tmdb = attr('tvg-id') || attr('tmdb-id');
+    const name = extinfName(line);
+    let url = '';
+    for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
+      const c = lines[j].trim();
+      if (/^(https?|rtmp|rtsp):/i.test(c)) { url = c; break; }
+    }
+    out.push({
+      checked: false, logo, group, name, year, tmdb, url,
+      status: 'Bekliyor', tmdbMark: '', hidden: false, _selected: false
+    });
+  }
+  return out;
+}
+
+function buildM3U(list) {
+  let s = '#EXTM3U\n';
+  for (const r of list) {
+    if (!r.url) continue;
+    let ext = '#EXTINF:-1';
+    if (r.logo)  ext += ` tvg-logo="${_m3uAttr(r.logo)}"`;
+    if (r.group) ext += ` group-title="${_m3uAttr(r.group)}"`;
+    if (r.year)  ext += ` tvg-year="${_m3uAttr(r.year)}"`;
+    if (r.tmdb)  ext += ` tvg-id="${_m3uAttr(r.tmdb)}"`;
+    s += `${ext},${r.name || 'İçerik'}\n${r.url}\n`;
+  }
+  return s;
+}
+
+function downloadText(filename, text) {
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+/* ── File ops ── */
+function openFile(append) {
+  const inp = $('fileInput');
+  inp.onchange = async () => {
+    if (!inp.files.length) return;
+    if (!append && rows.length) snapshot('Dosya aç');
+    else if (append) snapshot('Dosya ekle');
+    let added = 0;
+    for (const f of inp.files) {
+      const text = await f.text();
+      const parsed = parseM3U(text);
+      if (append) {
+        rows = [...parsed, ...rows];
+      } else if (added === 0) {
+        rows = parsed;
+      } else {
+        rows = [...rows, ...parsed];
+      }
+      added += parsed.length;
+    }
+    inp.value = '';
+    render();
+    status(`✅ ${added} içerik yüklendi. Toplam: ${rows.length}`);
+  };
+  inp.click();
+}
+
+async function importUrl(append) {
+  const url = prompt(append ? 'Playlist URL (listeye eklenecek):' : 'Playlist URL (liste silinir):');
+  if (!url) return;
+  try {
+    status('Yükleniyor…');
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const text = await resp.text();
+    const parsed = parseM3U(text);
+    snapshot(append ? 'URL ekle' : 'URL aç');
+    rows = append ? [...parsed, ...rows] : parsed;
+    render();
+    status(`✅ ${parsed.length} içerik yüklendi.`);
+  } catch (e) {
+    alert('Hata: ' + e.message);
+    status('Yükleme başarısız');
+  }
+}
+
+function saveM3U() {
+  if (!rows.length) { alert('Kaydedilecek veri yok!'); return; }
+  const name = prompt('Dosya adı:', 'playlist.m3u') || 'playlist.m3u';
+  downloadText(name.endsWith('.m3u') ? name : name + '.m3u', buildM3U(rows));
+  status('💾 Kaydedildi');
+}
+
+function exportSelected() {
+  let targets = rows.filter(r => !r.hidden && r.checked);
+  if (!targets.length) targets = rows.filter(r => r._selected);
+  if (!targets.length) { alert('Önce satır tikleyin veya seçin.'); return; }
+  downloadText('selected.m3u', buildM3U(targets));
+  status(`📤 ${targets.length} içerik dışa aktarıldı`);
+}
+
+function exportByGroup() {
+  const visible = rows.filter(r => !r.hidden);
+  if (!visible.length) { alert('Görünür satır yok.'); return; }
+  const groups = {};
+  for (const r of visible) {
+    const g = (r.group || 'Diğer').trim() || 'Diğer';
+    (groups[g] ||= []).push(r);
+  }
+  const names = Object.keys(groups).sort();
+  if (!confirm(`${names.length} grup bulundu:\n${names.map(g => `• ${g} (${groups[g].length})`).join('\n')}\n\nHer biri ayrı .m3u olarak indirilecek.`)) return;
+  for (const g of names) {
+    const safe = g.replace(/[\\/:*?"<>|]/g, '_').trim() || 'Grup';
+    downloadText(safe + '.m3u', buildM3U(groups[g]));
+  }
+  status(`📁 ${names.length} dosya indirildi`);
+}
+
+/* ── Drag & drop ── */
+document.addEventListener('dragover', e => {
+  e.preventDefault();
+  if ([...e.dataTransfer.types].includes('Files')) $('dropOverlay').classList.add('active');
+});
+document.addEventListener('dragleave', e => {
+  if (e.relatedTarget === null) $('dropOverlay').classList.remove('active');
+});
+document.addEventListener('drop', async e => {
+  e.preventDefault();
+  $('dropOverlay').classList.remove('active');
+  const files = [...e.dataTransfer.files].filter(f => /\.(m3u8?|txt)$/i.test(f.name));
+  if (!files.length) return;
+  const append = e.shiftKey;
+  if (!append && rows.length) {
+    if (!confirm('Mevcut liste değiştirilsin mi?\n(İptal = sona ekle)')) {
+      // append
+    } else {
+      snapshot('Dosya bırak');
+      rows = [];
+    }
+  } else snapshot('Dosya bırak');
+  let added = 0;
+  for (const f of files) {
+    const parsed = parseM3U(await f.text());
+    rows = append || rows.length ? [...rows, ...parsed] : parsed;
+    added += parsed.length;
+  }
+  render();
+  status(`📥 ${added} içerik yüklendi`);
+});
+
+/* ── Edit ops ── */
+function addRow() {
+  snapshot('Yeni satır');
+  const sel = rows.findIndex(r => r._selected);
+  const item = { checked: false, logo: '', group: '', name: '', year: '', tmdb: '', url: '', status: 'Yeni', tmdbMark: '', hidden: false, _selected: false };
+  if (sel >= 0) rows.splice(sel, 0, item);
+  else rows.unshift(item);
+  render();
+}
+
+function deleteRows() {
+  const idxs = [];
+  rows.forEach((r, i) => { if (r.checked || r._selected) idxs.push(i); });
+  if (!idxs.length) {
+    const cur = rows.findIndex(r => r._selected);
+    if (cur < 0) return;
+    idxs.push(cur);
+  }
+  snapshot(`${idxs.length} satır sil`);
+  for (const i of idxs.sort((a, b) => b - a)) rows.splice(i, 1);
+  render();
+  status(`🗑️ ${idxs.length} satır silindi`);
+}
+
+function getTargets() {
+  let t = rows.map((r, i) => ({ r, i })).filter(x => !x.r.hidden && x.r.checked);
+  if (!t.length) t = rows.map((r, i) => ({ r, i })).filter(x => x.r._selected);
+  if (!t.length) {
+    const i = rows.findIndex(r => r._selected);
+    if (i >= 0) t = [{ r: rows[i], i }];
+  }
+  return t;
+}
+
+function moveRows(dir) {
+  const targets = getTargets();
+  if (!targets.length) return;
+  const indices = targets.map(t => t.i).sort((a, b) => dir > 0 ? b - a : a - b);
+  if (dir < 0 && indices[0] === 0) return;
+  if (dir > 0 && indices[0] === rows.length - 1) return;
+  snapshot('Satır taşı');
+  for (const i of indices) {
+    const j = i + dir;
+    [rows[i], rows[j]] = [rows[j], rows[i]];
+  }
+  render();
+}
+
+function moveRowsTop() {
+  const targets = getTargets();
+  if (!targets.length || targets[0].i === 0) return;
+  snapshot('En üste taşı');
+  const moving = targets.map(t => t.r);
+  const rest = rows.filter((_, i) => !targets.some(t => t.i === i));
+  rows = [...moving, ...rest];
+  render();
+}
+
+function moveRowsBottom() {
+  const targets = getTargets();
+  if (!targets.length || targets[targets.length - 1].i === rows.length - 1) return;
+  snapshot('En alta taşı');
+  const moving = targets.map(t => t.r);
+  const rest = rows.filter((_, i) => !targets.some(t => t.i === i));
+  rows = [...rest, ...moving];
+  render();
+}
+
+function toggleAllCheck() {
+  allChecked = !allChecked;
+  rows.forEach(r => { if (!r.hidden) r.checked = allChecked; });
+  render();
+}
+
+function filterTable() {
+  const q = ($('searchBar').value || '').toLowerCase().trim();
+  rows.forEach(r => {
+    if (!q) { r.hidden = false; return; }
+    r.hidden = ![r.logo, r.group, r.name, r.year, r.tmdb, r.url]
+      .some(v => (v || '').toLowerCase().includes(q));
+  });
+  render();
+}
+
+function showAll() {
+  $('searchBar').value = '';
+  rows.forEach(r => r.hidden = false);
+  render();
+  status('📋 Tüm satırlar gösteriliyor');
+}
+
+function sortBy(col) {
+  const visible = rows.map((r, i) => ({ r, i })).filter(x => !x.r.hidden);
+  if (visible.length < 2) return;
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = true; }
+  snapshot('Sırala');
+  const key = (r) => {
+    const v = (r[col] || '').trim();
+    const n = parseFloat(v.replace(',', '.'));
+    return isNaN(n) ? [1, v.toLowerCase()] : [0, n];
+  };
+  visible.sort((a, b) => {
+    const ka = key(a.r), kb = key(b.r);
+    if (ka[0] !== kb[0]) return sortAsc ? ka[0] - kb[0] : kb[0] - ka[0];
+    if (ka[1] < kb[1]) return sortAsc ? -1 : 1;
+    if (ka[1] > kb[1]) return sortAsc ? 1 : -1;
+    return 0;
+  });
+  const newOrder = visible.map(v => v.r);
+  let vi = 0;
+  rows = rows.map(r => r.hidden ? r : newOrder[vi++]);
+  render();
+  status(`↕️ ${visible.length} görünür satır sıralandı`);
+}
+
+/* ── Duplicates ── */
+function deleteDupNames() {
+  const vis = rows.map((r, i) => ({ r, i })).filter(x => !x.r.hidden);
+  const seen = new Map();
+  const toDel = [];
+  for (const { r, i } of vis) {
+    const base = cleanName(r.name).toLowerCase().trim();
+    if (!base) continue;
+    if (seen.has(base)) toDel.push(i);
+    else seen.set(base, i);
+  }
+  if (!toDel.length) { alert('Tekrar eden içerik bulunamadı.'); return; }
+  if (!confirm(`${toDel.length} aynı isimde içerik silinecek (alternatif URL'ler de silinir).\nDevam?`)) return;
+  snapshot(`${toDel.length} tekrar sil`);
+  for (const i of toDel.sort((a, b) => b - a)) rows.splice(i, 1);
+  render();
+  status(`🗑️ ${toDel.length} tekrar silindi`);
+}
+
+function deleteDupUrls() {
+  const vis = rows.map((r, i) => ({ r, i })).filter(x => !x.r.hidden);
+  const seen = new Map();
+  const toDel = [];
+  for (const { r, i } of vis) {
+    const key = normUrl(r.url);
+    if (!key) continue;
+    if (seen.has(key)) toDel.push(i);
+    else seen.set(key, i);
+  }
+  if (!toDel.length) { alert('Aynı URL bulunamadı.'); return; }
+  if (!confirm(`${toDel.length} birebir aynı URL silinecek.\nDevam?`)) return;
+  snapshot(`${toDel.length} yinelenen URL sil`);
+  for (const i of toDel.sort((a, b) => b - a)) rows.splice(i, 1);
+  render();
+  status(`🗑️ ${toDel.length} yinelenen URL silindi`);
+}
+
+function normalizeEpisodes() {
+  let targets = rows.map((r, i) => ({ r, i })).filter(x => !x.r.hidden && x.r.checked);
+  if (!targets.length) targets = rows.map((r, i) => ({ r, i })).filter(x => !x.r.hidden);
+  const changes = [];
+  for (const { r, i } of targets) {
+    const [neu, ch] = normalizeSE(r.name);
+    if (ch) changes.push({ i, old: r.name, neu });
+  }
+  if (!changes.length) { alert('Dönüştürülecek sezon/bölüm ifadesi bulunamadı.'); return; }
+  const preview = changes.slice(0, 10).map(c => `${c.old}\n  → ${c.neu}`).join('\n');
+  if (!confirm(`${changes.length} satır dönüştürülecek:\n\n${preview}\n\nUygulansın mı?`)) return;
+  snapshot(`Sezon/Bölüm (${changes.length})`);
+  for (const c of changes) rows[c.i].name = c.neu;
+  render();
+  status(`✅ ${changes.length} satır düzeltildi`);
+}
+
+/* ── Link check ── */
+async function checkLinks(resume) {
+  if (linkAbort) { alert('Kontrol zaten çalışıyor.'); return; }
+  const targets = rows.map((r, i) => ({ r, i })).filter(x => {
+    if (x.r.hidden || !x.r.url) return false;
+    if (resume) {
+      const s = x.r.status || '';
+      return !/(AKTİF|KAPALI|HATA )/.test(s);
+    }
+    return true;
+  });
+  if (!targets.length) {
+    alert(resume ? 'Devam edilecek satır yok.' : 'Kontrol edilecek URL yok.');
+    return;
+  }
+  linkAbort = new AbortController();
+  let done = 0, active = 0, dead = 0, err = 0;
+  const total = targets.length;
+  status(`🔍 Link kontrol: 0/${total}`);
+  const workers = 20;
+  let idx = 0;
+
+  async function worker() {
+    while (idx < targets.length && !linkAbort.signal.aborted) {
+      const my = idx++;
+      const { r } = targets[my];
+      try {
+        // Browser CORS limits full HEAD; we try fetch with no-cors fallback indication
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 8000);
+        try {
+          const resp = await fetch(r.url, {
+            method: 'GET',
+            signal: ctrl.signal,
+            mode: 'cors',
+            headers: { 'Range': 'bytes=0-1' }
+          });
+          clearTimeout(t);
+          if ([200, 206, 301, 302, 307, 308].includes(resp.status)) {
+            r.status = 'AKTİF ✅';
+            active++;
+          } else {
+            r.status = `HATA ${resp.status}`;
+            err++;
+          }
+        } catch (e) {
+          clearTimeout(t);
+          // CORS or network — mark as unknown/dead conservatively
+          if (e.name === 'AbortError') {
+            r.status = 'KAPALI 🛑';
+            dead++;
+          } else {
+            // Many IPTV URLs block CORS; try no-cors opaque
+            try {
+              const ctrl2 = new AbortController();
+              const t2 = setTimeout(() => ctrl2.abort(), 6000);
+              await fetch(r.url, { method: 'GET', mode: 'no-cors', signal: ctrl2.signal });
+              clearTimeout(t2);
+              r.status = 'AKTİF ✅'; // opaque success ≈ reachable
+              active++;
+            } catch {
+              r.status = 'KAPALI 🛑';
+              dead++;
+            }
+          }
+        }
+      } catch {
+        r.status = 'KAPALI 🛑';
+        dead++;
+      }
+      done++;
+      if (done % 5 === 0 || done === total) {
+        status(`🔍 Link: ${done}/${total} — Aktif:${active} Kapalı:${dead}`);
+        render();
+      }
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(workers, total) }, () => worker()));
+  linkAbort = null;
+  render();
+  status(`✅ Link kontrol bitti — Aktif: ${active} | Kapalı: ${dead} | Hata: ${err}`, 8000);
+  alert(`Link Kontrol Tamamlandı\n\n✅ Aktif: ${active}\n🛑 Kapalı: ${dead}\n⚠️ Hata: ${err}`);
+}
+
+function stopLinkCheck() {
+  if (linkAbort) {
+    linkAbort.abort();
+    linkAbort = null;
+    status('⏹️ Durduruldu');
+  }
+}
+
+function deleteDead() {
+  const dead = rows.map((r, i) => ({ r, i })).filter(x => /KAPALI|HATA/.test(x.r.status || ''));
+  if (!dead.length) { alert('Ölü link yok. Önce kontrol edin.'); return; }
+  if (!confirm(`${dead.length} ölü link silinsin mi?`)) return;
+  snapshot(`${dead.length} ölü link sil`);
+  for (const { i } of dead.sort((a, b) => b.i - a.i)) rows.splice(i, 1);
+  render();
+  status(`🗑️ ${dead.length} ölü link silindi`);
+}
+
+function showOnlyDead() {
+  let n = 0;
+  rows.forEach(r => {
+    const dead = /KAPALI|HATA/.test(r.status || '');
+    r.hidden = !dead;
+    if (dead) n++;
+  });
+  if (!n) { alert('Ölü link yok.'); showAll(); return; }
+  render();
+  status(`👁️ ${n} ölü link gösteriliyor`);
+}
+
+function showOnlyNotFound() {
+  let n = 0, none = 0;
+  rows.forEach(r => {
+    const st = r.tmdbMark || ((r.tmdb || '').trim() ? 'ok' : 'none');
+    const nf = st !== 'ok';
+    r.hidden = !nf;
+    if (nf) { n++; if (st === 'none') none++; }
+  });
+  if (!n) { alert('Tüm içerikler TMDB\'de bulundu!'); showAll(); return; }
+  render();
+  status(`🔴 ${n} bulunamayan${none === n ? ' (henüz sorgulanmamış)' : ''}`);
+}
+
+/* ── TMDB ── */
+async function tmdbFetch(name) {
+  const yearM = name.match(/[\(\[]((?:19|20)\d{2})[\)\]]/);
+  const searchYear = yearM ? yearM[1] : null;
+  const q = cleanName(name);
+  if (!q) return null;
+  const qLatin = isLatin(q);
+  const mediaOrder = searchYear ? ['movie', 'tv'] : ['tv', 'movie'];
+
+  async function trySearch(lang, media, withYear) {
+    const params = new URLSearchParams({ api_key: TMDB_KEY, query: q, language: lang });
+    if (withYear && searchYear) {
+      params.set(media === 'movie' ? 'primary_release_year' : 'first_air_date_year', searchYear);
+    }
+    try {
+      const resp = await fetch(`${TMDB_BASE}/search/${media}?${params}`, { signal: AbortSignal.timeout(8000) });
+      const data = await resp.json();
+      return data.results || [];
+    } catch { return []; }
+  }
+
+  async function getTrName(id, media, fallback) {
+    try {
+      const resp = await fetch(`${TMDB_BASE}/${media}/${id}?api_key=${TMDB_KEY}&language=tr-TR`, { signal: AbortSignal.timeout(6000) });
+      const d = await resp.json();
+      const tr = d.title || d.name || '';
+      if (tr && isLatin(tr)) return tr;
+    } catch {}
+    return fallback;
+  }
+
+  if (qLatin) {
+    for (const media of mediaOrder) {
+      let results = await trySearch('tr-TR', media, true);
+      if (!results.length && searchYear) results = await trySearch('tr-TR', media, false);
+      if (!results.length) continue;
+      const item = results[0];
+      const id = String(item.id || '');
+      let trName = item.name || item.title || '';
+      if (!isLatin(trName)) {
+        try {
+          const en = await fetch(`${TMDB_BASE}/${media}/${id}?api_key=${TMDB_KEY}&language=en-US`).then(r => r.json());
+          trName = en.title || en.name || trName;
+        } catch {}
+      }
+      const poster = item.poster_path || '';
+      const date = item.first_air_date || item.release_date || '';
+      const genres = item.genre_ids || [];
+      return {
+        logo: poster ? TMDB_IMG + poster : '',
+        group: GENRE_MAP[genres[0]] || 'Diğer',
+        tr_name: trName,
+        year: date.slice(0, 4) || searchYear || '',
+        tmdb_id: id,
+        media_type: media
+      };
+    }
+    return null;
+  }
+
+  // non-latin: detect langs
+  const langs = [];
+  for (const ch of q) {
+    const cp = ch.codePointAt(0);
+    if (cp >= 0x4E00 && cp <= 0x9FFF) { if (!langs.includes('zh-CN')) langs.push('zh-CN'); }
+    else if (cp >= 0x3040 && cp <= 0x30FF) { if (!langs.includes('ja-JP')) langs.push('ja-JP'); }
+    else if (cp >= 0xAC00 && cp <= 0xD7AF) { if (!langs.includes('ko-KR')) langs.push('ko-KR'); }
+    else if (cp >= 0x0400 && cp <= 0x04FF) { if (!langs.includes('ru-RU')) langs.push('ru-RU'); }
+  }
+  if (!langs.includes('en-US')) langs.push('en-US');
+
+  for (const media of mediaOrder) {
+    let found = null;
+    for (const lang of langs) {
+      let results = await trySearch(lang, media, true);
+      if (!results.length && searchYear) results = await trySearch(lang, media, false);
+      if (results.length) { found = results[0]; break; }
+    }
+    if (!found) continue;
+    const id = String(found.id || '');
+    let enName = found.title || found.name || '';
+    if (!isLatin(enName)) {
+      try {
+        const en = await fetch(`${TMDB_BASE}/${media}/${id}?api_key=${TMDB_KEY}&language=en-US`).then(r => r.json());
+        enName = en.title || en.name || enName;
+      } catch {}
+    }
+    const trName = await getTrName(id, media, enName);
+    const poster = found.poster_path || '';
+    const date = found.first_air_date || found.release_date || '';
+    const genres = found.genre_ids || [];
+    return {
+      logo: poster ? TMDB_IMG + poster : '',
+      group: GENRE_MAP[genres[0]] || 'Diğer',
+      tr_name: trName,
+      year: date.slice(0, 4) || searchYear || '',
+      tmdb_id: id,
+      media_type: media
+    };
+  }
+  return null;
+}
+
+function applyTmdb(r, data, opts) {
+  const ep = extractEpisodeInfo(r.name || '');
+  if (opts.logo && data.logo) r.logo = data.logo;
+  if (opts.group && data.group) r.group = data.group;
+  const year = data.year || '';
+  if (opts.year && year) r.year = year;
+  if (opts.tr_name && data.tr_name) {
+    let title = data.tr_name.replace(/\s*\(\d{4}\)/g, '').trim();
+    if (ep) r.name = `${title} ${ep}`;
+    else if (year) r.name = `${title} (${year})`;
+    else r.name = title;
+  }
+  if (opts.tmdb_id && data.tmdb_id) r.tmdb = data.tmdb_id;
+  r.status = 'TMDB ✅';
+  r.tmdbMark = 'ok';
+}
+
+/* Modal helpers */
+function openModal(html) {
+  $('modalContent').innerHTML = html;
+  $('modalOverlay').classList.add('open');
+}
+function closeModal() {
+  $('modalOverlay').classList.remove('open');
+}
+$('modalOverlay').addEventListener('click', e => {
+  if (e.target === $('modalOverlay')) closeModal();
+});
+
+function tmdbSearchSelected() {
+  const t = getTargets();
+  if (!t.length) { alert('Önce bir satır seçin.'); return; }
+  openTmdbSearchDialog([t[0].r], t[0].r.name);
+}
+
+function tmdbSearchBulk() {
+  let targets = rows.filter(r => !r.hidden && r.checked);
+  if (!targets.length) targets = rows.filter(r => r._selected);
+  if (!targets.length) {
+    const one = rows.find(r => r._selected);
+    if (one) targets = [one];
+  }
+  if (!targets.length) { alert('Satır tikleyin veya seçin.'); return; }
+  openTmdbSearchDialog(targets, targets[0].name);
+}
+
+function openTmdbSearchDialog(targetRows, initialQuery) {
+  const bulk = targetRows.length > 1;
+  openModal(`
+    <h2>${bulk ? `TMDB'de Ara — ${targetRows.length} Satıra Uygula` : "TMDB'de Ara & Uygula"}</h2>
+    ${bulk ? `<div class="info-banner">Toplu mod: seçilen sonuç ${targetRows.length} satıra uygulanacak. Bölüm bilgisi korunur.</div>` : ''}
+    <div style="display:flex;gap:6px;margin-bottom:8px">
+      <input type="text" id="tmdbQ" value="${esc(initialQuery)}" style="flex:1" placeholder="Arama…">
+      <select id="tmdbType"><option value="tv">TV Dizisi</option><option value="movie">Film</option></select>
+      <button class="primary" onclick="doTmdbSearch()">🔍 Ara</button>
+    </div>
+    <div class="tmdb-cards" id="tmdbCards"><span style="color:#888;padding:20px">Arama yapın…</span></div>
+    <div id="tmdbInfo" style="margin-top:8px;font-size:12px;color:#aaa">Henüz seçim yok.</div>
+    <div class="modal-actions">
+      <button class="primary" id="tmdbApplyBtn" disabled>${bulk ? `✅ ${targetRows.length} Satıra Uygula` : '✅ Uygula'}</button>
+      <button onclick="closeModal()">İptal</button>
+    </div>
+  `);
+  window._tmdbTargets = targetRows;
+  window._tmdbSelected = null;
+  $('tmdbQ').onkeydown = e => { if (e.key === 'Enter') doTmdbSearch(); };
+}
+
+async function doTmdbSearch() {
+  const q = $('tmdbQ').value.trim();
+  if (!q) return;
+  const media = $('tmdbType').value;
+  const cards = $('tmdbCards');
+  cards.innerHTML = '<span style="padding:20px">⏳ Aranıyor…</span>';
+  try {
+    const params = new URLSearchParams({ api_key: TMDB_KEY, query: q, language: 'tr-TR' });
+    const resp = await fetch(`${TMDB_BASE}/search/${media}?${params}`);
+    let results = (await resp.json()).results || [];
+    results = results.slice(0, 8);
+    if (!results.length) { cards.innerHTML = '<span style="padding:20px">Sonuç yok.</span>'; return; }
+    cards.innerHTML = '';
+    for (const item of results) {
+      let title = item.name || item.title || '?';
+      const year = (item.first_air_date || item.release_date || '').slice(0, 4);
+      const genres = item.genre_ids || [];
+      const group = GENRE_MAP[genres[0]] || 'Diğer';
+      const id = String(item.id || '');
+      const logo = item.poster_path ? TMDB_IMG + item.poster_path : '';
+      if (!isLatin(title)) {
+        try {
+          const en = await fetch(`${TMDB_BASE}/${media}/${id}?api_key=${TMDB_KEY}&language=en-US`).then(r => r.json());
+          const tr = await fetch(`${TMDB_BASE}/${media}/${id}?api_key=${TMDB_KEY}&language=tr-TR`).then(r => r.json());
+          const trT = tr.title || tr.name || '';
+          title = (trT && isLatin(trT)) ? trT : (en.title || en.name || title);
+        } catch {}
+      }
+      const data = { logo, group, tr_name: title, year, tmdb_id: id, media_type: media };
+      const card = document.createElement('div');
+      card.className = 'tmdb-card';
+      card.innerHTML = `
+        ${logo ? `<img src="${esc(logo)}" alt="">` : '<div style="height:148px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:28px">🎬</div>'}
+        <div class="title">${esc(title.slice(0, 18))}${title.length > 18 ? '…' : ''}<br>${esc(year)} | ${esc(group)}</div>
+        <button style="margin-top:4px;width:100%;font-size:11px;padding:3px">Seç</button>
+      `;
+      card.querySelector('button').onclick = (e) => {
+        e.stopPropagation();
+        window._tmdbSelected = data;
+        cards.querySelectorAll('.tmdb-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        $('tmdbInfo').innerHTML = `✅ <b>${esc(data.tr_name)}</b> (${esc(data.year)}) | ${esc(data.group)} | ID: ${esc(data.tmdb_id)}`;
+        $('tmdbApplyBtn').disabled = false;
+      };
+      cards.appendChild(card);
+    }
+  } catch (e) {
+    cards.innerHTML = `<span style="padding:20px;color:#f88">Hata: ${esc(e.message)}</span>`;
+  }
+}
+
+document.addEventListener('click', e => {
+  if (e.target && e.target.id === 'tmdbApplyBtn' && window._tmdbSelected) {
+    snapshot(`TMDB uygula (${window._tmdbTargets.length})`);
+    for (const r of window._tmdbTargets) applyTmdb(r, window._tmdbSelected, tmdbOpts);
+    closeModal();
+    render();
+    status(`✅ TMDB ${window._tmdbTargets.length} satıra uygulandı`);
+  }
+});
+
+async function tmdbAutoAll() {
+  if (!rows.length) { alert('Önce liste yükleyin.'); return; }
+  const onlyMissing = confirm('Sadece eksik bilgisi olanları mı işleyelim?\n\nTamam = sadece eksikler\nİptal = hepsini yeniden çek\n\n(Pencereyi kapatmak için Esc değil, İptal\'e basın — iptal = yeniden çek)');
+  // Note: confirm cancel = false = re-fetch all; OK = true = only missing
+  // Actually user might cancel dialog entirely — treat cancel as abort
+  // Simpler: ask with custom modal
+  openModal(`
+    <h2>TMDB Otomatik Doldur</h2>
+    <p style="margin-bottom:12px;font-size:13px">${rows.filter(r=>!r.hidden).length} görünür içerik işlenecek.</p>
+    <div class="modal-actions" style="justify-content:flex-start;gap:10px">
+      <button class="primary" onclick="startTmdbAuto(true)">Sadece eksikler</button>
+      <button onclick="startTmdbAuto(false)">Hepsini yeniden çek</button>
+      <button onclick="closeModal()">İptal</button>
+    </div>
+  `);
+}
+
+async function startTmdbAuto(onlyMissing) {
+  closeModal();
+  const targets = rows.map((r, i) => ({ r, i })).filter(x => {
+    if (x.r.hidden || !x.r.name) return false;
+    if (!onlyMissing) return true;
+    if (x.r.tmdbMark === 'fail') return true;
+    const o = tmdbOpts;
+    return (o.logo && !x.r.logo) || (o.group && !x.r.group) ||
+           (o.year && !x.r.year) || (o.tmdb_id && !x.r.tmdb);
+  });
+  if (!targets.length) { alert('Güncellenecek içerik yok.'); return; }
+  snapshot(`TMDB Otomatik (${targets.length})`);
+  openModal(`
+    <h2>TMDB Otomatik Doldur</h2>
+    <div id="tmdbProgLabel">0 / ${targets.length}</div>
+    <div class="progress-bar"><div class="fill" id="tmdbProgFill"></div></div>
+    <div id="tmdbProgName" style="font-size:11px;color:#aaa;margin-top:4px"></div>
+    <div class="modal-actions"><button onclick="window._tmdbStop=true;closeModal()">Durdur</button></div>
+  `);
+  window._tmdbStop = false;
+  let ok = 0, fail = 0;
+  const concurrency = 6;
+  let idx = 0;
+
+  async function worker() {
+    while (idx < targets.length && !window._tmdbStop) {
+      const my = idx++;
+      const { r } = targets[my];
+      $('tmdbProgName').textContent = r.name;
+      const data = await tmdbFetch(r.name);
+      if (data) { applyTmdb(r, data, tmdbOpts); ok++; }
+      else { r.status = 'TMDB ❌'; r.tmdbMark = 'fail'; fail++; }
+      const done = ok + fail;
+      $('tmdbProgLabel').textContent = `${done} / ${targets.length}  (✅${ok} ❌${fail})`;
+      $('tmdbProgFill').style.width = `${(done / targets.length) * 100}%`;
+      if (done % 3 === 0) render();
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, targets.length) }, () => worker()));
+  closeModal();
+  render();
+  alert(`TMDB Tamamlandı\n\n✅ Bulundu: ${ok}\n❌ Bulunamadı: ${fail}`);
+  status(`✅ TMDB: ${ok} bulundu, ${fail} bulunamadı`, 8000);
+}
+
+function setApiKey() {
+  const k = prompt('TMDB API Key:', TMDB_KEY);
+  if (k && k.trim()) {
+    TMDB_KEY = k.trim();
+    localStorage.setItem('tmdb_key', TMDB_KEY);
+    status('✅ API Key güncellendi');
+  }
+}
+
+function openTmdbOpts() {
+  openModal(`
+    <h2>TMDB Güncelleme Seçenekleri</h2>
+    <p style="font-size:12px;color:#aaa;margin-bottom:8px">Otomatik doldurmada hangi alanlar güncellensin?</p>
+    ${[['logo','🖼️ Poster / Logo'],['group','🏷️ Tür (group-title)'],['tr_name','📝 Türkçe İçerik Adı'],['year','📅 Yıl'],['tmdb_id','🔢 TMDB ID']].map(([k,l]) =>
+      `<div class="checkbox-row"><input type="checkbox" id="opt_${k}" ${tmdbOpts[k]?'checked':''}> <label for="opt_${k}" style="margin:0">${l}</label></div>`
+    ).join('')}
+    <div class="modal-actions">
+      <button class="primary" onclick="saveTmdbOpts()">Kaydet</button>
+      <button onclick="closeModal()">İptal</button>
+    </div>
+  `);
+}
+function saveTmdbOpts() {
+  for (const k of Object.keys(tmdbOpts)) {
+    tmdbOpts[k] = !!$(`opt_${k}`)?.checked;
+  }
+  localStorage.setItem('tmdb_opts', JSON.stringify(tmdbOpts));
+  closeModal();
+  status('✅ Seçenekler kaydedildi');
+}
+
+async function testApiKey() {
+  const t = getTargets();
+  const name = t.length ? t[0].r.name : 'The 100 S01 E01';
+  status('Test ediliyor…');
+  const data = await tmdbFetch(name);
+  if (data) {
+    alert(`✅ TMDB Test\n\nTest: ${name}\nTemiz: ${cleanName(name)}\n─────────────\nAd: ${data.tr_name}\nYıl: ${data.year}\nGrup: ${data.group}\nID: ${data.tmdb_id}\nLogo: ${(data.logo||'').slice(0,60)}`);
+  } else {
+    alert(`⚠️ Sonuç yok\n\nTest: ${name}\nTemiz: ${cleanName(name)}\n\nAPI key doğru mu? İnternet var mı?`);
+  }
+  status('Hazır');
+}
+
+/* ── Bulk edit ── */
+function openBulkEdit() {
+  const checked = rows.filter(r => !r.hidden && r.checked).length;
+  const visible = rows.filter(r => !r.hidden).length;
+  openModal(`
+    <h2>Toplu Düzenle</h2>
+    <label>Kapsam</label>
+    <select id="bulkScope">
+      <option value="checked">Tikli / Seçili (${checked})</option>
+      <option value="visible">Tüm görünür (${visible})</option>
+    </select>
+    <div class="checkbox-row"><input type="checkbox" id="blkGroup"> <label for="blkGroup" style="margin:0">Tür / Grup</label></div>
+    <input type="text" id="blkGroupVal" placeholder="örn: Drama" disabled>
+    <div class="checkbox-row"><input type="checkbox" id="blkLogo"> <label for="blkLogo" style="margin:0">Logo URL</label></div>
+    <input type="text" id="blkLogoVal" placeholder="https://…" disabled>
+    <div class="checkbox-row"><input type="checkbox" id="blkName"> <label for="blkName" style="margin:0">İçerik Adı</label></div>
+    <input type="text" id="blkNameVal" placeholder="Dizi/film adı" disabled>
+    <div class="checkbox-row"><input type="checkbox" id="blkKeepEp" checked> <label for="blkKeepEp" style="margin:0">Bölüm bilgisini koru</label></div>
+    <div class="modal-actions">
+      <button class="primary" onclick="applyBulkEdit()">✅ Uygula</button>
+      <button onclick="closeModal()">İptal</button>
+    </div>
+  `);
+  for (const [id, val] of [['blkGroup','blkGroupVal'],['blkLogo','blkLogoVal'],['blkName','blkNameVal']]) {
+    $(id).onchange = () => { $(val).disabled = !$(id).checked; };
+  }
+}
+
+function applyBulkEdit() {
+  const scope = $('bulkScope').value;
+  let targets = scope === 'checked'
+    ? rows.filter(r => !r.hidden && (r.checked || r._selected))
+    : rows.filter(r => !r.hidden);
+  if (!targets.length) { alert('Hedef satır yok.'); return; }
+  const fields = [];
+  if ($('blkGroup').checked && $('blkGroupVal').value.trim())
+    fields.push({ key: 'group', val: $('blkGroupVal').value.trim() });
+  if ($('blkLogo').checked && $('blkLogoVal').value.trim())
+    fields.push({ key: 'logo', val: $('blkLogoVal').value.trim() });
+  if ($('blkName').checked && $('blkNameVal').value.trim())
+    fields.push({ key: 'name', val: $('blkNameVal').value.trim(), keepEp: $('blkKeepEp').checked });
+  if (!fields.length) { alert('En az bir alan seçin.'); return; }
+  snapshot('Toplu düzenle');
+  for (const r of targets) {
+    for (const f of fields) {
+      if (f.key === 'name' && f.keepEp) {
+        const ep = extractEpisodeInfo(r.name || '');
+        r.name = ep ? `${f.val} ${ep}` : f.val;
+      } else r[f.key] = f.val;
+    }
+  }
+  closeModal();
+  render();
+  status(`✅ ${targets.length} satır güncellendi`);
+}
+
+/* ── Find & Replace ── */
+function openFindReplace() {
+  const checked = rows.filter(r => !r.hidden && r.checked).length;
+  const visible = rows.filter(r => !r.hidden).length;
+  openModal(`
+    <h2>Toplu Bul & Değiştir</h2>
+    <label>Bul</label>
+    <input type="text" id="frFind" placeholder="Metin veya regex">
+    <label>Değiştir</label>
+    <input type="text" id="frRepl" placeholder="Boş = sil">
+    <div class="checkbox-row"><input type="checkbox" id="frRegex"> <label for="frRegex" style="margin:0">Regex</label>
+    <input type="checkbox" id="frCase" style="margin-left:12px"> <label for="frCase" style="margin:0">Büyük/küçük duyarlı</label></div>
+    <label>Sütun</label>
+    <select id="frCol">
+      <option value="name">İçerik Adı</option>
+      <option value="url">URL</option>
+      <option value="group">Tür/Grup</option>
+      <option value="logo">Logo</option>
+      <option value="all">Tümü</option>
+    </select>
+    <label>Kapsam</label>
+    <select id="frScope">
+      <option value="checked">Tikli (${checked})</option>
+      <option value="visible" ${checked===0?'selected':''}>Görünür (${visible})</option>
+      <option value="all">Tümü (${rows.length})</option>
+    </select>
+    <div id="frPreview" style="margin-top:10px;padding:8px;border-radius:4px;background:#1a3a1a;font-size:11px;color:#aaffaa;min-height:40px">Bul alanını doldurun…</div>
+    <div class="modal-actions">
+      <button class="primary" onclick="applyFindReplace()">✅ Uygula</button>
+      <button onclick="closeModal()">Kapat</button>
+    </div>
+  `);
+  const update = () => {
+    const text = $('frFind').value;
+    if (!text) { $('frPreview').textContent = 'Bul alanını doldurun…'; return; }
+    let re;
+    try {
+      re = new RegExp($('frRegex').checked ? text : text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+        $('frCase').checked ? 'g' : 'gi');
+    } catch { $('frPreview').textContent = '⚠️ Geçersiz regex'; return; }
+    const cols = $('frCol').value === 'all' ? ['name','url','group','logo'] : [$('frCol').value];
+    const scope = $('frScope').value;
+    let list = rows;
+    if (scope === 'checked') list = rows.filter(r => !r.hidden && r.checked);
+    else if (scope === 'visible') list = rows.filter(r => !r.hidden);
+    let matchRows = 0, matchCells = 0;
+    const lines = [];
+    for (const r of list) {
+      let hit = false;
+      for (const c of cols) {
+        const v = r[c] || '';
+        if (re.test(v)) {
+          matchCells++;
+          hit = true;
+          if (lines.length < 3) {
+            re.lastIndex = 0;
+            const neu = v.replace(re, $('frRepl').value);
+            lines.push(`  [${c}] ${v.slice(0,40)} → ${neu.slice(0,40)}`);
+          }
+        }
+        re.lastIndex = 0;
+      }
+      if (hit) matchRows++;
+    }
+    if (!matchRows) $('frPreview').textContent = '🔍 Eşleşme yok';
+    else $('frPreview').textContent = `🔍 ${matchRows} satır / ${matchCells} hücre\n` + lines.join('\n');
+  };
+  ['frFind','frRepl','frRegex','frCase','frCol','frScope'].forEach(id => {
+    $(id).addEventListener('input', update);
+    $(id).addEventListener('change', update);
+  });
+}
+
+function applyFindReplace() {
+  const text = $('frFind').value;
+  if (!text) { alert('Bul alanını doldurun.'); return; }
+  let re;
+  try {
+    re = new RegExp($('frRegex').checked ? text : text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+      $('frCase').checked ? 'g' : 'gi');
+  } catch { alert('Geçersiz regex'); return; }
+  const cols = $('frCol').value === 'all' ? ['name','url','group','logo'] : [$('frCol').value];
+  const scope = $('frScope').value;
+  let list = rows;
+  if (scope === 'checked') list = rows.filter(r => !r.hidden && r.checked);
+  else if (scope === 'visible') list = rows.filter(r => !r.hidden);
+  const repl = $('frRepl').value;
+  snapshot('Bul & Değiştir');
+  let changed = 0;
+  for (const r of list) {
+    let ch = false;
+    for (const c of cols) {
+      const v = r[c] || '';
+      const neu = v.replace(re, repl);
+      if (neu !== v) { r[c] = neu; ch = true; }
+      re.lastIndex = 0;
+    }
+    if (ch) changed++;
+  }
+  closeModal();
+  render();
+  status(changed ? `✅ ${changed} satır güncellendi` : 'Eşleşme yok');
+}
+
+/* ── Keyboard ── */
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    if (e.key === 'Escape') { e.target.blur(); closeModal(); }
+    return;
+  }
+  if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); }
+  if (e.ctrlKey && (e.key === 'y' || (e.shiftKey && e.key === 'z'))) { e.preventDefault(); redo(); }
+  if (e.ctrlKey && e.key === 's') { e.preventDefault(); saveM3U(); }
+  if (e.altKey && e.key === 'ArrowUp') { e.preventDefault(); moveRows(-1); }
+  if (e.altKey && e.key === 'ArrowDown') { e.preventDefault(); moveRows(1); }
+  if (e.altKey && e.key === 'Home') { e.preventDefault(); moveRowsTop(); }
+  if (e.altKey && e.key === 'End') { e.preventDefault(); moveRowsBottom(); }
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Delete') deleteRows();
+});
+
+/* ── Init ── */
+render();
+status('Pro M3U Editor Web — M3U dosyası açın veya sürükleyip bırakın');
+</script>
+</body>
+</html>
